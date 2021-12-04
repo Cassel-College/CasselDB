@@ -25,4 +25,13 @@ fi
 
 cmake -H.. -B../product
 
+this_path=$(pwd)
+
 cd ../product&&make
+
+cd ${this_path}
+
+sh ./create_product_setting/create_start.sh
+sh ./create_product_setting/create_configuration.sh
+
+# sh ./clear_build.sh

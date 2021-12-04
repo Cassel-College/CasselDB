@@ -1,6 +1,8 @@
 #bin/bash
 
-file_name="../../cassel/configuration.config"
+this_path=`dirname $0`
+echo "${this_path}"
+file_name="${this_path}/../../cassel/configuration.config"
 
 if [ -f "${file_name}" ]
 then
