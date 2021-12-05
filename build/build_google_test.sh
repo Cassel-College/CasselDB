@@ -17,12 +17,15 @@ else
     git clone https://github.com/google/googletest.git
     echo "🐮🍺download google test frame over"
 
-    echo $(pwd)
     echo "Building google test brin package..."
     cd googletest
+    google_test_cmake_filder=$(pwd)
     mkdir build 
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=${google_test_install_path} ..
+    google_test_build_filder=$(pwd)
+
+    cmake -DCMAKE_INSTALL_PREFIX=${google_test_install_path} -H${google_test_cmake_filder} -B${google_test_build_filder}
+
     make
     echo "🐮🍺Building google test brin package success."
 
@@ -47,7 +50,7 @@ else
     if [ "${google_test_path_frame}" != "" ]
     then
         echo "🚮"
-        rm -rf ${google_test_path_frame}/googletest
+        # rm -rf ${google_test_path_frame}/googletest
     fi
     echo "🐮🍺Delete google test source code over!"
 fi
