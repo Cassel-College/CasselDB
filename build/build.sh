@@ -23,7 +23,12 @@ else
     echo "Create product dir "
 fi
 
-cmake -H.. -B../product
+
+
+this_path=`dirname $0`
+echo "${this_path}"
+
+cmake -H${this_path}/.. -B${this_path}/../product
 
 this_path=$(pwd)
 
