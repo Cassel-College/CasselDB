@@ -1,9 +1,7 @@
-#!/bin/bash
 
 this_path=$(dirname $0)
-echo "${this_path}"
 
-function make_google_test() 
+function make_google_test()
 {
     test_path=$1
     if [ "${test_path}" == "" ]
@@ -29,12 +27,13 @@ function make_google_test()
                     cd ${google_test_path}/build;make
                 fi
                 echo "Delete Building folder..."
+                echo ">>> rm -rf ${google_test_path}/build"
                 rm -rf ${google_test_path}/build
             else
                 rm -rf ${google_test_path}/build
             fi
         else
-            echo "No't exist path: ${google_test_path}."
+            echo "No't exist path: ${google_test_path}"
         fi        
     fi
 }
