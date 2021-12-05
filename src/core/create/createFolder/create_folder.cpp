@@ -125,3 +125,4 @@ bool core::create::CreateFolder::CreateFolderCore(const std::string& path) {
     }
     return key;
 }
+
