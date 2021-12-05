@@ -7,6 +7,15 @@
 namespace core {
 namespace create {
 
+enum class CreateFolderStatus {
+    INIT,
+    FOLDER_NAME_ERROR,  
+    FOLDER_PATH_NOT_EXITS,
+    FOLDER_EXITS,
+    CREATE_ERROR,
+    CREATE_SUCCESS
+};
+
 class CreateFolder {
 
 public:
@@ -15,10 +24,28 @@ public:
     
     ~CreateFolder();
 
+    void SetPath(const std::string& path);
+
+    std::string GetPath() const;
+
+    void SetFolderName(const std::string& folderName);
+
+    std::string GetFolderName() const;
+
+    void SetStatus(CreateFolderStatus status);
+
+    CreateFolderStatus GetStatus() const;
+
+    void DoCreateFolder();
+    
+    static bool HasFolder(const std::string& path);
+
+    static bool CreateFolderCore(const std::string& path);
+
 private:
     std::string path;
     std::string folderName;
-    int status;
+    CreateFolderStatus status;
 };
 
 }; // namespace Create
