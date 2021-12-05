@@ -50,7 +50,7 @@ else
     if [ "${google_test_path_frame}" != "" ]
     then
         echo "🚮"
-        # rm -rf ${google_test_path_frame}/googletest
+        rm -rf ${google_test_path_frame}/googletest
     fi
     echo "🐮🍺Delete google test source code over!"
 fi
