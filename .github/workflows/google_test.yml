@@ -18,13 +18,16 @@ jobs:
       # Build your program with the given configuration
       run: cd ${{github.workspace}}/build;sh build_google_test.sh
 
+    - name: Build Project
+      # Build your program with the given configuration
+      run: cd ${{github.workspace}}/build;sh build.sh
+
     - name: Build Google Test
       # Build your program with the given configuration
-      run: cd ${{github.workspace}}/build;sh build_test.sh
+      run: cd ${{github.workspace}}/build;bash build_test.sh
 
-    # - name: Running
-    #   run: sh ${{github.workspace}}/cassel/start.sh
-      # Execute tests defined by the CMake configuration.  
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+    - name: Running
+      # Build your program with the given configuration
+      run: cd ${{github.workspace}};bash ./build/googleTest/running_unit_test.sh
       
 

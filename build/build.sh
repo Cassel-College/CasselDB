@@ -36,7 +36,8 @@ cd ../product&&make
 
 cd ${this_path}
 
-sh ./create_product_setting/create_start.sh
-sh ./create_product_setting/create_configuration.sh
+this_path=$(dirname $0)
+sh ${this_path}/./create_product_setting/create_start.sh
+sh ${this_path}/./create_product_setting/create_configuration.sh
 
 # sh ./clear_build.sh
