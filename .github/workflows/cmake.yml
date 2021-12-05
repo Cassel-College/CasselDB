@@ -36,9 +36,8 @@ jobs:
       # Build your program with the given configuration
       run: cd ${{github.workspace}}/build/create_product_setting/;sh install.sh
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
+    - name: Running
+      run: ${{github.workspace}}/cassel/start.sh
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C ${{env.BUILD_TYPE}}
       
