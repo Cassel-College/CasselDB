@@ -2,9 +2,11 @@ cmake_minimum_required (VERSION 3.16)
 
 project(TestCreateFolder)
 
-set(SRC_DIR ../../../../../src)
+set(SRC_DIR ../../../../../src/core/create/createFolder/create_folder.cpp)
+
 set(UNITTESTROOT ../../../../test)
 set(project_target test_create_folder)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../../../../cassel/test)
 message(">>> Setting program path:${PROJECT_SOURCE_DIR}/../../../../cassel/test")
 

@@ -1,11 +1,19 @@
 #include "read_file.h"
 
 core::read::ReadFile::ReadFile() {
-    
+    this->path = "";
+    this->beginLineNum = -1;
+    this->endLIneNum = -1;
+    this->hasFile = false;
+    this->info = {};
 }
 
 core::read::ReadFile::~ReadFile() {
-    
+    this->path = "";
+    this->beginLineNum = -1;
+    this->endLIneNum = -1;
+    this->hasFile = false;
+    this->info = {};
 }
 
 void core::read::ReadFile::SetBeginLineNum(const int beginLineNum) {
