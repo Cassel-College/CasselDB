@@ -24,7 +24,6 @@ std::string module::config::path::InstallPath::GetInstallPath() {
     std::vector<std::string> file_info_list = readFile->GetInfo();
     file_info_list = SelectInfoFromList::SelectInfo(file_info_list, "#", false);
     file_info_list = SelectInfoFromList::SelectInfo(file_info_list, "CASSELDB_INSTALL_PATH", true);
-    target = file_info_list[file_info_list.size() - 1];
     if (file_info_list.size() != 0) {
         target = file_info_list[file_info_list.size() - 1];
     }
