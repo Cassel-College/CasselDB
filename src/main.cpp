@@ -28,7 +28,9 @@ int main()
     }
 
     InstallPath *installPath = new InstallPath();
+    std::cout << "Holle World!-" << std::endl;
     std::string install_path = installPath->GetInstallPath();
+    std::cout << "Holle World!-" << std::endl;
     std::cout << install_path << std::endl;
 
     return 0;
