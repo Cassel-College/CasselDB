@@ -7,6 +7,12 @@
 namespace core {
 namespace read {
 
+enum class ReadFileStatus {
+    INIT,
+    NO_FILE,
+    READ_FILE_SUCCESS,
+    OPEN_FILE_ERROR,
+};
 class ReadFile {
 
 public:
@@ -32,7 +38,7 @@ public:
 
     std::vector<std::string> GetInfo() const;
 
-    void SetInfo(const std::vector<std::string>& info);
+    bool SetInfo();
     
 private:
 
@@ -40,11 +46,13 @@ private:
 
     int beginLineNum;
 
-    int endLIneNum;
+    int endLineNum;
 
     bool hasFile;
 
     std::vector<std::string> info;
+
+    ReadFileStatus status;
 };
 
 }; // namespace read

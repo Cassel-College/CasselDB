@@ -1,19 +1,25 @@
 #include "read_file.h"
+#include <iostream>
+#include <fstream>
+
+using core::read::ReadFileStatus;
 
 core::read::ReadFile::ReadFile() {
     this->path = "";
-    this->beginLineNum = -1;
-    this->endLIneNum = -1;
+    this->beginLineNum = 0;
+    this->endLineNum = INT32_MAX;
     this->hasFile = false;
     this->info = {};
+    this->status = ReadFileStatus::INIT;
 }
 
 core::read::ReadFile::~ReadFile() {
     this->path = "";
     this->beginLineNum = -1;
-    this->endLIneNum = -1;
+    this->endLineNum = -1;
     this->hasFile = false;
     this->info = {};
+    this->status = ReadFileStatus::INIT;
 }
 
 void core::read::ReadFile::SetBeginLineNum(const int beginLineNum) {
@@ -25,11 +31,11 @@ int core::read::ReadFile::GetBeginLineNum() const {
 }
 
 void core::read::ReadFile::SetEndLineNum(const int endLineNum) {
-    this->endLIneNum = endLIneNum;
+    this->endLineNum = endLineNum;
 }
 
 int core::read::ReadFile::GetEndLineNum() const {
-    return this->endLIneNum;
+    return this->endLineNum;
 }
 
 void core::read::ReadFile::SetPath(const std::string& path) {
@@ -52,6 +58,26 @@ std::vector<std::string> core::read::ReadFile::GetInfo() const {
     return this->info;
 }
 
-void core::read::ReadFile::SetInfo(const std::vector<std::string>& info) {
+bool core::read::ReadFile::SetInfo() {
+    std::vector<char> bytes;
+    char byte = 0;
+    bool key = true;
+    std::ifstream input_file(this->path);
+    if (!input_file.is_open()) {
+        std::cout << "Could not open the file:'"<< this->path << "'" << std::endl;
+        this->status = ReadFileStatus::OPEN_FILE_ERROR;
+        key = false;
+    } else {
+        std::string buf;
+        int index = 0;
+        while (getline(input_file, buf))
+        {
+            if (index >= this->beginLineNum && index <= this->endLineNum) {
+                this->info.push_back(buf);
+            }
+        }
+        input_file.close();
+    }
     this->info = info;
+    return key;
 }
