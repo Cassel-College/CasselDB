@@ -65,3 +65,4 @@ function build_unit_test() {
 }
 
 build_unit_test "../test/core/create/createFolder"
+build_unit_test "../test/core/read/readFile"

@@ -34,6 +34,12 @@ public:
 
     CreateFileStatus GetStatus() const;
 
+    void DoCreateFile();
+    
+    static bool HasFile(const std::string& path);
+
+    static bool CreateFileCore(const std::string& path);
+
 private:
     /* data */
     std::string path;

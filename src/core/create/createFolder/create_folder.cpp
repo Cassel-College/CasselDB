@@ -116,7 +116,7 @@ bool core::create::CreateFolder::CreateFolderCore(const std::string& path) {
         return key;
     }
     // Liunx create folder
-    int returnKey =  mkdir(path.c_str(), S_IRWXU);
+    int returnKey = mkdir(path.c_str(), S_IRWXU);
 
     if (returnKey == 0) {
         key = true;
