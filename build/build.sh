@@ -25,7 +25,7 @@ fi
 
 
 
-this_path=`dirname $0`
+this_path=$(dirname $0)
 echo "${this_path}"
 
 cmake -H${this_path}/.. -B${this_path}/../product
