@@ -105,7 +105,7 @@ bool core::create::CreateFile::CreateFileCore(const std::string& path) {
         return key;
     }
     // check file exist
-    bool key = CreateFile::HasFile(path);
+    key = CreateFile::HasFile(path);
     if (CreateFile::HasFile(path)) {
         key = false;
     } else {
