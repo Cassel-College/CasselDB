@@ -18,11 +18,11 @@ int main()
     ReadFile *readFile = new ReadFile();
     readFile->SetPath("/etc/profile");
     readFile->SetInfo();
+    std::cout << "Holle World!" << std::endl;
     std::vector<std::string> paly = readFile->GetInfo();
-    // for (auto info : paly) {
-    //     std::cout << info << std::endl;
-    // }
+
     paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INSTALL_PATH", true);
+    std::cout << "Holle World!" << std::endl;
     for (auto item : paly) {
         std::cout << item << std::endl;
     }
@@ -30,5 +30,6 @@ int main()
     InstallPath *installPath = new InstallPath();
     std::string install_path = installPath->GetInstallPath();
     std::cout << install_path << std::endl;
+
     return 0;
 }
