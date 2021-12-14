@@ -31,6 +31,11 @@ std::string module::config::path::InstallPath::GetInstallPath() {
     if (file_info_list.size() != 0) {
         target = file_info_list[file_info_list.size() - 1];
     }
+    if (target.find('=') != std::string::npos) {
+        target = target.substr(target.find('=') + 1);
+    } else {
+        target = "";
+    }
     return target;
 }
 

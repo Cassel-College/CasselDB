@@ -30,6 +30,12 @@ std::string module::config::path::DataPath::GetDataPath() {
     if (file_info_list.size() != 0) {
         target = file_info_list[file_info_list.size() - 1];
     }
+    if (target.find('=') != std::string::npos) {
+        target = target.substr(target.find('=') + 1);
+    } else {
+        target = "";
+    }
+    std::cout << target << "----------------------------------" << std::endl;
     return target;
 }
 
@@ -41,7 +47,6 @@ bool module::config::path::DataPath::DataSec() {
     }
     // Liunx create folder
     int returnKey = access(dataPath.c_str(), F_OK);
-
     if (returnKey == 0) {
         key = true;
     } else {

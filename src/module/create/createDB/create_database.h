@@ -12,6 +12,12 @@ enum class CreateDataBaseStatus {
     DB_EXIST,
     CREATE_SUCCESS,
     CREATE_ERROR,
+    NOT_INSRTALL_CASSEL_DB,
+    NO_CASSEL_DB_PATH,
+    CASSEL_DB_INSTALL,
+    EXIST_CASSEL_DB_PATH,
+    ENVIRONMENT_OK,
+
 };
 
 class CreateDatabase {
@@ -28,11 +34,17 @@ public:
 
     void SetDatabasesName(const std::string& dataBaseName);
 
-    std::string getDatabasename() const;
+    std::string GetDatabaseName() const;
     
-    void SetCreateDataBaseStatus(CreateDataBaseStatus status);
+    void SetCreateDataBaseStatus();
 
     CreateDataBaseStatus GetCreateDataBaseStatus() const;
+
+    bool Create();
+
+    bool CheckDataBaseName();
+
+    bool CheckDatabasesPath();
 
 private:
 
