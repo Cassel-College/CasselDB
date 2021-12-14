@@ -47,6 +47,9 @@ CreateFolderStatus core::create::CreateFolder::GetStatus() const {
     return this->status;
 }
 
+void print_log(const std::string& log) {
+    std::cout << log << std::endl;
+}
 
 void core::create::CreateFolder::DoCreateFolder() {
     int key = 0;
@@ -61,7 +64,8 @@ void core::create::CreateFolder::DoCreateFolder() {
         this->status == CreateFolderStatus::FOLDER_NAME_ERROR;
         // check folder name error, has error char in name.
     }
-
+    print_log("key:" + std::to_string(key));
+    print_log("check folder name");
     // check folder path
     if (key == 0) {
         bool checkFolderPathKey = CreateFolder::HasFolder(this->path);
@@ -70,26 +74,30 @@ void core::create::CreateFolder::DoCreateFolder() {
             key = 1;
         }
     }
-
+    print_log("key:" + std::to_string(key));
+    print_log("check folder path");
     // check folder exist
     if (key == 0) {
         newFolderPath = this->path + "/" + this->folderName;
         bool checkNewFoldrpathKey = CreateFolder::HasFolder(newFolderPath);
-        if (!checkNewFoldrpathKey) {
+        if (checkNewFoldrpathKey) {
             this->status = CreateFolderStatus::FOLDER_EXITS;
             key = 1;
         }
     }
-
+    print_log("key:" + std::to_string(key));
+    print_log("create folder");
     // create folder
     if (key == 0) {
         //create folder
-        bool key = CreateFolder::CreateFolderCore(newFolderPath);
+        bool createKey = CreateFolder::CreateFolderCore(newFolderPath);
         // Setting create status
-        if (key == true) {
+        if (createKey == true) {
             this->status = CreateFolderStatus::CREATE_SUCCESS;
+            print_log("create: Y");
         } else {
             this->status = CreateFolderStatus::CREATE_ERROR;
+            print_log("create: N");
         }
     }
 }
@@ -101,11 +109,13 @@ bool core::create::CreateFolder::HasFolder(const std::string& path) {
     }
     // Liunx create folder
     int returnKey = access(path.c_str(), F_OK);
-
+    print_log(std::to_string(returnKey));
     if (returnKey == 0) {
         key = true;
+        print_log("exist!");
     } else {
         key = false;
+        print_log("not exist!");
     }
     return key;
 }
@@ -117,6 +127,7 @@ bool core::create::CreateFolder::CreateFolderCore(const std::string& path) {
     }
     // Liunx create folder
     int returnKey = mkdir(path.c_str(), S_IRWXU);
+    print_log("---------------->>>> create folder...........");
 
     if (returnKey == 0) {
         key = true;
