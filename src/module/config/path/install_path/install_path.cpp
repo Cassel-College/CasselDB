@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <vector>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <core/read/readFile/read_file.h>
 #include <core/tools/select_info_from_list/select_info_from_list.h>
 
@@ -31,5 +35,18 @@ std::string module::config::path::InstallPath::GetInstallPath() {
 }
 
 bool module::config::path::InstallPath::SoftSec() {
-    return true;
+    std::string installPath = InstallPath::GetInstallPath();
+    bool key = false;
+    if (installPath.length() > 2048 || installPath.length() == 0) {
+        return key;
+    }
+    // Liunx create folder
+    int returnKey = access(installPath.c_str(), F_OK);
+
+    if (returnKey == 0) {
+        key = true;
+    } else {
+        key = false;
+    }
+    return key;
 }
