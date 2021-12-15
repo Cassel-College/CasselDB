@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(create_table SHARED ./create_table.cpp ./create_table.h)
 
-target_link_libraries(create_table install_path data_path create_foler)
+target_link_libraries(create_table install_path data_path create_file)
