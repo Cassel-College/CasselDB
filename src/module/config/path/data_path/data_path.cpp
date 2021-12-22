@@ -35,7 +35,6 @@ std::string module::config::path::DataPath::GetDataPath() {
     } else {
         target = "";
     }
-    std::cout << target << "----------------------------------" << std::endl;
     return target;
 }
 

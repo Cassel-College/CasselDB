@@ -1,6 +1,7 @@
 #include "select_folder.h"
 #include <dirent.h>
 #include <math.h>
+#include <iostream>
 
 core::select::SelectFolder::SelectFolder() {
     
@@ -21,6 +22,12 @@ std::vector<std::string> core::select::SelectFolder::GetFolderListByPath(const s
         if (dirp->d_type == DT_REG) {
             continue;
         } else if (dirp->d_type == DT_DIR) {
+            if (0 == std::string(dirp->d_name).compare(".")) {
+                continue;
+            }
+            if (0 == std::string(dirp->d_name).compare("..")) {
+                continue;
+            }
             dbNameList.push_back(dirp->d_name);
         }
     }
