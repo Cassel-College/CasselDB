@@ -5,6 +5,4 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/cassel/lib)
 message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
-add_library(show_database SHARED ./show_database.cpp ./show_database.h)
-
-target_link_libraries(show_database select_folder)
+add_library(select_folder SHARED ./select_folder.cpp ./select_folder.h)

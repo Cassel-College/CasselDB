@@ -7,7 +7,6 @@
 namespace module {
 namespace show {
 namespace database {
-
 class ShowDatabase {
 
 public:
@@ -16,11 +15,19 @@ public:
 
     ~ShowDatabase();
 
-    GetAllDatabases();
+    void SetDataPath(const std::string &path);
+
+    std::string GetDataPath() const;
+
+    void SetDBNameList();
+
+    std::vector<std::string> GetDBNamelist() const;
 
 private:
 
-    std::vector<std::string> databases;
+    std::string dataPath;
+
+    std::vector<std::string> dbNameList;
 
 };
 
