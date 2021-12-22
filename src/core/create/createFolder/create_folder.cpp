@@ -91,6 +91,7 @@ void core::create::CreateFolder::DoCreateFolder() {
     if (key == 0) {
         //create folder
         bool createKey = CreateFolder::CreateFolderCore(newFolderPath);
+        print_log("path: " + newFolderPath);
         // Setting create status
         if (createKey == true) {
             this->status = CreateFolderStatus::CREATE_SUCCESS;
@@ -126,7 +127,7 @@ bool core::create::CreateFolder::CreateFolderCore(const std::string& path) {
         return key;
     }
     // Liunx create folder
-    int returnKey = mkdir(path.c_str(), S_IRWXU);
+    int returnKey = ::mkdir(path.c_str(), S_IRWXU);
     print_log("---------------->>>> create folder...........");
 
     if (returnKey == 0) {

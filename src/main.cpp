@@ -6,6 +6,7 @@
 #include <core/tools/select_info_from_list/select_info_from_list.h>
 #include <module/config/path/install_path/install_path.h>
 #include <module/create/createDB/create_database.h>
+#include <module/show/database/show_database.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -13,6 +14,7 @@ using core::tools::SelectInfoFromList;
 using module::config::path::InstallPath;
 using module::create::CreateDatabase;
 using module::create::CreateDataBaseStatus;
+using module::show::database::ShowDatabase;
 
 
 int main()
@@ -55,5 +57,13 @@ int main()
     //     std::cout << "Create Error!" << std::endl;
     // }
     // std::cout << "-----------------End   Test Create Databases-----------------" << std::endl;
+
+    // ShowDatabase *showDatabase = new ShowDatabase();
+    // showDatabase->SetDBNameList();
+    // for (auto item : showDatabase->GetDBNamelist()) {
+    //     std::cout << " -- :" << item  << std::endl;
+    // }
+
+
     return 0;
 }

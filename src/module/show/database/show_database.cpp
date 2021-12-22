@@ -29,7 +29,10 @@ std::string module::show::database::ShowDatabase::GetDataPath() const {
 }
 
 void module::show::database::ShowDatabase::SetDBNameList() {
-    this->dbNameList = SelectFolder::GetFolderListByPath(this->dataPath);
+    if (0 == this->GetDataPath().compare("")) {
+        return;
+    }
+    this->dbNameList = SelectFolder::GetFolderListByPath(this->GetDataPath());
 }
 
 std::vector<std::string> module::show::database::ShowDatabase::GetDBNamelist() const {
