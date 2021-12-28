@@ -8,6 +8,7 @@ namespace create {
 enum class CreateTableStatus {
     INIT,
     NO_DATABASE,
+    HAS_SAME_TABLE,
     ERROR_TABLE_NAME,
     SUCCESS,
 };
@@ -34,9 +35,13 @@ public:
     bool CheckEnvironment();
 
     // select 
-    bool HasSameTableInDatabase();
+    bool HasSameTableInDatabase() const;
+
+    bool HasDatabase() const;
 
     void CraeteTable();
+
+    void CreateTableCore();
 
 private:
 
