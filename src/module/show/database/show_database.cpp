@@ -6,7 +6,8 @@
 using module::config::path::DataPath;
 using core::select::SelectFolder;
 
-module::show::database::ShowDatabase::ShowDatabase() {
+module::show::database::ShowDatabase::ShowDatabase() 
+{
     this->dbNameList = {};
     DataPath *dataPath = new DataPath();
     if (DataPath::DataSec()) {
@@ -16,25 +17,30 @@ module::show::database::ShowDatabase::ShowDatabase() {
     }
 }
 
-module::show::database::ShowDatabase::~ShowDatabase() {
+module::show::database::ShowDatabase::~ShowDatabase() 
+{
     this->dataPath = "";
 }
 
-void module::show::database::ShowDatabase::SetDataPath(const std::string &path) {
+void module::show::database::ShowDatabase::SetDataPath(const std::string &path) 
+{
     this->dataPath = path;
 }
 
-std::string module::show::database::ShowDatabase::GetDataPath() const {
+std::string module::show::database::ShowDatabase::GetDataPath() const 
+{
     return this->dataPath;
 }
 
-void module::show::database::ShowDatabase::SetDBNameList() {
+void module::show::database::ShowDatabase::SetDBNameList() 
+{
     if (0 == this->GetDataPath().compare("")) {
         return;
     }
     this->dbNameList = SelectFolder::GetFolderListByPath(this->GetDataPath());
 }
 
-std::vector<std::string> module::show::database::ShowDatabase::GetDBNamelist() const {
+std::vector<std::string> module::show::database::ShowDatabase::GetDBNamelist() const 
+{
     return this->dbNameList;
 }

@@ -7,6 +7,8 @@
 
 namespace module {
 namespace show {
+namespace table {
+
 class ShowTable {
 
 public:
@@ -26,7 +28,11 @@ private:
     std::vector<std::string> tableList;
 
 }; // class show table
+
+}; // namespace table
+
 }; // namespace show
+
 }; // namespace module
 
 #endif
