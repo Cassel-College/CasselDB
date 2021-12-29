@@ -74,7 +74,7 @@ bool module::create::CreateTable::HasSameTableInDatabase() const
     ShowTable *showTable = new ShowTable();
     showTable->SetDatabaseName(this->GetDatabaseName());
     std::vector<std::string> tableNameList = showTable->GetTableList();
-    std::vector<std::string>::iterator iter = std::find(tableName.begin(), tableName.end(), this->tableName);
+    std::vector<std::string>::iterator iter = std::find(tableNameList.begin(), tableNameList.end(), this->tableName);
     if (iter != tableNameList.end()) {
         hasTable = false;
     }
