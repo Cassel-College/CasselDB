@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
 
+#include <config/version/version.h>
 #include <core/create/createFolder/create_folder.h>
 #include <core/read/readFile/read_file.h>
 #include <core/tools/select_info_from_list/select_info_from_list.h>
 #include <module/config/path/install_path/install_path.h>
 #include <module/create/createDB/create_database.h>
 #include <module/show/database/show_database.h>
+
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -15,6 +17,7 @@ using module::config::path::InstallPath;
 using module::create::CreateDatabase;
 using module::create::CreateDataBaseStatus;
 using module::show::database::ShowDatabase;
+using config::version::Version;
 
 
 int main()
@@ -63,7 +66,7 @@ int main()
     // for (auto item : showDatabase->GetDBNamelist()) {
     //     std::cout << " -- :" << item  << std::endl;
     // }
-
-
+    Version *version = new Version();
+    std::cout << version->get_version() << std::endl;
     return 0;
 }
