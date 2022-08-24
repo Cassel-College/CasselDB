@@ -8,7 +8,8 @@
 #include <module/config/path/install_path/install_path.h>
 #include <module/create/createDB/create_database.h>
 #include <module/show/database/show_database.h>
-
+#include <log4cpp/log_module/log_module.h>
+#include <log4cpp/level/level.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -18,6 +19,8 @@ using module::create::CreateDatabase;
 using module::create::CreateDataBaseStatus;
 using module::show::database::ShowDatabase;
 using config::version::Version;
+using log4cpp::log_module::LogModule;
+using log4cpp::level::Level;
 
 
 int main()
@@ -66,7 +69,21 @@ int main()
     // for (auto item : showDatabase->GetDBNamelist()) {
     //     std::cout << " -- :" << item  << std::endl;
     // }
+
     Version *version = new Version();
     std::cout << version->get_version() << std::endl;
+
+    LogModule *log = new LogModule();
+    log->set_log_info("log information.");
+    log->show_log();
+
+
+    if (Level::compare(Level("DEBUG"), Level("INFO"))) {
+        log->set_log_info("print");
+    } else {
+        log->set_log_info("not print");
+    }
+    log->show_log();
+    delete log;
     return 0;
 }
