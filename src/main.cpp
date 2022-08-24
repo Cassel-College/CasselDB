@@ -10,6 +10,7 @@
 #include <module/show/database/show_database.h>
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
+#include <log4cpp/log_cache/log_cache.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -21,6 +22,7 @@ using module::show::database::ShowDatabase;
 using config::version::Version;
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
+using log4cpp::log_cache::LogCache;
 
 
 int main()
@@ -85,5 +87,17 @@ int main()
     }
     log->show_log();
     delete log;
+
+    LogCache *log_cache = new LogCache();
+    log_cache->append(LogModule(std::string("111"), Level(1)));
+    log_cache->append(LogModule(std::string("222"), Level(1)));
+    log_cache->append(LogModule(std::string("113"), Level(1)));
+    log_cache->append(LogModule(std::string("224"), Level(1)));
+    log_cache->append(LogModule(std::string("115"), Level(1)));
+    log_cache->append(LogModule(std::string("226"), Level(1)));
+    log_cache->append(LogModule(std::string("117"), Level(1)));
+    log_cache->append(LogModule(std::string("228"), Level(1)));
+    log_cache->append(LogModule(std::string("119"), Level(1)));
+    log_cache->append(LogModule(std::string("210"), Level(1)));
     return 0;
 }
