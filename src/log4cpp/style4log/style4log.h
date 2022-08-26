@@ -19,13 +19,13 @@ class Style4Log {
 
         Style4Log();
 
-        Style4Log(LogModule &log);
+        Style4Log(const LogModule &log);
 
         ~Style4Log();
 
-        void set_log(LogModule &log);
+        void set_log(const LogModule &log);
 
-        void set_style();
+        void set_style(const std::vector<std::pair<std::string, std::string>> &style);
 
         std::string get_log_information();
     

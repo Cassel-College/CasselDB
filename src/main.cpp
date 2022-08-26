@@ -12,7 +12,7 @@
 #include <log4cpp/level/level.h>
 #include <log4cpp/log_cache/log_cache.h>
 #include <log4cpp/style4log/style4log.h>
-
+#include <log4cpp/io4log/io4log.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -26,7 +26,7 @@ using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
 using log4cpp::style4log::Style4Log;
-
+using log4cpp::io4log::IO4Log;
 
 int main()
 {
@@ -107,5 +107,7 @@ int main()
     Style4Log *style = new Style4Log(log_a);
     std::cout << style->get_log_information() << std::endl;
 
+    IO4Log *io = new IO4Log("ccc");
+    io->wirte("opop");
     return 0;
 }
