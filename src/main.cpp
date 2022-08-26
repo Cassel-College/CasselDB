@@ -11,6 +11,8 @@
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
 #include <log4cpp/log_cache/log_cache.h>
+#include <log4cpp/style4log/style4log.h>
+
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -23,6 +25,7 @@ using config::version::Version;
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
+using log4cpp::style4log::Style4Log;
 
 
 int main()
@@ -99,5 +102,10 @@ int main()
     log_cache->append(LogModule(std::string("228"), Level(1)));
     log_cache->append(LogModule(std::string("119"), Level(1)));
     log_cache->append(LogModule(std::string("210"), Level(1)));
+
+    LogModule log_a = LogModule();
+    Style4Log *style = new Style4Log(log_a);
+    std::cout << style->get_log_information() << std::endl;
+
     return 0;
 }
