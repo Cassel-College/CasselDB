@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/cassel/lib)
 message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
-add_library(log_cache SHARED ./log_cache.cpp ./log_cache.h)
+add_library(filter4log SHARED ./filter4log.cpp ./filter4log.h)
 
-target_link_libraries(log_module level filter4log)
+target_link_libraries(log_module level)

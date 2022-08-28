@@ -10,7 +10,7 @@ add_subdirectory(./log_cache)
 # add_subdirectory(./config)
 # add_subdirectory(./copy)
 # add_subdirectory(./date_time)
-# add_subdirectory(./filter)
+add_subdirectory(./filter4log)
 add_subdirectory(./io4log)
 
 # add_subdirectory(./log)

@@ -33,7 +33,7 @@ class LogModule
         
         void show_log() const;
 
-
+        Level get_level();
 }; // class LogModule;
 
 }; // namespace log_module
