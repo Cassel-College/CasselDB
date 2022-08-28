@@ -13,6 +13,8 @@
 #include <log4cpp/log_cache/log_cache.h>
 #include <log4cpp/style4log/style4log.h>
 #include <log4cpp/io4log/io4log.h>
+#include <log4cpp/filter4log/filter4log.h>
+
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -27,6 +29,7 @@ using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
 using log4cpp::style4log::Style4Log;
 using log4cpp::io4log::IO4Log;
+using log4cpp::filter4log::Filter4Log;
 
 int main()
 {
@@ -93,15 +96,23 @@ int main()
 
     LogCache *log_cache = new LogCache();
     log_cache->append(LogModule(std::string("111"), Level(1)));
-    log_cache->append(LogModule(std::string("222"), Level(1)));
-    log_cache->append(LogModule(std::string("113"), Level(1)));
-    log_cache->append(LogModule(std::string("224"), Level(1)));
-    log_cache->append(LogModule(std::string("115"), Level(1)));
+    log_cache->append(LogModule(std::string("222"), Level(2)));
+    log_cache->append(LogModule(std::string("113"), Level(0)));
+    log_cache->append(LogModule(std::string("224"), Level(2)));
+    log_cache->append(LogModule(std::string("115"), Level(2)));
     log_cache->append(LogModule(std::string("226"), Level(1)));
-    log_cache->append(LogModule(std::string("117"), Level(1)));
+    log_cache->append(LogModule(std::string("117"), Level(0)));
     log_cache->append(LogModule(std::string("228"), Level(1)));
     log_cache->append(LogModule(std::string("119"), Level(1)));
     log_cache->append(LogModule(std::string("210"), Level(1)));
+
+    std::cout << "------------------------" << std::endl;
+    log_cache->show();
+    log_cache->filtter(Level(1));
+    std::cout << "------------------------" << std::endl;
+    log_cache->show();
+    
+    delete log_cache;
 
     LogModule log_a = LogModule();
     Style4Log *style = new Style4Log(log_a);
@@ -109,5 +120,10 @@ int main()
 
     IO4Log *io = new IO4Log("ccc");
     io->wirte("opop");
+
+
+
+
+
     return 0;
 }

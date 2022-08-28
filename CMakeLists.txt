@@ -25,4 +25,4 @@ message("Setting sub project path:${PROJECT_SOURCE_DIR}/src")
 message("Makeing CasselDB")
 add_executable(CasselDB ${source_code})
 
-target_link_libraries(CasselDB create_foler read_file select_info_from_list install_path create_database show_database version log_module level log_cache style4log io4log)
+target_link_libraries(CasselDB create_foler read_file select_info_from_list install_path create_database show_database version log_module level log_cache style4log io4log filter4log)
