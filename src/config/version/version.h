@@ -17,6 +17,7 @@ namespace config
                 void read_config_file();
 
                 std::string get_version();
+                
             private:
 
                 std::string name;

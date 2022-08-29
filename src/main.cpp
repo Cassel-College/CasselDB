@@ -14,6 +14,7 @@
 #include <log4cpp/style4log/style4log.h>
 #include <log4cpp/io4log/io4log.h>
 #include <log4cpp/filter4log/filter4log.h>
+#include <log4cpp/config4log/config4log.h>
 
 
 using core::create::CreateFolder;
@@ -30,6 +31,7 @@ using log4cpp::log_cache::LogCache;
 using log4cpp::style4log::Style4Log;
 using log4cpp::io4log::IO4Log;
 using log4cpp::filter4log::Filter4Log;
+using log4cpp::config4log::Config4Log;
 
 int main()
 {
@@ -122,7 +124,8 @@ int main()
     io->wirte("opop");
 
 
-
+    Config4Log *config = new Config4Log();
+    std::cout << config->getFilterLevel() << std::endl;
 
 
     return 0;
