@@ -15,7 +15,7 @@
 #include <log4cpp/io4log/io4log.h>
 #include <log4cpp/filter4log/filter4log.h>
 #include <log4cpp/config4log/config4log.h>
-
+#include <log4cpp/date_time/date_time.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -32,6 +32,7 @@ using log4cpp::style4log::Style4Log;
 using log4cpp::io4log::IO4Log;
 using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
+using log4cpp::date_time::DateTime;
 
 int main()
 {
@@ -127,6 +128,7 @@ int main()
     Config4Log *config = new Config4Log();
     std::cout << config->getFilterLevel() << std::endl;
 
+    DateTime dt = DateTime();
 
     return 0;
 }

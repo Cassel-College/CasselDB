@@ -1,5 +1,5 @@
-#ifndef LOG4CPP_DATE_TIME_DATE_TIME_H
-#define LOG4CPP_DATE_TIME_DATE_TIME_H
+#ifndef LOG4CPP_DATE_TIME_DATE_H
+#define LOG4CPP_DATE_TIME_DATE_H
 
 #include <stdio.h>
 #include <time.h>
@@ -9,18 +9,22 @@
 namespace log4cpp {
 namespace date_time {
 
-class DateTime {
+class Date {
 
     public:
-        DateTime();
+        Date();
 
-        ~DateTime();
+        ~Date();
 
     private:
 
-        struct timespec now;
+        int year;
 
-}; // class datetime
+        int month;
+
+        int day;
+
+}; // class date
 }; // namespace date_time
 }; // namespace log4cpp
 #endif
