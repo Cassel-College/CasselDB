@@ -20,6 +20,8 @@ class IO4Log {
 
         void wirte(const std::string &log_info);
 
+        // int get_file_size() const;
+
     private:
 
         std::string log_path;

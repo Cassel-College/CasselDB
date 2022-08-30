@@ -18,6 +18,7 @@ class Filter4Log
     private:
 
         std::vector<LogModule> logs;
+
         Level level;
 
     public:
