@@ -19,7 +19,6 @@ log4cpp::date_time::DateTime::DateTime()
     struct tm *time = localtime(&ts.tv_sec);
     this->date = std::make_shared<Date>(time->tm_year + 1900, time->tm_mon + 1, time->tm_mday);
     this->time = std::make_shared<Time>(time->tm_hour, time->tm_min, time->tm_sec);
-    std::cout << ts.tv_nsec << std::endl;
     this->time->setMicSecond(ts.tv_nsec);
 }
 

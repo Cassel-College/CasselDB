@@ -44,7 +44,13 @@ log4cpp::level::Level::~Level()
 
 std::string log4cpp::level::Level::get_level() const
 {
-    return this->level;
+    std::string space = "";
+    if (this->level.length() < max_level_str_length) {
+        for (auto i = 0; i < (this->max_level_str_length - this->level.length()); i = i + 1) {
+            space = space + " ";
+        }
+    }
+    return space + this->level;
 }
 
 int log4cpp::level::Level::get_index() const

@@ -41,6 +41,7 @@ class Level {
 
         std::string level;
         level_index index;
+        int max_level_str_length = 5;
 
     public:
 
