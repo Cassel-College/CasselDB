@@ -19,6 +19,8 @@ log4cpp::date_time::DateTime::DateTime()
     struct tm *time = localtime(&ts.tv_sec);
     this->date = std::make_shared<Date>(time->tm_year + 1900, time->tm_mon + 1, time->tm_mday);
     this->time = std::make_shared<Time>(time->tm_hour, time->tm_min, time->tm_sec);
+    std::cout << ts.tv_nsec << std::endl;
+    this->time->setMicSecond(ts.tv_nsec);
 }
 
 log4cpp::date_time::DateTime::~DateTime()
@@ -39,11 +41,12 @@ std::shared_ptr<Time> log4cpp::date_time::DateTime::getTime() const
 
 std::string log4cpp::date_time::DateTime::getDateTime() const
 {
-    std::string datetime = this->date->GetDate() + " " + this->time->getTime();
+    std::string datetime = this->date->GetDateInfo() + " " + this->time->getTimeInfo();
     return datetime;
 }
 
 void log4cpp::date_time::DateTime::show_now() const
 {
     std::cout << this->getDateTime() << std::endl;
+    std::cout << this->time->getAllTimeInfo() << std::endl;
 }

@@ -14,7 +14,7 @@ class Date {
 
         ~Date();
 
-        std::string GetDate() const;
+        std::string GetDateInfo() const;
 
     private:
 
