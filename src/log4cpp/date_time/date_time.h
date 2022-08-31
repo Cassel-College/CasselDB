@@ -4,11 +4,15 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdint.h>
- 
+#include <memory>
+#include "date.h"
+#include "time.h"
 
 namespace log4cpp {
 namespace date_time {
 
+using log4cpp::date_time::Date;
+using log4cpp::date_time::Time;
 class DateTime {
 
     public:
@@ -16,9 +20,21 @@ class DateTime {
 
         ~DateTime();
 
+        std::shared_ptr<Date> getDate() const;
+
+        std::shared_ptr<Time> getTime() const;
+
+        std::string getDateTime() const;
+
+        void show_now() const;
+
     private:
 
         struct timespec now;
+
+        std::shared_ptr<Date> date;
+
+        std::shared_ptr<Time> time;
 
 }; // class datetime
 }; // namespace date_time

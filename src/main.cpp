@@ -129,6 +129,7 @@ int main()
     std::cout << config->getFilterLevel() << std::endl;
 
     DateTime dt = DateTime();
-
+    dt.show_now();
+    
     return 0;
 }
