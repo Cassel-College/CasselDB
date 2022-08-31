@@ -1,10 +1,8 @@
 #ifndef LOG4CPP_DATE_TIME_TIME_H
 #define LOG4CPP_DATE_TIME_TIME_H
 
-#include <stdio.h>
-#include <time.h>
-#include <stdint.h>
- 
+
+#include <string>
 
 namespace log4cpp {
 namespace date_time {
@@ -14,15 +12,19 @@ class Time {
     public:
         Time();
 
+        Time(int hours, int minutes, int seconds);
+
         ~Time();
+
+        std::string getTime() const;
 
     private:
 
-        int hour;
+        int hours;
 
-        int mon;
+        int minutes;
 
-        int sec;
+        int seconds;
 
 }; // class date
 }; // namespace date_time
