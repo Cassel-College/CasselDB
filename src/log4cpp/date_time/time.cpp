@@ -6,11 +6,6 @@ log4cpp::date_time::Time::Time()
     std::cout << "Create time." << std::endl;
 }
 
-log4cpp::date_time::Time::~Time()
-{
-    
-}
-
 log4cpp::date_time::Time::Time(int hours, int minutes, int seconds)
 {
     this->hours = hours;
@@ -18,7 +13,49 @@ log4cpp::date_time::Time::Time(int hours, int minutes, int seconds)
     this->seconds = seconds;
 }
 
-std::string log4cpp::date_time::Time::getTime() const
+void log4cpp::date_time::Time::setMicroseconds(const int microseconds)
+{
+    this->microseconds = microseconds;
+}
+
+int log4cpp::date_time::Time::getMicroseconds() const
+{
+    return microseconds;
+}
+
+void log4cpp::date_time::Time::setNanosecond(const int nanosecond)
+{
+    this->nanosecond = nanosecond;
+}
+
+int log4cpp::date_time::Time::getNanosecond() const
+{
+    return nanosecond;
+}
+
+void log4cpp::date_time::Time::setNanoseconds(const int nanoseconds)
+{
+    this->nanoseconds = nanoseconds;
+}
+
+int log4cpp::date_time::Time::getNanoseconds() const
+{
+    return nanoseconds;
+}
+
+log4cpp::date_time::Time::~Time()
+{
+    
+}
+
+void log4cpp::date_time::Time::setMicSecond(const long nsec)
+{
+    this->setMicroseconds(static_cast<int>(nsec / 1000000));
+    this->setNanosecond(static_cast<int>((nsec / 1000) % 1000));
+    this->setNanoseconds(static_cast<int>(nsec % 1000));
+}
+
+std::string log4cpp::date_time::Time::getTimeInfo() const
 {
     std::string time = "";
     if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 && seconds >= 0 && seconds <= 59) {
@@ -36,5 +73,12 @@ std::string log4cpp::date_time::Time::getTime() const
         }
         time = str_hours + ":" + str_minutes + ":" + str_seconds;
     }
+    return time;
+}
+
+std::string log4cpp::date_time::Time::getAllTimeInfo() const
+{
+    long mic_second = microseconds * 1000000 + nanosecond * 1000 + nanoseconds;
+    std::string time = this->getTimeInfo() + "." + std::to_string(mic_second);
     return time;
 }

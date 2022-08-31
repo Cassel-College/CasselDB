@@ -21,7 +21,7 @@ log4cpp::date_time::Date::~Date()
     this->day = 0;
 }
 
-std::string log4cpp::date_time::Date::GetDate() const
+std::string log4cpp::date_time::Date::GetDateInfo() const
 {
     std::string date = "";
     if (year >= 0 && month >= 0 && month <= 12 && day >= 0 && day <= 31) {
