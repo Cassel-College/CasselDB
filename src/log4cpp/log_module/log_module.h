@@ -32,7 +32,7 @@ class LogModule
 
         LogModule(const std::string &log_info, Level level);
 
-        LogModule(const std::string &log_info, const Level level, const std::string &moduleName, const std::string &filename, int line);
+        LogModule(const std::string &log_info, const Level level, const std::string &filename, int line, const std::string &moduleName="");
 
         ~LogModule();
 
