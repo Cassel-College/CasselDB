@@ -16,6 +16,7 @@
 #include <log4cpp/filter4log/filter4log.h>
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
+#include <log4cpp/log/log.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -33,6 +34,7 @@ using log4cpp::io4log::IO4Log;
 using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
+using log4cpp::log::Log;
 
 int main()
 {
@@ -104,36 +106,10 @@ int main()
     log_cache->append(LogModule(std::string("224"), Level(2)));
     log_cache->append(LogModule(std::string("115"), Level(2)));
     log_cache->append(LogModule(std::string("226"), Level("DEBUG")));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start docker", Level(0), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Select Contaienr", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Start container", Level(1), "main", __FILE__, __LINE__));
-    log_cache->append(LogModule("Over!", Level("ERROR"), "main", __FILE__, __LINE__));
+    log_cache->append(LogModule("Start docker", Level("INFO"), __FILE__, __LINE__));
+    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    log_cache->append(LogModule("Start docker", Level("ERROR"), __FILE__, __LINE__));
+    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
 
     std::cout << "------------------------" << std::endl;
     log_cache->show();
@@ -156,6 +132,10 @@ int main()
 
     DateTime dt = DateTime();
     dt.show_now();
+
+    Log *log_ab = new Log();
+    log_ab->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    log_ab->send_log();
     
     return 0;
 }
