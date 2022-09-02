@@ -12,7 +12,6 @@ add_subdirectory(./config4log)
 add_subdirectory(./date_time)
 add_subdirectory(./filter4log)
 add_subdirectory(./io4log)
-
 add_subdirectory(./log)
 
 

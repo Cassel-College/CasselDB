@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(log_module SHARED ./log_module.cpp ./log_module.h)
 
-target_link_libraries(level date_time)
+target_link_libraries(log_module level date_time)

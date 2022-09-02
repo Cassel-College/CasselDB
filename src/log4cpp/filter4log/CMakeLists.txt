@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(filter4log SHARED ./filter4log.cpp ./filter4log.h)
 
-target_link_libraries(log_module level)
+target_link_libraries(filter4log log_module level)

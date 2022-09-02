@@ -1,4 +1,5 @@
 #include "log.h"
+#include <memory>
 
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
@@ -17,6 +18,8 @@ using log4cpp::io4log::IO4Log;
 using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
+
+// log4cpp::log::Log::logMS = nullptr;
 
 log4cpp::log::Log::Log()
 {
@@ -41,4 +44,13 @@ void log4cpp::log::Log::clear()
 void log4cpp::log::Log::send_log()
 {
     cache.show();
+}
+
+log4cpp::log::Log *log4cpp::log::Log::GetLog()
+{
+    if (logMS == nullptr) {
+        // logMS = make_shared<Log>();
+        logMS = new Log();
+    }
+    return logMS;
 }

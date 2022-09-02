@@ -36,6 +36,14 @@ using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 using log4cpp::log::Log;
 
+// using g::gLog;
+
+
+// namespace g {·
+//     extern Log gLog;
+// }
+Log* log4cpp::log::Log::logMS = nullptr;
+
 int main()
 {
     CreateFolder *createFolder = new CreateFolder();
@@ -49,7 +57,7 @@ int main()
     std::cout << "Holle World!" << std::endl;
     std::vector<std::string> paly = readFile->GetInfo();
 
-    paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INSTALL_PATH", true);
+    paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INS·TALL_PATH", true);
     std::cout << "Holle World!" << std::endl;
     for (auto item : paly) {
         std::cout << item << std::endl;
@@ -133,9 +141,14 @@ int main()
     DateTime dt = DateTime();
     dt.show_now();
 
-    Log *log_ab = new Log();
-    log_ab->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    log_ab->send_log();
+    // Log *log_ab = new Log();
+    // log_ab->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    // log_ab->send_log();
     
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    logMS->send_log();
+
+    delete logMS;
     return 0;
 }
