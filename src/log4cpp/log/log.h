@@ -27,15 +27,21 @@ class Log {
 
     public:
 
-        Log();
+        Log(Log &other) = delete;
+    
+        void operator=(const Log &) = delete;
 
         ~Log();
+
+        static Log *GetLog();
 
         void add(const LogModule &log);
 
         void send_log();
 
         void clear();
+
+        
 
     private:
 
@@ -49,6 +55,11 @@ class Log {
 
         Level levelFlite;
 
+    protected:
+
+        Log();
+        
+        static Log* logMS;
 
 }; // class log;
 }; // namespace log;
