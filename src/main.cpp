@@ -145,9 +145,10 @@ int main()
     // log_ab->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
     // log_ab->send_log();
     
-    // Log *logMS = Log().GetLog();
-    // logMS->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    // logMS->send_log();
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    logMS->send_log();
 
+    delete logMS;
     return 0;
 }
