@@ -46,6 +46,9 @@ Log* log4cpp::log::Log::logMS = nullptr;
 
 int main()
 {
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Begin start cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    
     CreateFolder *createFolder = new CreateFolder();
     createFolder->SetPath("/opt/CasselDB/data");
     createFolder->SetFolderName("Palt");
@@ -141,12 +144,7 @@ int main()
     DateTime dt = DateTime();
     dt.show_now();
 
-    // Log *log_ab = new Log();
-    // log_ab->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    // log_ab->send_log();
-    
-    Log* logMS = Log::GetLog();
-    logMS->add(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    logMS->add(LogModule("Stop Cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
     logMS->send_log();
 
     delete logMS;

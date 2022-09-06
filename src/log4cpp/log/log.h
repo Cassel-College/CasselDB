@@ -41,8 +41,6 @@ class Log {
 
         void clear();
 
-        
-
     private:
 
         LogCache cache;
