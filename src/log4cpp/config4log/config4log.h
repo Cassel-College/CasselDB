@@ -12,6 +12,8 @@ class Config4Log {
 
         ~Config4Log();
 
+        void setDefaultSetting();
+
         void read_config(const std::string &condif_path);
 
         std::string getLogWebServerIp() const;
@@ -59,6 +61,7 @@ class Config4Log {
         std::string logWebServerIp;
         int logWebServerPort;
         std::string logPath;
+        std::string configPolyPath;
         int maxCache = 1024;
         int maxSaveTime = 300;
         int maxLogFileSize = 10240;

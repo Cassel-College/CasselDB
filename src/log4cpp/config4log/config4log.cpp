@@ -8,6 +8,13 @@ log4cpp::config4log::Config4Log::~Config4Log() {
 
 }
 
+void log4cpp::config4log::Config4Log::setDefaultSetting()
+{    
+     logPath = "/tmp/casselDB/cassel.log";
+     configPolyPath = "/tmp/casselDB/log_poly.conf";
+     maxCache = 256;
+     maxSaveTime = 60;
+}
 
 void log4cpp::config4log::Config4Log::read_config(const std::string &condif_path)
 {
