@@ -35,6 +35,8 @@ class Log {
 
         static Log *GetLog();
 
+        static std::vector<std::string> GetDefaultConfig();
+
         void add(const LogModule &log);
 
         void send_log();
@@ -56,7 +58,11 @@ class Log {
     protected:
 
         Log();
+
+        Log(std::vector<std::string> defaultConfig);
         
+        Log(Config4Log config);
+
         static Log* logMS;
 
 }; // class log;

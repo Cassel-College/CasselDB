@@ -26,6 +26,11 @@ log4cpp::log::Log::Log()
     cache = LogCache();
 }
 
+log4cpp::log::Log::Log(std::vector<std::string> defaultConfig)
+{
+    
+}
+
 log4cpp::log::Log::~Log()
 {
     ;
@@ -50,7 +55,25 @@ log4cpp::log::Log *log4cpp::log::Log::GetLog()
 {
     if (logMS == nullptr) {
         // logMS = make_shared<Log>();
+        // get log config path
+        std::string log_config_path = "";
         logMS = new Log();
     }
     return logMS;
+}
+
+std::vector<std::string> log4cpp::log::Log::GetDefaultConfig()
+{
+    std::vector<std::string> config_infos;
+    config_infos.push_back("log_web_server_ip=\"127.0.0.1\"");
+    config_infos.push_back("log_web_server_port=\"8769\"");
+    config_infos.push_back("log_path=/tmp/casseldb/cassel.log");
+    config_infos.push_back("max_cache=1024");
+    config_infos.push_back("max_save_time=300");
+    config_infos.push_back("max_log_file_size=10240");
+    config_infos.push_back("log_style=lp");
+    config_infos.push_back("filter_level=debug");
+    config_infos.push_back("filter_module=\"core\"");
+    config_infos.push_back("log_copy_file_style=\"casseldb_yyyy_mm_dd_hh_mm_ss.log\"");
+    return config_infos;
 }
