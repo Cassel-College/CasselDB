@@ -1,0 +1,6 @@
+<map id="HasFile" name="HasFile">
+<area shape="rect" id="node1" title="Check the file path has existes file. If the file was existes, return true, else return false." alt="" coords="545,31,612,56"/>
+<area shape="rect" id="node2" href="$classcore_1_1create_1_1_create_file.html#a43f2b324904c658ff34817d6ec9fb3a1" title="Create file care action." alt="" coords="387,5,497,31"/>
+<area shape="rect" id="node3" href="$classcore_1_1create_1_1_create_file.html#ad2a9bed378a690df71341003b148deff" title="Do create file action." alt="" coords="240,31,339,56"/>
+<area shape="rect" id="node4" href="$classmodule_1_1create_1_1_create_table.html#a629a3749b4ddb81b7805c53625fbdc76" title=" " alt="" coords="5,23,192,63"/>
+</map>

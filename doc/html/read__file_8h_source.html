@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cassel DB: src/core/read/readFile/read_file.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Cassel DB<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_d01c45b1cbe08b45c25bc2c63bae5da9.html">read</a></li><li class="navelem"><a class="el" href="dir_375d936640924c077cff7ac3cc0aedbc.html">readFile</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">read_file.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="read__file_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CORE_READ_READ_FILR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CORE_READ_READ_FILR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacecore_1_1read.html">    8</a></span><span class="keyword">namespace </span>read {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400">   10</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400">ReadFileStatus</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_enumvalue" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400afaee4ca3c30ee18148ce3ada37466498">INIT</a>,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_enumvalue" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400a437a0018f5596bb67188841d7a610db2">NO_FILE</a>,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_enumvalue" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400a13976e800c1442c2311b7f6f6adf4a47">READ_FILE_SUCCESS</a>,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_enumvalue" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400ad902829dbd33ab2a890030f71f1eaf4f">OPEN_FILE_ERROR</a>,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1read_1_1_read_file.html">ReadFile</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a468f27b26848e99368a29515b562caeb">ReadFile</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#ac73b47fa3343dda15da8b309417a7377">~ReadFile</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#ab4c1eb4888b0c9f0d7f7a7ebe2720304">SetBeginLineNum</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a9cd8399065f4aa57a7b43aea29567a05">beginLineNum</a>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#ae0a7fa6ce57a557e6fecfeff21a694a2">GetBeginLineNum</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a7b68650903625a84e01bd31cbb102fcc">SetEndLineNum</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#ac356da88c459927406e22ca9efe31b23">endLineNum</a>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#af262492bf0eff70cbb8f0a7dd78b20db">GetEndLineNum</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a4a03d7c94fa02df112558bc30818e413">SetPath</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::string <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a293dc050ff098381c91bb009af682546">GetPath</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a0c5dc235549cd5b67794646a8a49a0ab">SetHasFile</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a3a8d018468cfb2067b03fdb2ea0aec4d">hasFile</a>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a8a0ec85ce22dd96f0a90c7c746a371c8">GetHasFile</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a5df5313e9f79a097fbc2ef5c42b8e2b8">GetInfo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcore_1_1read_1_1_read_file.html#a39c8e4da8cdfffaff657e4ee82602a5c">SetInfo</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#a4d455efceee21e97d8e21ee40e9b4a20">   45</a></span>    std::string <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#a9cd8399065f4aa57a7b43aea29567a05">   47</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a9cd8399065f4aa57a7b43aea29567a05">beginLineNum</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#ac356da88c459927406e22ca9efe31b23">   49</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#ac356da88c459927406e22ca9efe31b23">endLineNum</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#a3a8d018468cfb2067b03fdb2ea0aec4d">   51</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a3a8d018468cfb2067b03fdb2ea0aec4d">hasFile</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#a8a4b26c63c204bc37d1ef1fc2e85bd52">   53</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a8a4b26c63c204bc37d1ef1fc2e85bd52">info</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classcore_1_1read_1_1_read_file.html#a99ee184bb071fa61d2b35b03f94d396a">   55</a></span>    <a class="code hl_enumeration" href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400">ReadFileStatus</a> <a class="code hl_variable" href="classcore_1_1read_1_1_read_file.html#a99ee184bb071fa61d2b35b03f94d396a">status</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}; <span class="comment">// namespace read</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}; <span class="comment">// namespace core</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html">core::read::ReadFile</a></div><div class="ttdef"><b>Definition:</b> read_file.h:16</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a0c5dc235549cd5b67794646a8a49a0ab"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a0c5dc235549cd5b67794646a8a49a0ab">core::read::ReadFile::SetHasFile</a></div><div class="ttdeci">void SetHasFile(const bool hasFile)</div><div class="ttdef"><b>Definition:</b> read_file.cpp:49</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a293dc050ff098381c91bb009af682546"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a293dc050ff098381c91bb009af682546">core::read::ReadFile::GetPath</a></div><div class="ttdeci">std::string GetPath() const</div><div class="ttdef"><b>Definition:</b> read_file.cpp:45</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a39c8e4da8cdfffaff657e4ee82602a5c"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a39c8e4da8cdfffaff657e4ee82602a5c">core::read::ReadFile::SetInfo</a></div><div class="ttdeci">bool SetInfo()</div><div class="ttdef"><b>Definition:</b> read_file.cpp:61</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a3a8d018468cfb2067b03fdb2ea0aec4d"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a3a8d018468cfb2067b03fdb2ea0aec4d">core::read::ReadFile::hasFile</a></div><div class="ttdeci">bool hasFile</div><div class="ttdef"><b>Definition:</b> read_file.h:51</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a468f27b26848e99368a29515b562caeb"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a468f27b26848e99368a29515b562caeb">core::read::ReadFile::ReadFile</a></div><div class="ttdeci">ReadFile()</div><div class="ttdef"><b>Definition:</b> read_file.cpp:7</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a4a03d7c94fa02df112558bc30818e413"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a4a03d7c94fa02df112558bc30818e413">core::read::ReadFile::SetPath</a></div><div class="ttdeci">void SetPath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> read_file.cpp:41</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a4d455efceee21e97d8e21ee40e9b4a20"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a4d455efceee21e97d8e21ee40e9b4a20">core::read::ReadFile::path</a></div><div class="ttdeci">std::string path</div><div class="ttdef"><b>Definition:</b> read_file.h:45</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a5df5313e9f79a097fbc2ef5c42b8e2b8"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a5df5313e9f79a097fbc2ef5c42b8e2b8">core::read::ReadFile::GetInfo</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetInfo() const</div><div class="ttdef"><b>Definition:</b> read_file.cpp:57</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a7b68650903625a84e01bd31cbb102fcc"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a7b68650903625a84e01bd31cbb102fcc">core::read::ReadFile::SetEndLineNum</a></div><div class="ttdeci">void SetEndLineNum(const int endLineNum)</div><div class="ttdef"><b>Definition:</b> read_file.cpp:33</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a8a0ec85ce22dd96f0a90c7c746a371c8"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a8a0ec85ce22dd96f0a90c7c746a371c8">core::read::ReadFile::GetHasFile</a></div><div class="ttdeci">bool GetHasFile() const</div><div class="ttdef"><b>Definition:</b> read_file.cpp:53</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a8a4b26c63c204bc37d1ef1fc2e85bd52"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a8a4b26c63c204bc37d1ef1fc2e85bd52">core::read::ReadFile::info</a></div><div class="ttdeci">std::vector&lt; std::string &gt; info</div><div class="ttdef"><b>Definition:</b> read_file.h:53</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a99ee184bb071fa61d2b35b03f94d396a"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a99ee184bb071fa61d2b35b03f94d396a">core::read::ReadFile::status</a></div><div class="ttdeci">ReadFileStatus status</div><div class="ttdef"><b>Definition:</b> read_file.h:55</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_a9cd8399065f4aa57a7b43aea29567a05"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#a9cd8399065f4aa57a7b43aea29567a05">core::read::ReadFile::beginLineNum</a></div><div class="ttdeci">int beginLineNum</div><div class="ttdef"><b>Definition:</b> read_file.h:47</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_ab4c1eb4888b0c9f0d7f7a7ebe2720304"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#ab4c1eb4888b0c9f0d7f7a7ebe2720304">core::read::ReadFile::SetBeginLineNum</a></div><div class="ttdeci">void SetBeginLineNum(const int beginLineNum)</div><div class="ttdef"><b>Definition:</b> read_file.cpp:25</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_ac356da88c459927406e22ca9efe31b23"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#ac356da88c459927406e22ca9efe31b23">core::read::ReadFile::endLineNum</a></div><div class="ttdeci">int endLineNum</div><div class="ttdef"><b>Definition:</b> read_file.h:49</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_ac73b47fa3343dda15da8b309417a7377"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#ac73b47fa3343dda15da8b309417a7377">core::read::ReadFile::~ReadFile</a></div><div class="ttdeci">~ReadFile()</div><div class="ttdef"><b>Definition:</b> read_file.cpp:16</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_ae0a7fa6ce57a557e6fecfeff21a694a2"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#ae0a7fa6ce57a557e6fecfeff21a694a2">core::read::ReadFile::GetBeginLineNum</a></div><div class="ttdeci">int GetBeginLineNum() const</div><div class="ttdef"><b>Definition:</b> read_file.cpp:29</div></div>
+<div class="ttc" id="aclasscore_1_1read_1_1_read_file_html_af262492bf0eff70cbb8f0a7dd78b20db"><div class="ttname"><a href="classcore_1_1read_1_1_read_file.html#af262492bf0eff70cbb8f0a7dd78b20db">core::read::ReadFile::GetEndLineNum</a></div><div class="ttdeci">int GetEndLineNum() const</div><div class="ttdef"><b>Definition:</b> read_file.cpp:37</div></div>
+<div class="ttc" id="anamespacecore_1_1read_html_ac3eddde4dcfd4fc0d804dfea59e16400"><div class="ttname"><a href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400">core::read::ReadFileStatus</a></div><div class="ttdeci">ReadFileStatus</div><div class="ttdef"><b>Definition:</b> read_file.h:10</div></div>
+<div class="ttc" id="anamespacecore_1_1read_html_ac3eddde4dcfd4fc0d804dfea59e16400a13976e800c1442c2311b7f6f6adf4a47"><div class="ttname"><a href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400a13976e800c1442c2311b7f6f6adf4a47">core::read::ReadFileStatus::READ_FILE_SUCCESS</a></div><div class="ttdeci">@ READ_FILE_SUCCESS</div></div>
+<div class="ttc" id="anamespacecore_1_1read_html_ac3eddde4dcfd4fc0d804dfea59e16400a437a0018f5596bb67188841d7a610db2"><div class="ttname"><a href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400a437a0018f5596bb67188841d7a610db2">core::read::ReadFileStatus::NO_FILE</a></div><div class="ttdeci">@ NO_FILE</div></div>
+<div class="ttc" id="anamespacecore_1_1read_html_ac3eddde4dcfd4fc0d804dfea59e16400ad902829dbd33ab2a890030f71f1eaf4f"><div class="ttname"><a href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400ad902829dbd33ab2a890030f71f1eaf4f">core::read::ReadFileStatus::OPEN_FILE_ERROR</a></div><div class="ttdeci">@ OPEN_FILE_ERROR</div></div>
+<div class="ttc" id="anamespacecore_1_1read_html_ac3eddde4dcfd4fc0d804dfea59e16400afaee4ca3c30ee18148ce3ada37466498"><div class="ttname"><a href="namespacecore_1_1read.html#ac3eddde4dcfd4fc0d804dfea59e16400afaee4ca3c30ee18148ce3ada37466498">core::read::ReadFileStatus::INIT</a></div><div class="ttdeci">@ INIT</div></div>
+<div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdoc">core namespace</div><div class="ttdef"><b>Definition:</b> create_file.cpp:25</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>
