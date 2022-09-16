@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cassel DB: src/module/show/database/show_database.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Cassel DB<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_922ff8bb4e557a886cc34b5df365a8cd.html">module</a></li><li class="navelem"><a class="el" href="dir_2dbd16aa39b57cd0b5a65508718aa98f.html">show</a></li><li class="navelem"><a class="el" href="dir_0bbd306a90195db400d68cd9d43d89bb.html">database</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">show_database.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="show__database_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MODULE_SHOW_DATABASE_SHOW_DATABASE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MODULE_SHOW_DATABASE_SHOW_DATABASE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemodule.html">module</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacemodule_1_1show.html">    8</a></span><span class="keyword">namespace </span>show {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespacemodule_1_1show_1_1database.html">    9</a></span><span class="keyword">namespace </span>database {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classmodule_1_1show_1_1database_1_1_show_database.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="classmodule_1_1show_1_1database_1_1_show_database.html">ShowDatabase</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#a55b08d8fd0113e42cce73088ae5a7c6d">ShowDatabase</a>();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#af603d2a45472ab60bcf534c2b014206e">~ShowDatabase</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#ab1d70df7346c2b155aed7c5dfb869a22">SetDataPath</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::string <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#af4a00a20503e7803b5c9f5f04e6bf64a">GetDataPath</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#a8442bc2c1394557772b5d1af3976a427">SetDBNameList</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="classmodule_1_1show_1_1database_1_1_show_database.html#a739afac19438224af8953cae717e1ef2">GetDBNamelist</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classmodule_1_1show_1_1database_1_1_show_database.html#ab366910437c3c36f953577efefee62f6">   28</a></span>    std::string <a class="code hl_variable" href="classmodule_1_1show_1_1database_1_1_show_database.html#ab366910437c3c36f953577efefee62f6">dataPath</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classmodule_1_1show_1_1database_1_1_show_database.html#a352e9e33a90074becdead62e217b3cf2">   30</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="classmodule_1_1show_1_1database_1_1_show_database.html#a352e9e33a90074becdead62e217b3cf2">dbNameList</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}; <span class="comment">// namespace database</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}; <span class="comment">// namespace show</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}; <span class="comment">// namespace module</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html">module::show::database::ShowDatabase</a></div><div class="ttdef"><b>Definition:</b> show_database.h:10</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_a352e9e33a90074becdead62e217b3cf2"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#a352e9e33a90074becdead62e217b3cf2">module::show::database::ShowDatabase::dbNameList</a></div><div class="ttdeci">std::vector&lt; std::string &gt; dbNameList</div><div class="ttdef"><b>Definition:</b> show_database.h:30</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_a55b08d8fd0113e42cce73088ae5a7c6d"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#a55b08d8fd0113e42cce73088ae5a7c6d">module::show::database::ShowDatabase::ShowDatabase</a></div><div class="ttdeci">ShowDatabase()</div><div class="ttdef"><b>Definition:</b> show_database.cpp:9</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_a739afac19438224af8953cae717e1ef2"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#a739afac19438224af8953cae717e1ef2">module::show::database::ShowDatabase::GetDBNamelist</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetDBNamelist() const</div><div class="ttdef"><b>Definition:</b> show_database.cpp:43</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_a8442bc2c1394557772b5d1af3976a427"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#a8442bc2c1394557772b5d1af3976a427">module::show::database::ShowDatabase::SetDBNameList</a></div><div class="ttdeci">void SetDBNameList()</div><div class="ttdef"><b>Definition:</b> show_database.cpp:35</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_ab1d70df7346c2b155aed7c5dfb869a22"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#ab1d70df7346c2b155aed7c5dfb869a22">module::show::database::ShowDatabase::SetDataPath</a></div><div class="ttdeci">void SetDataPath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> show_database.cpp:25</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_ab366910437c3c36f953577efefee62f6"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#ab366910437c3c36f953577efefee62f6">module::show::database::ShowDatabase::dataPath</a></div><div class="ttdeci">std::string dataPath</div><div class="ttdef"><b>Definition:</b> show_database.h:28</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_af4a00a20503e7803b5c9f5f04e6bf64a"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#af4a00a20503e7803b5c9f5f04e6bf64a">module::show::database::ShowDatabase::GetDataPath</a></div><div class="ttdeci">std::string GetDataPath() const</div><div class="ttdef"><b>Definition:</b> show_database.cpp:30</div></div>
+<div class="ttc" id="aclassmodule_1_1show_1_1database_1_1_show_database_html_af603d2a45472ab60bcf534c2b014206e"><div class="ttname"><a href="classmodule_1_1show_1_1database_1_1_show_database.html#af603d2a45472ab60bcf534c2b014206e">module::show::database::ShowDatabase::~ShowDatabase</a></div><div class="ttdeci">~ShowDatabase()</div><div class="ttdef"><b>Definition:</b> show_database.cpp:20</div></div>
+<div class="ttc" id="anamespacemodule_html"><div class="ttname"><a href="namespacemodule.html">module</a></div><div class="ttdef"><b>Definition:</b> data_path.h:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cassel DB: src/core/create/createFile/create_file.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Cassel DB<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_eae4d4550f5af09407e4acc62a8dc55f.html">create</a></li><li class="navelem"><a class="el" href="dir_59c084937d8d7772b0cc3e467f5063ad.html">createFile</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">create_file.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="create__file_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CORE_CREATE_CREATE_FILE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CORE_CREATE_CREATE_FILE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>create {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">    9</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">CreateFileStatus</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbafaee4ca3c30ee18148ce3ada37466498">INIT</a>,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbad0fad6c269d263fd0050be244e207ce4">FILE_NAME_ERROR</a>,  </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbaafd16475b9c7b6ae572741a41cda569c">FILE_PATH_NOT_EXITS</a>,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dba8ceccc91c04c38a5b8f93e2261ccd8c4">FILE_EXITS</a>,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dba60052dd3177da085e8dd03e9fdae7e9b">CREATE_ERROR</a>,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_enumvalue" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbab615af976d0a86c25e2d1a7ac1802b8a">CREATE_SUCCESS</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classcore_1_1create_1_1_create_file.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1create_1_1_create_file.html">CreateFile</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a784342b0dd40a3f21e141ec0ff2056b6">CreateFile</a>(<span class="comment">/* args */</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a1e17ed8f24ae7f6bf349437e3bf6bef6">~CreateFile</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a4a03d7c94fa02df112558bc30818e413">SetPath</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::string <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a293dc050ff098381c91bb009af682546">GetPath</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a817b6facc917e0e3e8e0d5cf841b0b6f">SetFileName</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#ac81f9269c8d57eed4d5b56f054fc84de">fileName</a>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a0efc118469b5b6ec183a967ad03e6c4c">GetFileName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a7f897c384a66fa7bf2cbfd26683a2f94">SetStatus</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">CreateFileStatus</a>&amp; <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#aee98bd1f66b31663e829cd7a250d8f48">status</a>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumeration" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">CreateFileStatus</a> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a0ae914f8633c2069a54ff710769f88c5">GetStatus</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#ad2a9bed378a690df71341003b148deff">DoCreateFile</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#abc5870c0e32763e015fdf2766cdedbdc">HasFile</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classcore_1_1create_1_1_create_file.html#a43f2b324904c658ff34817d6ec9fb3a1">CreateFileCore</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">/* data */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">   45</a></span>    std::string <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">path</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classcore_1_1create_1_1_create_file.html#ac81f9269c8d57eed4d5b56f054fc84de">   47</a></span>    std::string <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#ac81f9269c8d57eed4d5b56f054fc84de">fileName</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classcore_1_1create_1_1_create_file.html#aee98bd1f66b31663e829cd7a250d8f48">   49</a></span>    <a class="code hl_enumeration" href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">CreateFileStatus</a> <a class="code hl_variable" href="classcore_1_1create_1_1_create_file.html#aee98bd1f66b31663e829cd7a250d8f48">status</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}; <span class="comment">// namespace create</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}; <span class="comment">// namespace core</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html">core::create::CreateFile</a></div><div class="ttdef"><b>Definition:</b> create_file.h:18</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a0ae914f8633c2069a54ff710769f88c5"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a0ae914f8633c2069a54ff710769f88c5">core::create::CreateFile::GetStatus</a></div><div class="ttdeci">CreateFileStatus GetStatus() const</div><div class="ttdoc">Get create file status in CreateFile object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:141</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a0efc118469b5b6ec183a967ad03e6c4c"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a0efc118469b5b6ec183a967ad03e6c4c">core::create::CreateFile::GetFileName</a></div><div class="ttdeci">std::string GetFileName() const</div><div class="ttdoc">Get file name in CreateFile object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:114</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a1e17ed8f24ae7f6bf349437e3bf6bef6"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a1e17ed8f24ae7f6bf349437e3bf6bef6">core::create::CreateFile::~CreateFile</a></div><div class="ttdeci">~CreateFile()</div><div class="ttdoc">Destroy the core::create::Create File::Create File object</div><div class="ttdef"><b>Definition:</b> create_file.cpp:58</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a293dc050ff098381c91bb009af682546"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a293dc050ff098381c91bb009af682546">core::create::CreateFile::GetPath</a></div><div class="ttdeci">std::string GetPath() const</div><div class="ttdoc">Get file path in CreateFile class object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:87</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a43f2b324904c658ff34817d6ec9fb3a1"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a43f2b324904c658ff34817d6ec9fb3a1">core::create::CreateFile::CreateFileCore</a></div><div class="ttdeci">static bool CreateFileCore(const std::string &amp;path)</div><div class="ttdoc">Create file care action.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:235</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a4a03d7c94fa02df112558bc30818e413"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a4a03d7c94fa02df112558bc30818e413">core::create::CreateFile::SetPath</a></div><div class="ttdeci">void SetPath(const std::string &amp;path)</div><div class="ttdoc">Set file path in CreateFile class object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:73</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a4d455efceee21e97d8e21ee40e9b4a20"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a4d455efceee21e97d8e21ee40e9b4a20">core::create::CreateFile::path</a></div><div class="ttdeci">std::string path</div><div class="ttdef"><b>Definition:</b> create_file.h:45</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a784342b0dd40a3f21e141ec0ff2056b6"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a784342b0dd40a3f21e141ec0ff2056b6">core::create::CreateFile::CreateFile</a></div><div class="ttdeci">CreateFile()</div><div class="ttdoc">Create file create function.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:44</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a7f897c384a66fa7bf2cbfd26683a2f94"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a7f897c384a66fa7bf2cbfd26683a2f94">core::create::CreateFile::SetStatus</a></div><div class="ttdeci">void SetStatus(const CreateFileStatus &amp;status)</div><div class="ttdoc">Set create file status in CreateFile object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:127</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_a817b6facc917e0e3e8e0d5cf841b0b6f"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#a817b6facc917e0e3e8e0d5cf841b0b6f">core::create::CreateFile::SetFileName</a></div><div class="ttdeci">void SetFileName(const std::string &amp;fileName)</div><div class="ttdoc">Set file name in CreateFile class object.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:100</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_abc5870c0e32763e015fdf2766cdedbdc"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#abc5870c0e32763e015fdf2766cdedbdc">core::create::CreateFile::HasFile</a></div><div class="ttdeci">static bool HasFile(const std::string &amp;path)</div><div class="ttdoc">Check the file path has existes file. If the file was existes, return true, else return false.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:206</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_ac81f9269c8d57eed4d5b56f054fc84de"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#ac81f9269c8d57eed4d5b56f054fc84de">core::create::CreateFile::fileName</a></div><div class="ttdeci">std::string fileName</div><div class="ttdef"><b>Definition:</b> create_file.h:47</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_ad2a9bed378a690df71341003b148deff"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#ad2a9bed378a690df71341003b148deff">core::create::CreateFile::DoCreateFile</a></div><div class="ttdeci">void DoCreateFile()</div><div class="ttdoc">Do create file action.</div><div class="ttdef"><b>Definition:</b> create_file.cpp:156</div></div>
+<div class="ttc" id="aclasscore_1_1create_1_1_create_file_html_aee98bd1f66b31663e829cd7a250d8f48"><div class="ttname"><a href="classcore_1_1create_1_1_create_file.html#aee98bd1f66b31663e829cd7a250d8f48">core::create::CreateFile::status</a></div><div class="ttdeci">CreateFileStatus status</div><div class="ttdef"><b>Definition:</b> create_file.h:49</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20db"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20db">core::create::CreateFileStatus</a></div><div class="ttdeci">CreateFileStatus</div><div class="ttdef"><b>Definition:</b> create_file.h:9</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dba60052dd3177da085e8dd03e9fdae7e9b"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dba60052dd3177da085e8dd03e9fdae7e9b">core::create::CreateFileStatus::CREATE_ERROR</a></div><div class="ttdeci">@ CREATE_ERROR</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dba8ceccc91c04c38a5b8f93e2261ccd8c4"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dba8ceccc91c04c38a5b8f93e2261ccd8c4">core::create::CreateFileStatus::FILE_EXITS</a></div><div class="ttdeci">@ FILE_EXITS</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dbaafd16475b9c7b6ae572741a41cda569c"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbaafd16475b9c7b6ae572741a41cda569c">core::create::CreateFileStatus::FILE_PATH_NOT_EXITS</a></div><div class="ttdeci">@ FILE_PATH_NOT_EXITS</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dbab615af976d0a86c25e2d1a7ac1802b8a"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbab615af976d0a86c25e2d1a7ac1802b8a">core::create::CreateFileStatus::CREATE_SUCCESS</a></div><div class="ttdeci">@ CREATE_SUCCESS</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dbad0fad6c269d263fd0050be244e207ce4"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbad0fad6c269d263fd0050be244e207ce4">core::create::CreateFileStatus::FILE_NAME_ERROR</a></div><div class="ttdeci">@ FILE_NAME_ERROR</div></div>
+<div class="ttc" id="anamespacecore_1_1create_html_ab9a534ac1f0a01b3e74808407b1f20dbafaee4ca3c30ee18148ce3ada37466498"><div class="ttname"><a href="namespacecore_1_1create.html#ab9a534ac1f0a01b3e74808407b1f20dbafaee4ca3c30ee18148ce3ada37466498">core::create::CreateFileStatus::INIT</a></div><div class="ttdeci">@ INIT</div></div>
+<div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdoc">core namespace</div><div class="ttdef"><b>Definition:</b> create_file.cpp:25</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>
