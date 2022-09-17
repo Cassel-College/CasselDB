@@ -1,3 +1,13 @@
+/**
+ * @file main.cpp
+ * @author liupeng (liupeng.0@outlook.com)
+ * @brief 程序入口
+ * @version 0.1
+ * @date 2022-09-16
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <iostream>
 #include <string>
 

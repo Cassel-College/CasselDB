@@ -28,7 +28,7 @@ public:
 
     void SetFileName(const std::string& fileName);
 
-    std::string GetFolderName() const;
+    std::string GetFileName() const;
 
     void SetStatus(const CreateFileStatus& status);
 
