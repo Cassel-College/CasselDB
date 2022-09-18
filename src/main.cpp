@@ -46,13 +46,73 @@ using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 using log4cpp::log::Log;
 
-// using g::gLog;
 
-
-// namespace g {·
-//     extern Log gLog;
-// }
 Log* log4cpp::log::Log::logMS = nullptr;
+
+
+/**
+ * @brief test case by Dev to test log module.
+ * 
+ * @version 1.0
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2022-09-18
+ * @copyright Copyright (c) 2022
+ */
+void dev_test_log()
+{
+    Log* logMS = Log::GetLog();
+    LogModule *log = new LogModule();
+    log->set_log_info("log information.");
+    log->show_log();
+
+
+    if (Level::compare(Level("DEBUG"), Level("INFO"))) {
+        log->set_log_info("print");
+    } else {
+        log->set_log_info("not print");
+    }
+    log->show_log();
+    delete log;
+
+    LogCache *log_cache = new LogCache();
+    log_cache->append(LogModule(std::string("111"), Level(1)));
+    log_cache->append(LogModule(std::string("222"), Level(2)));
+    log_cache->append(LogModule(std::string("113"), Level(0)));
+    log_cache->append(LogModule(std::string("224"), Level(2)));
+    log_cache->append(LogModule(std::string("115"), Level(2)));
+    log_cache->append(LogModule(std::string("226"), Level("DEBUG")));
+    log_cache->append(LogModule("Start docker", Level("INFO"), __FILE__, __LINE__));
+    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    log_cache->append(LogModule("Start docker", Level("ERROR"), __FILE__, __LINE__));
+    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
+
+    std::cout << "------------------------" << std::endl;
+    log_cache->show();
+    log_cache->filtter(Level(1));
+    std::cout << "------------------------" << std::endl;
+    log_cache->show();
+    
+    delete log_cache;
+
+    LogModule log_a = LogModule();
+    Style4Log *style = new Style4Log(log_a);
+    std::cout << style->get_log_information() << std::endl;
+
+    IO4Log *io = new IO4Log("ccc");
+    io->wirte("opop");
+
+    Config4Log *config = new Config4Log();
+    std::cout << config->getFilterLevel() << std::endl;
+
+    DateTime dt = DateTime();
+    dt.show_now();
+
+    logMS->add(LogModule("Stop Cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
+    logMS->send_log();
+
+    delete logMS;
+}
+
 
 int main()
 {
@@ -107,56 +167,6 @@ int main()
     Version *version = new Version();
     std::cout << version->get_version() << std::endl;
 
-    LogModule *log = new LogModule();
-    log->set_log_info("log information.");
-    log->show_log();
-
-
-    if (Level::compare(Level("DEBUG"), Level("INFO"))) {
-        log->set_log_info("print");
-    } else {
-        log->set_log_info("not print");
-    }
-    log->show_log();
-    delete log;
-
-    LogCache *log_cache = new LogCache();
-    log_cache->append(LogModule(std::string("111"), Level(1)));
-    log_cache->append(LogModule(std::string("222"), Level(2)));
-    log_cache->append(LogModule(std::string("113"), Level(0)));
-    log_cache->append(LogModule(std::string("224"), Level(2)));
-    log_cache->append(LogModule(std::string("115"), Level(2)));
-    log_cache->append(LogModule(std::string("226"), Level("DEBUG")));
-    log_cache->append(LogModule("Start docker", Level("INFO"), __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    log_cache->append(LogModule("Start docker", Level("ERROR"), __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-
-    std::cout << "------------------------" << std::endl;
-    log_cache->show();
-    log_cache->filtter(Level(1));
-    std::cout << "------------------------" << std::endl;
-    log_cache->show();
-    
-    delete log_cache;
-
-    LogModule log_a = LogModule();
-    Style4Log *style = new Style4Log(log_a);
-    std::cout << style->get_log_information() << std::endl;
-
-    IO4Log *io = new IO4Log("ccc");
-    io->wirte("opop");
-
-
-    Config4Log *config = new Config4Log();
-    std::cout << config->getFilterLevel() << std::endl;
-
-    DateTime dt = DateTime();
-    dt.show_now();
-
-    logMS->add(LogModule("Stop Cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    logMS->send_log();
-
-    delete logMS;
+    dev_test_log();
     return 0;
 }

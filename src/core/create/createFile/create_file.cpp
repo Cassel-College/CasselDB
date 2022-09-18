@@ -8,11 +8,22 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "create_file.h"
+
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <stdio.h>
 #include <unistd.h>
+
+#include "create_file.h"
+
+#include <log4cpp/log/log.h>
+#include <log4cpp/level/level.h>
+#include <log4cpp/log_module/log_module.h>
+
+
+
+using log4cpp::log::Log;
+using log4cpp::log_module::LogModule;
 
 /**
  * @brief core namespace
@@ -152,29 +163,38 @@ CreateFileStatus core::create::CreateFile::GetStatus() const {
  * @copyright Copyright (c) 2022
  */
 void core::create::CreateFile::DoCreateFile() {
+
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Begin create file", Level("INFO"), __FILE__, __LINE__, "core"));
+
     int key = 0;
     std::string newFolderPath;
-    // check file name
+    
+    logMS->add(LogModule("Check file name", Level("INFO"), __FILE__, __LINE__, "core"));
     std::string::size_type index = this->fileName.find("/");
     if (index == this->fileName.npos) {
         key = 0;
-        // check folder path right.
+        logMS->add(LogModule("file name was right.", Level("INFO"), __FILE__, __LINE__, "core"));
     } else {
+        logMS->add(LogModule("Check file name error, has error char in name.", Level("ERROR"), __FILE__, __LINE__, "core"));
         key = 1;
         this->status == CreateFileStatus::FILE_NAME_ERROR;
-        // check folder name error, has error char in name.
     }
 
-    // check file path
+    logMS->add(LogModule("Check file path was existed", Level("INFO"), __FILE__, __LINE__, "core"));
     if (key == 0) {
         bool checkFolderPathKey = CreateFile::HasFile(this->path);
         if (!checkFolderPathKey) {
             this->status = CreateFileStatus::FILE_PATH_NOT_EXITS;
             key = 1;
+            logMS->add(LogModule("File path was not existed.", Level("INFO"), __FILE__, __LINE__, "core"));
+
+        } else {
+            logMS->add(LogModule("File path was existed!", Level("ERROR"), __FILE__, __LINE__, "core"));
         }
     }
 
-    // create file
+    logMS->add(LogModule("begin create file.", Level("INFO"), __FILE__, __LINE__, "core"));
     if (key == 0) {
         //create file
         bool key = CreateFile::CreateFileCore(this->path);
@@ -202,11 +222,15 @@ void core::create::CreateFile::DoCreateFile() {
  * @return false 
  */
 bool core::create::CreateFile::HasFile(const std::string& path) {
+
+    Log* logMS = Log::GetLog();
     bool key = false;
     if (path.length() > 2048) {
+        logMS->add(LogModule("The path string length bigger than 2048.", Level("ERROR"), __FILE__, __LINE__, "core"));
         return key;
     }
-    // Liunx create folder
+    // 
+    logMS->add(LogModule("Check Liunx has path.", Level("INFO"), __FILE__, __LINE__, "core"));
     int returnKey = access(path.c_str(), F_OK);
 
     if (returnKey == 0) {
@@ -231,8 +255,15 @@ bool core::create::CreateFile::HasFile(const std::string& path) {
  * @return false 
  */
 bool core::create::CreateFile::CreateFileCore(const std::string& path) {
+
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Create File core action.", Level("INFO"), __FILE__, __LINE__, "core"));
+
     bool key = false;
+    logMS->add(LogModule("Check path string length.", Level("INFO"), __FILE__, __LINE__, "core"));
+
     if ((path.length() > 2048) || (path.length() == 0)) {
+        logMS->add(LogModule("File path string's length was not right.", Level("ERROR"), __FILE__, __LINE__, "core"));
         return key;
     }
     // check file exist
