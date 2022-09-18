@@ -3,7 +3,23 @@
 
 #include <string>
 
+/**
+ * @brief core namespace
+ * 
+ * @version 1.0
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2022-09-18
+ * @copyright Copyright (c) 2022
+ */
 namespace core {
+/**
+ * @brief create namespace
+ * 
+ * @version 1.0
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2022-09-18
+ * @copyright Copyright (c) 2022
+ */
 namespace create {
 
 enum class CreateFileStatus {
@@ -14,6 +30,14 @@ enum class CreateFileStatus {
     CREATE_ERROR,
     CREATE_SUCCESS
 };
+/**
+ * @brief Create file class.
+ * 
+ * @version 1.0
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2022-09-18
+ * @copyright Copyright (c) 2022
+ */
 class CreateFile
 {
 
@@ -28,7 +52,7 @@ public:
 
     void SetFileName(const std::string& fileName);
 
-    std::string GetFolderName() const;
+    std::string GetFileName() const;
 
     void SetStatus(const CreateFileStatus& status);
 
@@ -41,11 +65,13 @@ public:
     static bool CreateFileCore(const std::string& path);
 
 private:
-    /* data */
+    /// @brief file's folder path.
     std::string path;
 
+    /// @brief file name.
     std::string fileName;
 
+    /// @brief Create file status.
     CreateFileStatus status;
 
 
