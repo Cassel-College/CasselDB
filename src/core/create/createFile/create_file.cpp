@@ -165,48 +165,54 @@ CreateFileStatus core::create::CreateFile::GetStatus() const {
 void core::create::CreateFile::DoCreateFile() {
 
     Log* logMS = Log::GetLog();
-    logMS->add(LogModule("Begin create file", Level("INFO"), __FILE__, __LINE__, "core"));
-
-    int key = 0;
-    std::string newFolderPath;
     
+    std::string allFilePath = path + "/" + fileName;
+    logMS->add(LogModule("Begin create file:" + allFilePath, Level("INFO"), __FILE__, __LINE__, "core"));
+
+    bool checkFileName = CreateFile::CheckFileName(fileName);
+    bool checkFileExisted = CreateFile::CheckFilePathExisted(allFilePath);
+    bool createState = CreateFile::CreateFileCore(allFilePath);
+
+}
+
+/**
+ * @brief Check file name has error char, like '/'.
+ * 
+ * @param fileName
+ * @return true 
+ * @return false 
+ * @version 1.0
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2022-09-19
+ * @copyright Copyright (c) 2022
+ */
+bool core::create::CreateFile::CheckFileName(const std::string& fileName) {
+
+    Log* logMS = Log::GetLog();
     logMS->add(LogModule("Check file name", Level("INFO"), __FILE__, __LINE__, "core"));
-    std::string::size_type index = this->fileName.find("/");
-    if (index == this->fileName.npos) {
-        key = 0;
+    bool fileNameState = false;
+    std::string::size_type index = fileName.find("/");
+    if (index == fileName.npos) {
+        fileNameState = true;
         logMS->add(LogModule("file name was right.", Level("INFO"), __FILE__, __LINE__, "core"));
     } else {
         logMS->add(LogModule("Check file name error, has error char in name.", Level("ERROR"), __FILE__, __LINE__, "core"));
-        key = 1;
-        this->status == CreateFileStatus::FILE_NAME_ERROR;
+        fileNameState = false;
     }
-
-    logMS->add(LogModule("Check file path was existed", Level("INFO"), __FILE__, __LINE__, "core"));
-    if (key == 0) {
-        bool checkFolderPathKey = CreateFile::HasFile(this->path);
-        if (!checkFolderPathKey) {
-            this->status = CreateFileStatus::FILE_PATH_NOT_EXITS;
-            key = 1;
-            logMS->add(LogModule("File path was not existed.", Level("INFO"), __FILE__, __LINE__, "core"));
-
-        } else {
-            logMS->add(LogModule("File path was existed!", Level("ERROR"), __FILE__, __LINE__, "core"));
-        }
-    }
-
-    logMS->add(LogModule("begin create file.", Level("INFO"), __FILE__, __LINE__, "core"));
-    if (key == 0) {
-        //create file
-        bool key = CreateFile::CreateFileCore(this->path);
-        // Setting create status
-        if (key == true) {
-            this->status = CreateFileStatus::CREATE_SUCCESS;
-        } else {
-            this->status = CreateFileStatus::CREATE_ERROR;
-        }
-    }
+    return fileNameState;
 }
 
+
+bool core::create::CreateFile::CheckFilePathExisted(const std::string& filePath) {
+    Log* logMS = Log::GetLog();
+    if (filePath.length() > 2048) {
+        logMS->add(LogModule("The path string length bigger than 2048.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        return false;
+    }
+    logMS->add(LogModule("Check Liunx has file path." + filePath, Level("INFO"), __FILE__, __LINE__, "core"));
+    int returnKey = access(filePath.c_str(), F_OK);
+    return returnKey == 0;
+}
 
 /**
  * @brief Check the file path has existes file. If the file was existes, return true, else return false.

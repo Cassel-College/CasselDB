@@ -63,6 +63,11 @@ public:
     static bool HasFile(const std::string& path);
 
     static bool CreateFileCore(const std::string& path);
+    
+    static bool CheckFileName(const std::string& fileName);
+
+    static bool CheckFilePathExisted(const std::string& filePath);
+
 
 private:
     /// @brief file's folder path.
