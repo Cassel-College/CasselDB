@@ -1,5 +1,0 @@
-<map id="DoCreateFile" name="DoCreateFile">
-<area shape="rect" id="node1" title="Do create file action." alt="" coords="5,31,104,56"/>
-<area shape="rect" id="node2" href="$classcore_1_1create_1_1_create_file.html#a43f2b324904c658ff34817d6ec9fb3a1" title="Create file care action." alt="" coords="152,5,263,31"/>
-<area shape="rect" id="node3" href="$classcore_1_1create_1_1_create_file.html#abc5870c0e32763e015fdf2766cdedbdc" title="Check the file path has existes file. If the file was existes, return true, else return false." alt="" coords="311,31,377,56"/>
-</map>

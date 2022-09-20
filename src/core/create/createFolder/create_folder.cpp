@@ -14,7 +14,8 @@ using log4cpp::log_module::LogModule;
 using core::create::CreateFolderStatus;
 
 core::create::CreateFolder::CreateFolder() {
-    std::cout << "CreateFolder" << std::endl;
+    Log* logMS = Log::GetLog();
+    logMS->add(LogModule("Create folder", Level("INFO"), __FILENAME__, __LINE__, "core"));
     this->path = "";
     this->folderName = "";
     this->status = CreateFolderStatus::INIT;
@@ -41,9 +42,9 @@ void core::create::CreateFolder::SetFolderName(const std::string& folderName)
     Log* logMS = Log::GetLog();
     if (folderName.length() < 200 && folderName.length() > 0) {
         this->folderName = folderName;
-        logMS->add(LogModule("Set folder name over", Level("INFO"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("Set folder name over", Level("INFO"), __FILENAME__, __LINE__, "core"));
     } else {
-        logMS->add(LogModule("folder name length was so long, big then 200.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("folder name length was so long, big then 200.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
     }
 }
 
@@ -68,21 +69,21 @@ void core::create::CreateFolder::DoCreateFolder()
     Log* logMS = Log::GetLog();
     int key = 0;
     std::string newFolderPath;
-    logMS->add(LogModule("Begin check folder name.", Level("INFO"), __FILE__, __LINE__, "core"));
+    logMS->add(LogModule("Begin check folder name.", Level("INFO"), __FILENAME__, __LINE__, "core"));
     std::string::size_type index = this->folderName.find("/");
     if (index == this->folderName.npos) {
         key = 0;
-        logMS->add(LogModule("Check folder path right.", Level("INFO"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("Check folder path right.", Level("INFO"), __FILENAME__, __LINE__, "core"));
     } else {
         key = 1;
         this->status == CreateFolderStatus::FOLDER_NAME_ERROR;
-        logMS->add(LogModule("Check folder name error, has error char in name.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("Check folder name error, has error char in name.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
     }
     print_log("key:" + std::to_string(key));
     print_log("check folder name");
     // check folder path
     if (key == 0) {
-        bool checkFolderPathKey = CreateFolder::HasFolder(this->path);
+        bool checkFolderPathKey = CreateFolder::CheckHasFolder(this->path);
         if (!checkFolderPathKey) {
             this->status = CreateFolderStatus::FOLDER_PATH_NOT_EXITS;
             key = 1;
@@ -93,7 +94,7 @@ void core::create::CreateFolder::DoCreateFolder()
     // check folder exist
     if (key == 0) {
         newFolderPath = this->path + "/" + this->folderName;
-        bool checkNewFoldrpathKey = CreateFolder::HasFolder(newFolderPath);
+        bool checkNewFoldrpathKey = CreateFolder::CheckHasFolder(newFolderPath);
         if (checkNewFoldrpathKey) {
             this->status = CreateFolderStatus::FOLDER_EXITS;
             key = 1;
@@ -117,7 +118,7 @@ void core::create::CreateFolder::DoCreateFolder()
     }
 }
 
-bool core::create::CreateFolder::HasFolder(const std::string& path) {
+bool core::create::CreateFolder::CheckHasFolder(const std::string& path) {
     bool key = false;
     if (path.length() > 2048) {
         return key;

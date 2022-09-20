@@ -166,7 +166,10 @@ int main()
 
     Version *version = new Version();
     std::cout << version->get_version() << std::endl;
+    logMS->send_log();
+    // dev_test_log();
+    
+    delete logMS;
 
-    dev_test_log();
     return 0;
 }

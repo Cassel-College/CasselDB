@@ -1,5 +1,8 @@
 #ifndef CORE_CREATE_CREATE_FOLDER_H
 #define CORE_CREATE_CREATE_FOLDER_H
+#ifndef __FILENAME__
+#define __FILENAME__ (strrchr("/" __FILE__, '/') + 1)
+#endif
 
 #include <iostream>
 #include <string>
@@ -38,7 +41,7 @@ public:
 
     void DoCreateFolder();
     
-    static bool HasFolder(const std::string& path);
+    static bool CheckHasFolder(const std::string& path);
 
     static bool CreateFolderCore(const std::string& path);
 

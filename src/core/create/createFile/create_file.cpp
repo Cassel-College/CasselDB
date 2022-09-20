@@ -162,18 +162,28 @@ CreateFileStatus core::create::CreateFile::GetStatus() const {
  * @date 2022-09-16
  * @copyright Copyright (c) 2022
  */
-void core::create::CreateFile::DoCreateFile() {
+CreateFileStatus core::create::CreateFile::DoCreateFile() {
 
     Log* logMS = Log::GetLog();
-    
-    std::string allFilePath = path + "/" + fileName;
-    logMS->add(LogModule("Begin create file:" + allFilePath, Level("INFO"), __FILE__, __LINE__, "core"));
-
-    bool checkFileName = CreateFile::CheckFileName(fileName);
-    bool checkFileExisted = CreateFile::CheckFilePathExisted(allFilePath);
-    bool createState = CreateFile::CreateFileCore(allFilePath);
-
+    if (CreateFile::CheckFileName(fileName)) {
+        if (CreateFile::CheckFilePathExisted(path)) {
+            status = CreateFileStatus::FILE_EXITS;
+        } else {
+            status = CreateFileStatus::FILE_PATH_NOT_EXITS;
+            std::string allFilePath = path + "/" + fileName;
+            logMS->add(LogModule("Begin create file:" + allFilePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
+            if (CreateFile::CreateFileCore(allFilePath)) {
+                status = CreateFileStatus::CREATE_SUCCESS;
+            } else {
+                status = CreateFileStatus::CREATE_ERROR;
+            }
+        }
+    } else {
+        status = CreateFileStatus::FILE_NAME_ERROR;
+    }
+    return status;
 }
+
 
 /**
  * @brief Check file name has error char, like '/'.
@@ -189,14 +199,14 @@ void core::create::CreateFile::DoCreateFile() {
 bool core::create::CreateFile::CheckFileName(const std::string& fileName) {
 
     Log* logMS = Log::GetLog();
-    logMS->add(LogModule("Check file name", Level("INFO"), __FILE__, __LINE__, "core"));
+    logMS->add(LogModule("Check file name", Level("INFO"), __FILENAME__, __LINE__, "core"));
     bool fileNameState = false;
     std::string::size_type index = fileName.find("/");
     if (index == fileName.npos) {
         fileNameState = true;
-        logMS->add(LogModule("file name was right.", Level("INFO"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("file name was right.", Level("INFO"), __FILENAME__, __LINE__, "core"));
     } else {
-        logMS->add(LogModule("Check file name error, has error char in name.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("Check file name error, has error char in name.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
         fileNameState = false;
     }
     return fileNameState;
@@ -206,46 +216,19 @@ bool core::create::CreateFile::CheckFileName(const std::string& fileName) {
 bool core::create::CreateFile::CheckFilePathExisted(const std::string& filePath) {
     Log* logMS = Log::GetLog();
     if (filePath.length() > 2048) {
-        logMS->add(LogModule("The path string length bigger than 2048.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("The path string length bigger than 2048.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
         return false;
     }
-    logMS->add(LogModule("Check Liunx has file path." + filePath, Level("INFO"), __FILE__, __LINE__, "core"));
+    logMS->add(LogModule("Check Liunx has file path." + filePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
     int returnKey = access(filePath.c_str(), F_OK);
+    if (returnKey == 0) {
+        logMS->add(LogModule("File was not existed." + filePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
+    } else {
+        logMS->add(LogModule("File has been existed!" + filePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
+    }
     return returnKey == 0;
 }
 
-/**
- * @brief Check the file path has existes file. If the file was existes, return true, else return false.
- * 
- * @param path std::string type, file path.
- * @return true 
- * @return false 
- * @version 0.1
- * @author liupeng (liupeng.0@outlook.com)
- * @date 2022-09-16
- * @copyright Copyright (c) 2022
- * @return true 
- * @return false 
- */
-bool core::create::CreateFile::HasFile(const std::string& path) {
-
-    Log* logMS = Log::GetLog();
-    bool key = false;
-    if (path.length() > 2048) {
-        logMS->add(LogModule("The path string length bigger than 2048.", Level("ERROR"), __FILE__, __LINE__, "core"));
-        return key;
-    }
-    // 
-    logMS->add(LogModule("Check Liunx has path.", Level("INFO"), __FILE__, __LINE__, "core"));
-    int returnKey = access(path.c_str(), F_OK);
-
-    if (returnKey == 0) {
-        key = true;
-    } else {
-        key = false;
-    }
-    return key;
-}
 
 /**
  * @brief Create file care action.
@@ -263,26 +246,21 @@ bool core::create::CreateFile::HasFile(const std::string& path) {
 bool core::create::CreateFile::CreateFileCore(const std::string& path) {
 
     Log* logMS = Log::GetLog();
-    logMS->add(LogModule("Create File core action.", Level("INFO"), __FILE__, __LINE__, "core"));
+    logMS->add(LogModule("Create File core action.", Level("INFO"), __FILENAME__, __LINE__, "core"));
 
     bool key = false;
-    logMS->add(LogModule("Check path string length.", Level("INFO"), __FILE__, __LINE__, "core"));
+    logMS->add(LogModule("Check path string length.", Level("INFO"), __FILENAME__, __LINE__, "core"));
 
     if ((path.length() > 2048) || (path.length() == 0)) {
-        logMS->add(LogModule("File path string's length was not right.", Level("ERROR"), __FILE__, __LINE__, "core"));
+        logMS->add(LogModule("File path string's length was not right.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
         return key;
     }
-    // check file exist
-    key = CreateFile::HasFile(path);
-    if (CreateFile::HasFile(path)) {
-        key = false;
+    FILE *file = fopen(path.c_str(), "a+");
+    if (file == nullptr) {
+        logMS->add(LogModule("Create file failed!", Level("ERROR"), __FILENAME__, __LINE__, "core"));
     } else {
-        FILE *file = fopen(path.c_str(), "a+");
-        if (file == nullptr) {
-            key = false;
-        } else {
-            key = true;
-        }
+        logMS->add(LogModule("Create file success.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
+        key = true;
     }
     return key;
 }
