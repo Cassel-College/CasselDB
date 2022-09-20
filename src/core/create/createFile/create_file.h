@@ -1,5 +1,8 @@
 #ifndef CORE_CREATE_CREATE_FILE_H
 #define CORE_CREATE_CREATE_FILE_H
+#ifndef __FILENAME__
+#define __FILENAME__ (strrchr("/" __FILE__, '/') + 1)
+#endif
 
 #include <string>
 
@@ -58,16 +61,13 @@ public:
 
     CreateFileStatus GetStatus() const;
 
-    void DoCreateFile();
-    
-    static bool HasFile(const std::string& path);
+    CreateFileStatus DoCreateFile();
 
     static bool CreateFileCore(const std::string& path);
     
     static bool CheckFileName(const std::string& fileName);
 
     static bool CheckFilePathExisted(const std::string& filePath);
-
 
 private:
     /// @brief file's folder path.
@@ -78,7 +78,6 @@ private:
 
     /// @brief Create file status.
     CreateFileStatus status;
-
 
 };
 
