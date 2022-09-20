@@ -168,5 +168,8 @@ int main()
     std::cout << version->get_version() << std::endl;
     logMS->send_log();
     // dev_test_log();
+    
+    delete logMS;
+
     return 0;
 }
