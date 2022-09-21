@@ -27,7 +27,11 @@ log4cpp::log_module::LogModule::LogModule(const std::string &log_info,
     this->log_info = log_info;
     this->level = Level(level.get_index());
     this->moduleName = moduleName;
-    this->fileName = fileName;
+    if (fileName.find("/") != fileName.npos) {
+        this->fileName = fileName.substr(fileName.rfind('/'));
+    } else {
+        this->fileName = fileName;
+    }
     this->line = line;
 }
 
