@@ -142,33 +142,10 @@ int main()
     std::cout << "Holle World!-" << std::endl;
     std::cout << install_path << std::endl;
 
-    // std::cout << "-----------------Begin Test Create Databases-----------------" << std::endl;
-    // CreateDatabase *createDatabase = new CreateDatabase();
-    // std::cout << "Begin..." << std::endl;
-    // createDatabase->SetDatabasesName("testDB");
-    // std::cout << "Test dataBase name: testDB" << std::endl;
-    // std::cout << createDatabase->GetBashPath() << std::endl;
-    // std::cout << createDatabase->GetDatabaseName() << std::endl;
-    // bool key = createDatabase->Create();
-    // std::cout << "Create..." << std::endl;
-    // if (key) {
-    //     std::cout << "Create Success!" << std::endl;
-    // } else {
-    //     std::cout << "Create Error!" << std::endl;
-    // }
-    // std::cout << "-----------------End   Test Create Databases-----------------" << std::endl;
-
-    // ShowDatabase *showDatabase = new ShowDatabase();
-    // showDatabase->SetDBNameList();
-    // for (auto item : showDatabase->GetDBNamelist()) {
-    //     std::cout << " -- :" << item  << std::endl;
-    // }
-
     Version *version = new Version();
     std::cout << version->get_version() << std::endl;
     logMS->send_log();
-    // dev_test_log();
-    
+
     delete logMS;
 
     return 0;
