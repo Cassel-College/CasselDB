@@ -10,6 +10,7 @@
  */
 #include <iostream>
 #include <string>
+#include <memory>
 
 #include <config/version/version.h>
 #include <core/create/createFolder/create_folder.h>
@@ -145,6 +146,13 @@ int main()
     Version *version = new Version();
     std::cout << version->get_version() << std::endl;
     logMS->send_log();
+
+    std::cout << "Test read file." << std::endl;
+    std::shared_ptr<core::read::ReadFile> readfile_ptr = std::make_shared<core::read::ReadFile>();
+    readfile_ptr->SetPath("/home/Code/github/CasselDB/README.md");
+    readfile_ptr->SetInfo();
+    auto infos = readfile_ptr->GetInfo();
+    core::read::ShowInfo(infos);
 
     delete logMS;
 

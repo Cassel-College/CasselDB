@@ -1,6 +1,7 @@
 #ifndef CORE_READ_READ_FILR_H
 #define CORE_READ_READ_FILR_H
 
+#include <iostream>
 #include <string> 
 #include <vector>
 
@@ -13,6 +14,20 @@ enum class ReadFileStatus {
     READ_FILE_SUCCESS,
     OPEN_FILE_ERROR,
 };
+
+static std::string ShowInfoStyle(std::string line_number) {
+    return "  " + line_number + ":";
+}
+
+static void ShowInfo(std::vector<std::string> &infos) {
+
+    int index = 0;
+    for (auto item : infos) {
+        std::cout << ShowInfoStyle(std::to_string(index)) << item << std::endl;
+        index = index + 1;
+    }
+}
+
 class ReadFile {
 
 public:
