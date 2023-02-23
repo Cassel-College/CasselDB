@@ -77,7 +77,8 @@ void core::create::CreateFolder::DoCreateFolder()
     } else {
         key = 1;
         this->status == CreateFolderStatus::FOLDER_NAME_ERROR;
-        logMS->add(LogModule("Check folder name error, has error char in name.", Level("ERROR"), __FILENAME__, __LINE__, "core"));
+        logMS->add(LogModule("Check folder name error, has error char in name.",
+                   Level("ERROR"), __FILENAME__, __LINE__, "core"));
     }
     print_log("key:" + std::to_string(key));
     print_log("check folder name");
