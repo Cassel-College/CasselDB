@@ -6,3 +6,5 @@ add_subdirectory(./log4cpp)
 add_subdirectory(./config)
 add_subdirectory(./core)
 add_subdirectory(./module)
+
+add_subdirectory(./os)
