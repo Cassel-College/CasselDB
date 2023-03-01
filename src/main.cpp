@@ -166,7 +166,8 @@ int main()
     std::string command;
     while (1 == 1) {
         operations->clear();
-        std::cout << "input command >>>";
+        // std::cout << "input command >>>";
+        command = "";
         std::getline(std::cin, command);
         
         // 可以优化
