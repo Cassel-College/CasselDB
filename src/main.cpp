@@ -168,7 +168,7 @@ int main()
         operations->clear();
         // std::cout << "input command >>>";
         command = "";
-        std::getline(std::cin, command);
+        // std::getline(std::cin, command);
         
         // 可以优化
         for (int i = 0; i < command.size(); i++) {
