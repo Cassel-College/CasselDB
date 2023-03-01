@@ -185,6 +185,7 @@ int main()
         operations->push_back(command);
         manager_.ParseOperation(operations);
         std::cout << "over ..." << std::endl;
+        break;
     }
     delete logMS;
     return 0;
