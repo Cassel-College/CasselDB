@@ -28,6 +28,7 @@
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
 #include <log4cpp/log/log.h>
+#include <os/manager/cassel_manager.h>
 
 using core::create::CreateFolder;
 using core::read::ReadFile;
@@ -46,6 +47,7 @@ using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 using log4cpp::log::Log;
+using cassel::os::manager::CasselManager;
 
 
 Log* log4cpp::log::Log::logMS = nullptr;
@@ -154,7 +156,37 @@ int main()
     auto infos = readfile_ptr->GetInfo();
     core::read::ShowInfo(infos);
 
-    delete logMS;
 
+    cassel::os::manager::CasselManager manager_;
+    std::shared_ptr<std::vector<std::string>> operations = std::make_shared<std::vector<std::string>>();
+    operations->push_back("1");
+    operations->push_back("2");
+    operations->push_back("3");
+    manager_.ParseOperation(operations);
+    std::string command;
+    while (1 == 1) {
+        operations->clear();
+        // std::cout << "input command >>>";
+        command = "";
+        // std::getline(std::cin, command);
+        
+        // 可以优化
+        for (int i = 0; i < command.size(); i++) {
+            if (command[i] == ' ') {
+                command.replace(i, 1, "-");
+            }
+        }
+        for (int i = 0; i < command.size(); i++) {
+            if (command[i] == '-') {
+                command.replace(i, 1, " ");
+            }
+        }
+
+        operations->push_back(command);
+        manager_.ParseOperation(operations);
+        std::cout << "over ..." << std::endl;
+        break;
+    }
+    delete logMS;
     return 0;
 }
