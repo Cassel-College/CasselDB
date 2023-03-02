@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 
+#include "os/manager/base_operation/base_operation.h"
 
 /**
  * @brief 
@@ -21,7 +22,9 @@ namespace os {
 namespace manager {
 namespace def {
 
-class OperationDefault {
+using cassel::os::manager::base_operation::BaseOperation;
+
+class OperationDefault : public BaseOperation {
 
     public:
     
@@ -29,7 +32,7 @@ class OperationDefault {
 
         void Init();
 
-        void Do();
+        void Do(std::shared_ptr<std::vector<std::string>>);
 
     private:
 

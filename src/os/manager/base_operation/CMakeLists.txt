@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/cassel/lib)
 message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
-add_library(op_table SHARED ./op_table.cpp ./op_table.h)
+add_library(base_operation SHARED ./base_operation.h ./base_operation.cpp)
 
-target_link_libraries(op_table base_operation)
+# target_link_libraries(op_config log log_module level)

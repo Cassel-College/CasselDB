@@ -5,6 +5,7 @@ namespace os {
 namespace manager {
 
 using cassel::os::manager::def::OperationDefault;
+using cassel::os::manager::base_operation::BaseOperation;
 
 CasselManager::CasselManager() {
     std::cout << "create CasselManager." << std::endl;
@@ -21,11 +22,12 @@ void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> ope
         std::cout << item << std::endl;
     }
     std::cout << "This is operations" << std::endl;
+    std::shared_ptr<BaseOperation> op_obj = nullptr;
     if (level == CasselManagerItem::DEFAULT) {
         std::cout << "now in DEFAULT model" << std::endl;
-        std::shared_ptr<OperationDefault> op_obj = std::make_shared<OperationDefault>();
-
+        op_obj = std::make_shared<OperationDefault>();
     }
+    op_obj->Do(operations);
 }
 
 

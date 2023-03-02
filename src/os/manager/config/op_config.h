@@ -6,12 +6,16 @@
 #include <vector>
 #include <memory>
 
+#include "os/manager/base_operation/base_operation.h"
+
 namespace cassel {
 namespace os {
 namespace manager {
 namespace config {
 
-class OperationConfig {
+using cassel::os::manager::base_operation::BaseOperation;
+
+class OperationConfig : public BaseOperation {
 
 };
 
