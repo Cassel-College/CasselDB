@@ -14,8 +14,12 @@
 #include <vector>
 #include <memory>
 
-#include "os/manager/default/op_default.h"
 #include "os/manager/base_operation/base_operation.h"
+#include "os/manager/config/op_config.h"
+#include "os/manager/default/op_default.h"
+#include "os/manager/database/op_database.h"
+#include "os/manager/table/op_table.h"
+
 
 namespace cassel {
 namespace os {
@@ -37,10 +41,6 @@ public:
     void Init();
 
     void ParseOperation(std::shared_ptr<std::vector<std::string>> operations);
-
-    void ShuntModel(std::shared_ptr<std::vector<std::string>> operations);
-
-    void ShuntOperation(std::shared_ptr<std::vector<std::string>> operations);
 
 private:
 

@@ -17,6 +17,22 @@ using cassel::os::manager::base_operation::BaseOperation;
 
 class OperationConfig : public BaseOperation {
 
+    public:
+    
+        OperationConfig();
+
+        void Init();
+
+        void Do(std::shared_ptr<std::vector<std::string>>);
+
+    private:
+
+        bool Create();
+        bool Select();
+        bool Delete();
+        bool Copy();
+        bool Open();
+        bool Quit();
 };
 
 }; //namespace config

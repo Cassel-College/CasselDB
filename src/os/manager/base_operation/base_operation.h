@@ -14,10 +14,8 @@ namespace base_operation {
 class BaseOperation {
 
     public:
-    
-        BaseOperation();
 
-        void Do(std::shared_ptr<std::vector<std::string>>);
+        virtual void Do(std::shared_ptr<std::vector<std::string>>)=0;
 };
 
 }; //namespace base_operation
