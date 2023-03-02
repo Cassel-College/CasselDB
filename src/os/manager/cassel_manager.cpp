@@ -26,14 +26,20 @@ void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> ope
     if (level == CasselManagerItem::DEFAULT) {
         std::cout << "now in DEFAULT model" << std::endl;
         op_obj = std::make_shared<OperationDefault>();
+        op_obj->Do(operations);
+        level = CasselManagerItem::DATABASE;
     }
     if (level == CasselManagerItem::DATABASE) {
         std::cout << "now in DATABASE model" << std::endl;
         op_obj = std::make_shared<OperationDatabase>();
+        op_obj->Do(operations);
+        level = CasselManagerItem::TABLE;
     }
     if (level == CasselManagerItem::TABLE) {
         std::cout << "now in TABLE model" << std::endl;
         op_obj = std::make_shared<OperationTable>();
+        op_obj->Do(operations);
+        level = CasselManagerItem::CONFIG;
     }
     if (level == CasselManagerItem::CONFIG) {
         std::cout << "now in CONFIG model" << std::endl;

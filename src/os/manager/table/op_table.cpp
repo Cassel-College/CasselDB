@@ -27,7 +27,7 @@ void OperationTable::Init() {
 void OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
-        std::cout << operations << std::endl;
+        std::cout << "table:" << item << std::endl;
     }
     std::cout << "-----------------------------------" << std::endl;
 };
