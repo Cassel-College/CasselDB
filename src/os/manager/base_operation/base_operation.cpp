@@ -5,9 +5,9 @@ namespace os {
 namespace manager {
 namespace base_operation {
 
-BaseOperation::BaseOperation() {}
+// BaseOperation::BaseOperation() {}
 
-void BaseOperation::Do(std::shared_ptr<std::vector<std::string>>) {}
+// void BaseOperation::Do(std::shared_ptr<std::vector<std::string>>) {}
 
 }; //namespace base_operation
 }; //namespace cassel
