@@ -15,6 +15,7 @@
 #include <memory>
 
 #include "os/manager/default/op_default.h"
+#include "os/manager/base_operation/base_operation.h"
 
 namespace cassel {
 namespace os {

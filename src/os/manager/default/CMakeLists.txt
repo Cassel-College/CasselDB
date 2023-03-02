@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(op_default SHARED ./op_default.h ./op_default.cpp)
 
-# target_link_libraries(op_default log log_module level)
+target_link_libraries(op_default base_operation)
