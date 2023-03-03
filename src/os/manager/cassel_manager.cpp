@@ -4,6 +4,8 @@ namespace cassel {
 namespace os {
 namespace manager {
 
+using cassel::os::manager::status::CasselStatus;
+using cassel::os::manager::status::CasselManagerStatus;
 using cassel::os::manager::base_operation::BaseOperation;
 using cassel::os::manager::def::OperationDefault;
 using cassel::os::manager::config::OperationConfig;
@@ -16,32 +18,32 @@ CasselManager::CasselManager() {
 }
 
 void CasselManager::Init() {
-    level = CasselManagerItem::DEFAULT;
+    level = CasselStatus();
 }
 
 void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> operations) {
 
     std::cout << "This is operations: " << std::endl;
     std::shared_ptr<BaseOperation> op_obj = nullptr;
-    if (level == CasselManagerItem::DEFAULT) {
+    if (level.GetStatus() == CasselManagerStatus::DEFAULT) {
         std::cout << "now in DEFAULT model" << std::endl;
         op_obj = std::make_shared<OperationDefault>();
         op_obj->Do(operations);
-        level = CasselManagerItem::DATABASE;
+        level.SetStatus(CasselManagerStatus::DATABASE);
     }
-    if (level == CasselManagerItem::DATABASE) {
+    if (level.GetStatus() == CasselManagerStatus::DATABASE) {
         std::cout << "now in DATABASE model" << std::endl;
         op_obj = std::make_shared<OperationDatabase>();
         op_obj->Do(operations);
-        level = CasselManagerItem::TABLE;
+        level.SetStatus(CasselManagerStatus::TABLE);
     }
-    if (level == CasselManagerItem::TABLE) {
+    if (level.GetStatus() == CasselManagerStatus::TABLE) {
         std::cout << "now in TABLE model" << std::endl;
         op_obj = std::make_shared<OperationTable>();
         op_obj->Do(operations);
-        level = CasselManagerItem::CONFIG;
+        level.SetStatus(CasselManagerStatus::CONFIG);
     }
-    if (level == CasselManagerItem::CONFIG) {
+    if (level.GetStatus() == CasselManagerStatus::CONFIG) {
         std::cout << "now in CONFIG model" << std::endl;
         op_obj = std::make_shared<OperationConfig>();
     }
