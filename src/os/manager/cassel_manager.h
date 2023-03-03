@@ -14,6 +14,7 @@
 #include <vector>
 #include <memory>
 
+#include "os/manager/status/cassel_status.h"
 #include "os/manager/base_operation/base_operation.h"
 #include "os/manager/config/op_config.h"
 #include "os/manager/default/op_default.h"
@@ -25,12 +26,15 @@ namespace cassel {
 namespace os {
 namespace manager {
 
-enum class CasselManagerItem {
-    DEFAULT,
-    DATABASE,
-    TABLE,
-    CONFIG
-};
+using cassel::os::manager::status::CasselStatus;
+using cassel::os::manager::status::CasselManagerStatus;
+using cassel::os::manager::status::CasselStatus;
+using cassel::os::manager::status::CasselManagerStatus;
+using cassel::os::manager::base_operation::BaseOperation;
+using cassel::os::manager::def::OperationDefault;
+using cassel::os::manager::config::OperationConfig;
+using cassel::os::manager::database::OperationDatabase;
+using cassel::os::manager::table::OperationTable;
 
 class CasselManager
 {
@@ -44,7 +48,7 @@ public:
 
 private:
 
-    CasselManagerItem level;
+    CasselStatus level;
 
 };
 

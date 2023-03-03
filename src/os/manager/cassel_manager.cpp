@@ -4,14 +4,6 @@ namespace cassel {
 namespace os {
 namespace manager {
 
-using cassel::os::manager::status::CasselStatus;
-using cassel::os::manager::status::CasselManagerStatus;
-using cassel::os::manager::base_operation::BaseOperation;
-using cassel::os::manager::def::OperationDefault;
-using cassel::os::manager::config::OperationConfig;
-using cassel::os::manager::database::OperationDatabase;
-using cassel::os::manager::table::OperationTable;
-
 CasselManager::CasselManager() {
     std::cout << "create CasselManager." << std::endl;
     Init();
@@ -19,6 +11,7 @@ CasselManager::CasselManager() {
 
 void CasselManager::Init() {
     level = CasselStatus();
+    level.SetStatus(CasselManagerStatus::DEFAULT);
 }
 
 void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> operations) {
