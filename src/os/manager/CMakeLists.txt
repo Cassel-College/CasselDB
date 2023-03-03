@@ -14,4 +14,4 @@ add_subdirectory(./table)
 
 add_library(cassel_manager SHARED ./cassel_manager.h ./cassel_manager.cpp)
 
-target_link_libraries(cassel_manager base_operation op_status op_default op_config op_database op_table)
+target_link_libraries(cassel_manager cassel_status base_operation op_default op_config op_database op_table)

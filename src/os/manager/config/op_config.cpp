@@ -27,7 +27,7 @@ void OperationConfig::Init() {
 void OperationConfig::Do(std::shared_ptr<std::vector<std::string>> operations) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
-        std::cout << operations << std::endl;
+        std::cout << "config:" << item << std::endl;
     }
     std::cout << "-----------------------------------" << std::endl;
 };
