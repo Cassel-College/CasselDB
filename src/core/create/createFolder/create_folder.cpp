@@ -9,6 +9,7 @@
 #include <log4cpp/log_module/log_module.h>
 
 using log4cpp::log::Log;
+using log4cpp::level::Level;
 using log4cpp::log_module::LogModule;
 
 using core::create::CreateFolderStatus;
