@@ -1,11 +1,18 @@
 #ifndef CASSEL_OS_MANAGER_TABLE_OP_TABLE_H
 #define CASSEL_OS_MANAGER_TABLE_OP_TABLE_H
 
+#ifndef __FILENAME__
+#define __FILENAME__ (strrchr("/" __FILE__, '/') + 1)
+#endif
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 
+#include "log4cpp/log/log.h"
+#include "log4cpp/level/level.h"
+#include "log4cpp/log_module/log_module.h"
 #include "os/manager/base_operation/base_operation.h"
 
 namespace cassel {
