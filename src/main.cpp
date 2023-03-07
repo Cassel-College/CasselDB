@@ -51,7 +51,7 @@ using cassel::os::manager::CasselManager;
 
 
 Log* log4cpp::log::Log::logMS = nullptr;
-
+std::shared_ptr<log4cpp::log::Log> log4cpp::log::Log::logMS_ptr = nullptr;
 
 /**
  * @brief test case by Dev to test log module.
@@ -122,6 +122,9 @@ int main()
     Log* logMS = Log::GetLog();
     logMS->add(LogModule("Begin start cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
     
+    std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Begin start cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
+
     CreateFolder *createFolder = new CreateFolder();
     createFolder->SetPath("/opt/CasselDB/data");
     createFolder->SetFolderName("Palt");
@@ -156,7 +159,6 @@ int main()
     auto infos = readfile_ptr->GetInfo();
     core::read::ShowInfo(infos);
 
-
     cassel::os::manager::CasselManager manager_;
     std::shared_ptr<std::vector<std::string>> operations = std::make_shared<std::vector<std::string>>();
     operations->push_back("1");
@@ -166,7 +168,7 @@ int main()
     std::string command;
     while (1 == 1) {
         operations->clear();
-        // std::cout << "input command >>>";
+        std::cout << "input command >>>";
         command = "";
         // std::getline(std::cin, command);
         
@@ -181,12 +183,13 @@ int main()
                 command.replace(i, 1, " ");
             }
         }
-
+        command = "123";
         operations->push_back(command);
         manager_.ParseOperation(operations);
         std::cout << "over ..." << std::endl;
         break;
     }
+    logMS_ptr->send_log();
     delete logMS;
     return 0;
 }

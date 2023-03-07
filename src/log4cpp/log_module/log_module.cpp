@@ -17,6 +17,19 @@ log4cpp::log_module::LogModule::LogModule(const std::string &log_info, Level lev
     this->datetime = DateTime();
 }
 
+/**
+ * @brief Construct a new log4cpp::log module::LogModule::LogModule object
+ * 
+ * @param log_info 
+ * @param level 
+ * @param fileName 
+ * @param line 
+ * @param moduleName 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-03-07
+ * @copyright Copyright (c) 2023
+ */
 log4cpp::log_module::LogModule::LogModule(const std::string &log_info,
                                           const Level level,
                                           const std::string &fileName,
@@ -39,7 +52,16 @@ log4cpp::log_module::LogModule::~LogModule()
 {
     ;
 }
-
+          
+/**
+ * @brief 
+ * 
+ * @param log_info 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-03-07
+ * @copyright Copyright (c) 2023
+ */
 void log4cpp::log_module::LogModule::set_log_info(const std::string &log_info)
 {
     this->log_info = log_info;

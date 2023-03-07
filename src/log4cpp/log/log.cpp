@@ -10,6 +10,9 @@
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
 
+namespace log4cpp {
+namespace log {
+
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
@@ -19,39 +22,39 @@ using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 
-// log4cpp::log::Log::logMS = nullptr;
+// Log::logMS = nullptr;
 
-log4cpp::log::Log::Log()
+Log::Log()
 {
     cache = LogCache();
 }
 
-log4cpp::log::Log::Log(std::vector<std::string> defaultConfig)
+Log::Log(std::vector<std::string> defaultConfig)
 {
     
 }
 
-log4cpp::log::Log::~Log()
+Log::~Log()
 {
     ;
 }
 
-void log4cpp::log::Log::add(const LogModule &log)
+void Log::add(const LogModule &log)
 {
     cache.append(log);
 }
 
-void log4cpp::log::Log::clear()
+void Log::clear()
 {
     cache.clear();
 }
 
-void log4cpp::log::Log::send_log()
+void Log::send_log()
 {
     cache.show();
 }
 
-log4cpp::log::Log *log4cpp::log::Log::GetLog()
+Log *Log::GetLog()
 {
     if (logMS == nullptr) {
         // logMS = make_shared<Log>();
@@ -62,7 +65,25 @@ log4cpp::log::Log *log4cpp::log::Log::GetLog()
     return logMS;
 }
 
-std::vector<std::string> log4cpp::log::Log::GetDefaultConfig()
+/**
+ * @brief 
+ * 
+ * @return std::shared_ptr<Log> 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-03-06
+ * @copyright Copyright (c) 2023
+ * @return std::shared_ptr<Log> 
+ */
+std::shared_ptr<Log> Log::GetLogPtr() {
+    if (logMS_ptr == nullptr) {
+        std::shared_ptr<Log> temp_log(new Log());
+        logMS_ptr.swap(temp_log);
+    }
+    return logMS_ptr;
+}
+
+std::vector<std::string> Log::GetDefaultConfig()
 {
     std::vector<std::string> config_infos;
     config_infos.push_back("log_web_server_ip=\"127.0.0.1\"");
@@ -77,3 +98,6 @@ std::vector<std::string> log4cpp::log::Log::GetDefaultConfig()
     config_infos.push_back("log_copy_file_style=\"casseldb_yyyy_mm_dd_hh_mm_ss.log\"");
     return config_infos;
 }
+
+}; //namespace log4cpp
+}; // namespace log

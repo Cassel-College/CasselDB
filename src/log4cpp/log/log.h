@@ -2,6 +2,7 @@
 #define LOG4CPP_LOG_LOG_H
 
 #include <vector>
+#include <memory>
 
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
@@ -12,6 +13,11 @@
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
 
+
+
+namespace log4cpp {
+namespace log {
+
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
@@ -21,8 +27,6 @@ using log4cpp::filter4log::Filter4Log;
 using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 
-namespace log4cpp {
-namespace log {
 class Log {
 
     public:
@@ -34,6 +38,8 @@ class Log {
         ~Log();
 
         static Log *GetLog();
+
+        static std::shared_ptr<Log> GetLogPtr();
 
         static std::vector<std::string> GetDefaultConfig();
 
@@ -64,6 +70,8 @@ class Log {
         Log(Config4Log config);
 
         static Log* logMS;
+
+        static std::shared_ptr<Log> logMS_ptr;
 
 }; // class log;
 }; // namespace log;

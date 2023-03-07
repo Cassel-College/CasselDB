@@ -23,6 +23,7 @@
 
 
 using log4cpp::log::Log;
+using log4cpp::level::Level;
 using log4cpp::log_module::LogModule;
 
 /**

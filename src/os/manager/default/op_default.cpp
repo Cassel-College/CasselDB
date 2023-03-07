@@ -14,6 +14,10 @@ namespace os {
 namespace manager {
 namespace def {
 
+using log4cpp::log::Log;
+using log4cpp::level::Level;
+using log4cpp::log_module::LogModule;
+
 using cassel::os::manager::def::OperationDefault;
 
 OperationDefault::OperationDefault() {
@@ -25,7 +29,8 @@ void OperationDefault::Init() {
 }
 
 void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) {
-    std::cout << "-----------------------------------" << std::endl;
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     for (auto item : *operations) {
         std::cout << "default:" << item << std::endl;
     }
@@ -33,27 +38,33 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
 };
 
 bool OperationDefault::Create() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 bool OperationDefault::Select() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 bool OperationDefault::Delete() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 bool OperationDefault::Copy() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 bool OperationDefault::Open() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 bool OperationDefault::Quit() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 };
 
 }; //namespace def
