@@ -25,7 +25,8 @@ OperationDefault::OperationDefault() {
 }
 
 void OperationDefault::Init() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
 void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) {
@@ -40,31 +41,37 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
 bool OperationDefault::Create() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationDefault::Select() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationDefault::Delete() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationDefault::Copy() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationDefault::Open() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationDefault::Quit() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 }; //namespace def

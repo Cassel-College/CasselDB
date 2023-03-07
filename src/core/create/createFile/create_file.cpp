@@ -20,12 +20,6 @@
 #include <log4cpp/level/level.h>
 #include <log4cpp/log_module/log_module.h>
 
-
-
-using log4cpp::log::Log;
-using log4cpp::level::Level;
-using log4cpp::log_module::LogModule;
-
 /**
  * @brief core namespace
  * 
@@ -44,6 +38,10 @@ namespace core {
  * @copyright Copyright (c) 2022
  */
 namespace create {
+
+using log4cpp::log::Log;
+using log4cpp::level::Level;
+using log4cpp::log_module::LogModule;
 
 /**
  * @brief Create file create function.

@@ -14,6 +14,9 @@ namespace os {
 namespace manager {
 namespace table {
 
+using log4cpp::log::Log;
+using log4cpp::level::Level;
+using log4cpp::log_module::LogModule;
 using cassel::os::manager::table::OperationTable;
 
 OperationTable::OperationTable() {
@@ -21,7 +24,8 @@ OperationTable::OperationTable() {
 }
 
 void OperationTable::Init() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
 void OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations) {
@@ -33,27 +37,39 @@ void OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations) {
 };
 
 bool OperationTable::Create() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationTable::Select() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationTable::Delete() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationTable::Copy() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationTable::Open() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 bool OperationTable::Quit() {
-
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
 };
 
 }; //namespace table
