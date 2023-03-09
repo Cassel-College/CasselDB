@@ -48,6 +48,7 @@ class OperationDefault : public BaseOperation {
         bool Delete();
         bool Copy();
         bool Open();
+        bool Other();
         bool Quit();
 
 

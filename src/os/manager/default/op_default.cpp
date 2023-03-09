@@ -33,6 +33,9 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     for (auto item : *operations) {
+        // if (item not in operation_list) {
+        //     this->Other();
+        // }
         std::cout << "default:" << item << std::endl;
     }
     std::cout << "-----------------------------------" << std::endl;
@@ -67,6 +70,13 @@ bool OperationDefault::Open() {
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
+
+bool OperationDefault::Other() {
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    return true;
+};
+
 
 bool OperationDefault::Quit() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
