@@ -27,16 +27,33 @@ OperationDefault::OperationDefault() {
 void OperationDefault::Init() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    this->InitOperation();
+}
+
+void OperationDefault::InitOperation() {
+    this->operation_names.clear();
+    this->operation_names.insert("create");
+    this->operation_names.insert("select");
+    this->operation_names.insert("delete");
+    this->operation_names.insert("copy");
+    this->operation_names.insert("open");
+    this->operation_names.insert("quit");
 }
 
 void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    for (auto item : *operations) {
-        // if (item not in operation_list) {
-        //     this->Other();
-        // }
-        std::cout << "default:" << item << std::endl;
+
+    std::string operation = "";
+    if (int(operations->size()) > 0) {
+        operation = operations->at(0);
+        if (this->operation_names.find(operation) == this->operation_names.end()) {
+            this->Other();
+        } else {
+            ;
+        }
+    } else {
+        ;
     }
     std::cout << "-----------------------------------" << std::endl;
 };

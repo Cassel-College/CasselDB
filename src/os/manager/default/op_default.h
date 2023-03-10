@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <set>
 
 #include "log4cpp/log/log.h"
 #include "log4cpp/level/level.h"
@@ -41,6 +42,8 @@ class OperationDefault : public BaseOperation {
 
         void Do(std::shared_ptr<std::vector<std::string>>);
 
+        void InitOperation();
+        
     private:
 
         bool Create();
@@ -50,6 +53,8 @@ class OperationDefault : public BaseOperation {
         bool Open();
         bool Other();
         bool Quit();
+
+        std::set<std::string> operation_names;
 
 
 };
