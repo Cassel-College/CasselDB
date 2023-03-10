@@ -48,7 +48,7 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
     if (int(operations->size()) > 0) {
         operation = operations->at(0);
         if (this->operation_names.find(operation) == this->operation_names.end()) {
-            this->Other();
+            this->Other(operations);
         } else {
             ;
         }
