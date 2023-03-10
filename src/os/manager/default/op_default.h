@@ -40,10 +40,10 @@ class OperationDefault : public BaseOperation {
 
         void Init();
 
-        void Do(std::shared_ptr<std::vector<std::string>>);
+        void Do(std::shared_ptr<std::vector<std::string>> operation);
 
         void InitOperation();
-        
+
     private:
 
         bool Create();
@@ -51,7 +51,7 @@ class OperationDefault : public BaseOperation {
         bool Delete();
         bool Copy();
         bool Open();
-        bool Other();
+        bool Other(std::shared_ptr<std::vector<std::string>> operation);
         bool Quit();
 
         std::set<std::string> operation_names;
