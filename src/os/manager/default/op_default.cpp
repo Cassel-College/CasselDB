@@ -61,6 +61,9 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
 bool OperationDefault::Create() {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+
+
+
     return true;
 };
 
@@ -88,9 +91,11 @@ bool OperationDefault::Open() {
     return true;
 };
 
-bool OperationDefault::Other() {
+bool OperationDefault::Other(std::shared_ptr<std::vector<std::string>> operations) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    std::string operation_info = this->OperationStrBuff(operations);
+    logMS_ptr->add(LogModule("other operation: " + operation_info, Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
