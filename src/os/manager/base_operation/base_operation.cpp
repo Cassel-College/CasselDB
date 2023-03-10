@@ -9,7 +9,7 @@ namespace base_operation {
 
 // void BaseOperation::Do(std::shared_ptr<std::vector<std::string>>) {}
 
-std::string BaseOperation::OperationBuff(std::shared_ptr<std::vector<std::string>> operations) {
+std::string BaseOperation::OperationStrBuff(std::shared_ptr<std::vector<std::string>> operations) {
     std::string info = "";
     for (auto item : *operations) {
         if (info == "") {
