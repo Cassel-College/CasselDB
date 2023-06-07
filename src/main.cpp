@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
+
 #include <iostream>
 #include <string>
 #include <memory>
@@ -193,3 +194,4 @@ int main()
     delete logMS;
     return 0;
 }
+

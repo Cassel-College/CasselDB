@@ -40,7 +40,7 @@ void OperationDefault::InitOperation() {
     this->operation_names.insert("quit");
 }
 
-void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) {
+CasselStatus OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 
@@ -56,6 +56,7 @@ void OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations) 
         ;
     }
     std::cout << "-----------------------------------" << std::endl;
+    return status;
 };
 
 bool OperationDefault::Create() {

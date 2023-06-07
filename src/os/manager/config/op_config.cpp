@@ -28,12 +28,13 @@ void OperationConfig::Init() {
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
-void OperationConfig::Do(std::shared_ptr<std::vector<std::string>> operations) {
+CasselStatus OperationConfig::Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
         std::cout << "config:" << item << std::endl;
     }
     std::cout << "-----------------------------------" << std::endl;
+    return status;
 };
 
 bool OperationConfig::Create() {

@@ -6,15 +6,19 @@
 #include <vector>
 #include <memory>
 
+#include "os/manager/status/cassel_status.h"
+
 namespace cassel {
 namespace os {
 namespace manager {
 namespace base_operation {
 
+using namespace cassel::os::manager::status;
+
 class BaseOperation {
 
     public:
-        virtual void Do(std::shared_ptr<std::vector<std::string>> operations)=0;
+        virtual CasselStatus Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status)=0;
 
         std::string OperationStrBuff(std::shared_ptr<std::vector<std::string>> operations);
 };
