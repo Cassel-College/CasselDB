@@ -15,6 +15,7 @@
 #include "log4cpp/level/level.h"
 #include "log4cpp/log_module/log_module.h"
 #include "os/manager/base_operation/base_operation.h"
+#include "os/manager/status/cassel_status.h"
 
 /**
  * @brief 
@@ -31,6 +32,7 @@ namespace manager {
 namespace def {
 
 using cassel::os::manager::base_operation::BaseOperation;
+using namespace cassel::os::manager::status::CasselStatus;
 
 class OperationDefault : public BaseOperation {
 
@@ -40,7 +42,7 @@ class OperationDefault : public BaseOperation {
 
         void Init();
 
-        void Do(std::shared_ptr<std::vector<std::string>> operation);
+        CasselStatus Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status);
 
         void InitOperation();
 
