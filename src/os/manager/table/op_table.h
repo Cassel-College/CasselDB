@@ -22,7 +22,7 @@ namespace manager {
 namespace table {
 
 using cassel::os::manager::base_operation::BaseOperation;
-using namespace cassel::os::manager::status::CasselStatus;
+using namespace cassel::os::manager::status;
 
 class OperationTable : public BaseOperation {
 

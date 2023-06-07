@@ -32,7 +32,7 @@ namespace manager {
 namespace def {
 
 using cassel::os::manager::base_operation::BaseOperation;
-using namespace cassel::os::manager::status::CasselStatus;
+using namespace cassel::os::manager::status;
 
 class OperationDefault : public BaseOperation {
 

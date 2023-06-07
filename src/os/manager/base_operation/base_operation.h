@@ -13,7 +13,7 @@ namespace os {
 namespace manager {
 namespace base_operation {
 
-using namespace cassel::os::manager::status::CasselStatus;
+using namespace cassel::os::manager::status;
 
 class BaseOperation {
 
