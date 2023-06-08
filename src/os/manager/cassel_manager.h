@@ -46,9 +46,19 @@ public:
 
     void ParseOperation(std::shared_ptr<std::vector<std::string>> operations);
 
+    void SendCommandToDefault(std::shared_ptr<std::vector<std::string>> operations);
+
+    void SendCommandToDatabase(std::shared_ptr<std::vector<std::string>> operations);
+
+    void SendCommandToTable(std::shared_ptr<std::vector<std::string>> operations);
+
+    void SendCommandToConfig(std::shared_ptr<std::vector<std::string>> operations);
+
+    const std::string GetCasselStatusStr() const;
+
 private:
 
-    CasselStatus level;
+    std::shared_ptr<CasselStatus> level_;
 
 };
 

@@ -28,12 +28,14 @@ void OperationDatabase::Init() {
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
-CasselStatus OperationDatabase::Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status) {
+std::shared_ptr<CasselStatus> OperationDatabase::Do(std::shared_ptr<std::vector<std::string>> operations,
+                                                    std::shared_ptr<CasselStatus> status) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
         std::cout << "database:" << item << std::endl;
     }
     std::cout << "-----------------------------------" << std::endl;
+    return status;
 };
 
 bool OperationDatabase::Create() {

@@ -46,6 +46,8 @@ public:
 
     CasselManagerStatus GetStatus();
 
+    const std::string GetStatusStr() const;
+
 private:
     CasselManagerStatus status_;
     std::string database_;

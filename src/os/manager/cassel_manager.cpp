@@ -10,8 +10,12 @@ CasselManager::CasselManager() {
 }
 
 void CasselManager::Init() {
-    level = CasselStatus();
-    level.SetStatus(CasselManagerStatus::DEFAULT);
+    this->level_ = std::make_shared<CasselStatus>();
+    this->level_->SetStatus(CasselManagerStatus::DEFAULT);
+}
+
+const std::string CasselManager::GetCasselStatusStr() const {
+    return this->level_->GetStatusStr();
 }
 
 void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> operations) {
@@ -22,38 +26,55 @@ void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> ope
     }
     std::cout << std::endl;
 
-    std::shared_ptr<BaseOperation> op_obj = nullptr;
     bool effect = false;
-    if ((!effect) && (level.GetStatus() == CasselManagerStatus::DEFAULT)) {
-        std::cout << "now in DEFAULT model" << std::endl;
-        op_obj = std::make_shared<OperationDefault>();
-        op_obj->Do(operations, level);
-        effect = true;
-    }
-    
-    if ((!effect) && (level.GetStatus() == CasselManagerStatus::DATABASE)) {
-        std::cout << "now in DATABASE model" << std::endl;
-        op_obj = std::make_shared<OperationDatabase>();
-        op_obj->Do(operations, level);
-        effect = true;
-    }
 
-    if ((!effect) && (level.GetStatus() == CasselManagerStatus::TABLE)) {
-        std::cout << "now in TABLE model" << std::endl;
-        op_obj = std::make_shared<OperationTable>();
-        op_obj->Do(operations, level);
-        effect = true;
+    switch (level_->GetStatus()) {
+        case CasselManagerStatus::DEFAULT:              //  default operation
+            this->SendCommandToDefault(operations);
+            effect = true;  
+            break;   
+        case CasselManagerStatus::DATABASE:             //  database operation
+            this->SendCommandToDatabase(operations);
+            effect = true;
+            break;
+        case CasselManagerStatus::TABLE:                //  table operation
+            this->SendCommandToTable(operations);
+            effect = true;
+            break;   
+        case CasselManagerStatus::CONFIG:               //  config operation
+            this->SendCommandToConfig(operations);
+            effect = true;
+            break;   
     }
-
-    if ((!effect) && (level.GetStatus() == CasselManagerStatus::CONFIG)) {
-        std::cout << "now in CONFIG model" << std::endl;
-        op_obj = std::make_shared<OperationConfig>();
-        op_obj->Do(operations, level);
-        effect = true;
-    }
-   
-    // std::shared_ptr<BaseOperation>
     return;
+}
+
+void CasselManager::SendCommandToDefault(std::shared_ptr<std::vector<std::string>> operations) {
+    std::shared_ptr<BaseOperation> op_obj = nullptr;
+    std::cout << "now in DEFAULT model" << std::endl;
+    op_obj = std::make_shared<OperationDefault>();
+    op_obj->Do(operations, this->level_);
+}
+
+void CasselManager::SendCommandToDatabase(std::shared_ptr<std::vector<std::string>> operations) {
+    std::shared_ptr<BaseOperation> op_obj = nullptr;
+    std::cout << "now in DATABASE model" << std::endl;
+    op_obj = std::make_shared<OperationDatabase>();
+    op_obj->Do(operations, this->level_);
+}
+
+void CasselManager::SendCommandToTable(std::shared_ptr<std::vector<std::string>> operations) {
+    std::shared_ptr<BaseOperation> op_obj = nullptr;
+    std::cout << "now in TABLE model" << std::endl;
+    op_obj = std::make_shared<OperationTable>();
+    op_obj->Do(operations, this->level_);
+}
+
+void CasselManager::SendCommandToConfig(std::shared_ptr<std::vector<std::string>> operations) {
+    std::shared_ptr<BaseOperation> op_obj = nullptr;
+    std::cout << "now in CONFIG model" << std::endl;
+    op_obj = std::make_shared<OperationConfig>();
+    op_obj->Do(operations, this->level_);
 }
 
 };
