@@ -173,7 +173,7 @@ int main()
         std::string target2 = ")";
         std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
         command = "";
-        std::getline(std::cin, command);
+        // std::getline(std::cin, command);
         
         // 可以优化
         for (int i = 0; i < command.size(); i++) {
@@ -186,11 +186,11 @@ int main()
                 command.replace(i, 1, " ");
             }
         }
-        // command = "123";
+        command = "123";
         operations->push_back(command);
         manager_.ParseOperation(operations);
         std::cout << "over ..." << std::endl;
-        // break;
+        break;
     }
     logMS_ptr->send_log();
     delete logMS;

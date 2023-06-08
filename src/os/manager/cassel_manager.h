@@ -62,7 +62,6 @@ private:
 
 };
 
-
 }; // namespace manager;
 }; // namespace os;
 }; // namespace cassel;
