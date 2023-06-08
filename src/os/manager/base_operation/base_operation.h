@@ -18,7 +18,8 @@ using namespace cassel::os::manager::status;
 class BaseOperation {
 
     public:
-        virtual CasselStatus Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status)=0;
+        virtual std::shared_ptr<CasselStatus> Do(std::shared_ptr<std::vector<std::string>> operations,
+                                                 std::shared_ptr<CasselStatus> status)=0;
 
         std::string OperationStrBuff(std::shared_ptr<std::vector<std::string>> operations);
 };

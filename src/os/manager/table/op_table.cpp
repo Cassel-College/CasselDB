@@ -28,7 +28,8 @@ void OperationTable::Init() {
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
-CasselStatus OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status) {
+std::shared_ptr<CasselStatus> OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations,
+                                                 std::shared_ptr<CasselStatus> status) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
         std::cout << "table:" << item << std::endl;

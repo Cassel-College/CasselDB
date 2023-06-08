@@ -169,7 +169,9 @@ int main()
     std::string command;
     while (1 == 1) {
         operations->clear();
-        std::cout << "input command >>>";
+        std::string target1 = "(";
+        std::string target2 = ")";
+        std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
         command = "";
         // std::getline(std::cin, command);
         

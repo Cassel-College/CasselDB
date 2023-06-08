@@ -42,7 +42,8 @@ class OperationDefault : public BaseOperation {
 
         void Init();
 
-        CasselStatus Do(std::shared_ptr<std::vector<std::string>> operations, CasselStatus status);
+        std::shared_ptr<CasselStatus> Do(std::shared_ptr<std::vector<std::string>> operations,
+                                         std::shared_ptr<CasselStatus> status);
 
         void InitOperation();
 
