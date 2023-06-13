@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <sstream>
 
 #include <config/version/version.h>
 #include <core/create/createFolder/create_folder.h>
@@ -117,6 +118,41 @@ void dev_test_log()
     delete logMS;
 }
 
+void delSpace(std::string &buf) {
+    std::istringstream iss(buf);
+    std::ostringstream oss;
+    std::string word;
+    while (iss >> word) {
+        oss << word << ' ';
+    }
+    buf = oss.str();
+    if (!buf.empty()) {
+        buf.pop_back();
+    }
+}
+
+void pp() {
+    std::string s = "This#is#a#test";
+    std::istringstream iss(s);
+    std::vector<std::string> result;
+    std::string token;
+    while (std::getline(iss, token, '#')) {
+        result.push_back(token);
+    }
+    for (const auto &t : result) {
+        std::cout << t << std::endl;
+    }
+}
+
+void SplitStr(std::string &s, std::shared_ptr<std::vector<std::string>> result) {
+    std::istringstream iss(s);
+    std::string token;
+    std::cout << s << std::endl;
+    while (std::getline(iss, token, ' ')) {
+        result->push_back(token);
+        std::cout << "token:" << token << std::endl;
+    }
+}
 
 int main()
 {
@@ -161,37 +197,28 @@ int main()
     core::read::ShowInfo(infos);
 
     cassel::os::manager::CasselManager manager_;
+    std::shared_ptr<CasselStatus> status = std::make_shared<CasselStatus>();
     std::shared_ptr<std::vector<std::string>> operations = std::make_shared<std::vector<std::string>>();
-    operations->push_back("1");
-    operations->push_back("2");
-    operations->push_back("3");
     manager_.ParseOperation(operations);
     std::string command;
-    while (1 == 1) {
-        operations->clear();
-        std::string target1 = "(";
-        std::string target2 = ")";
-        std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
-        command = "";
-        // std::getline(std::cin, command);
-        
-        // 可以优化
-        for (int i = 0; i < command.size(); i++) {
-            if (command[i] == ' ') {
-                command.replace(i, 1, "-");
-            }
-        }
-        for (int i = 0; i < command.size(); i++) {
-            if (command[i] == '-') {
-                command.replace(i, 1, " ");
-            }
-        }
-        command = "123";
-        operations->push_back(command);
-        manager_.ParseOperation(operations);
-        std::cout << "over ..." << std::endl;
-        break;
-    }
+    // while (1 == 1) {
+    //     operations->clear();
+    //     std::string target1 = "(";
+    //     std::string target2 = ")";
+    //     std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
+    //     command = "";
+    //     std::getline(std::cin, command);
+
+    //     delSpace(command);
+    //     SplitStr(command, operations);
+
+    //     manager_.ParseOperation(operations);
+
+    //     if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
+    //         std::cout << "over ..." << std::endl;
+    //         break;
+    //     }
+    // }
     logMS_ptr->send_log();
     delete logMS;
     return 0;
