@@ -49,6 +49,10 @@ void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> ope
     return;
 }
 
+const CasselManagerStatus CasselManager::GetLevelStatus() {
+    return this->level_->GetStatus();
+}
+
 void CasselManager::SendCommandToDefault(std::shared_ptr<std::vector<std::string>> operations) {
     std::shared_ptr<BaseOperation> op_obj = nullptr;
     std::cout << "now in DEFAULT model" << std::endl;

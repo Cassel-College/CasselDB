@@ -10,6 +10,7 @@
 #include <vector>
 #include <memory>
 #include <set>
+#include <map> 
 
 #include "log4cpp/log/log.h"
 #include "log4cpp/level/level.h"
@@ -47,6 +48,9 @@ class OperationDefault : public BaseOperation {
 
         void InitOperation();
 
+        std::string OperationToParameter(std::shared_ptr<std::vector<std::string>> operations,
+                                         std::shared_ptr<CasselStatus> status);
+
     private:
 
         bool Create();
@@ -59,6 +63,7 @@ class OperationDefault : public BaseOperation {
 
         std::set<std::string> operation_names;
 
+        std::map<std::string, int> operation_map;
 
 };
 

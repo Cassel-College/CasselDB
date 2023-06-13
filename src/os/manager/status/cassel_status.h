@@ -23,7 +23,8 @@ enum class CasselManagerStatus {
     DEFAULT,
     DATABASE,
     TABLE,
-    CONFIG
+    CONFIG,
+    QUIT
 };
 
 class CasselStatus
@@ -53,7 +54,6 @@ private:
     std::string database_;
     std::string table_;
 };
-
 
 }; // namespace status
 }; // namespace manager;
