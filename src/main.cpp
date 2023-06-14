@@ -15,6 +15,7 @@
 #include <sstream>
 
 #include <config/version/version.h>
+#include <config/cassel_config/cassel_config.h>
 #include <core/create/createFolder/create_folder.h>
 #include <core/read/readFile/read_file.h>
 #include <core/tools/select_info_from_list/select_info_from_list.h>
@@ -40,6 +41,7 @@ using module::create::CreateDatabase;
 using module::create::CreateDataBaseStatus;
 using module::show::database::ShowDatabase;
 using config::version::Version;
+using config::cassel_config::CasselConfig;
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log_cache::LogCache;
@@ -54,6 +56,7 @@ using cassel::os::manager::CasselManager;
 
 Log* log4cpp::log::Log::logMS = nullptr;
 std::shared_ptr<log4cpp::log::Log> log4cpp::log::Log::logMS_ptr = nullptr;
+std::shared_ptr<config::cassel_config::CasselConfig> config::cassel_config::CasselConfig::cassel_config_ptr = nullptr;
 
 /**
  * @brief test case by Dev to test log module.
@@ -162,6 +165,7 @@ int main()
     std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Begin start cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
 
+    std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
     CreateFolder *createFolder = new CreateFolder();
     createFolder->SetPath("/opt/CasselDB/data");
     createFolder->SetFolderName("Palt");
@@ -173,7 +177,7 @@ int main()
     std::cout << "Holle World!" << std::endl;
     std::vector<std::string> paly = readFile->GetInfo();
 
-    paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INS·TALL_PATH", true);
+    paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INSTALL_PATH", true);
     std::cout << "Holle World!" << std::endl;
     for (auto item : paly) {
         std::cout << item << std::endl;
