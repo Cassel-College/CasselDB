@@ -2,7 +2,14 @@
 
 this_path=`dirname $0`
 echo "${this_path}"
-file_name="${this_path}/../../cassel/configuration.config"
+if [ -d "${this_path}/../../cassel/config" ]
+then
+    echo "${this_path}/../../cassel/config was exist."
+else
+    echo "${this_path}/../../cassel/config was not exist. create it."
+    mkdir -p ${this_path}/../../cassel/config
+fi
+file_name="${this_path}/../../cassel/config/configuration.conf"
 
 if [ -f "${file_name}" ]
 then

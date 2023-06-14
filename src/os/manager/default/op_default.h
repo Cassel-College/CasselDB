@@ -53,13 +53,14 @@ class OperationDefault : public BaseOperation {
 
     private:
 
-        bool Create();
-        bool Select();
-        bool Delete();
-        bool Copy();
-        bool Open();
-        bool Other(std::shared_ptr<std::vector<std::string>> operation);
-        bool Quit();
+        bool Create(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Select(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Delete(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Config(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Copy(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Open(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Other(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
+        bool Quit(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
 
         std::set<std::string> operation_names;
 
