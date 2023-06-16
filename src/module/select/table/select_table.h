@@ -36,3 +36,5 @@ private:
 }; // namespace select_table
 }; // namespace select
 }; // namespace module
+
+#endif
