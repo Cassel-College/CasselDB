@@ -17,6 +17,9 @@
 #include "log4cpp/log_module/log_module.h"
 #include "os/manager/base_operation/base_operation.h"
 #include "os/manager/status/cassel_status.h"
+#include "module/create/createDB/create_database.h"
+#include "config/cassel_config/cassel_config.h"
+
 
 /**
  * @brief 
@@ -34,6 +37,8 @@ namespace def {
 
 using cassel::os::manager::base_operation::BaseOperation;
 using namespace cassel::os::manager::status;
+using db_config::cassel_config::CasselConfig;
+using module::create::CreateDatabase;
 
 class OperationDefault : public BaseOperation {
 

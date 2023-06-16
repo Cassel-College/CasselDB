@@ -21,7 +21,7 @@
  * @date 2022-09-16
  * @copyright Copyright (c) 2022
  */
-namespace config
+namespace db_config
 {
     /**
      * @brief version namespace
@@ -98,7 +98,7 @@ namespace config
                 size_t somll_version_number;
         };
     }; // version
-}; // config
+}; // db_config
 
 
 #endif

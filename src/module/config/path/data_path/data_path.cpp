@@ -1,15 +1,4 @@
 #include "data_path.h"
-#include <iostream>
-#include <vector>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <core/read/readFile/read_file.h>
-#include <core/tools/select_info_from_list/select_info_from_list.h>
-
-using core::read::ReadFile;
-using core::tools::SelectInfoFromList;
 
 module::config::path::DataPath::DataPath() {
     
@@ -20,20 +9,14 @@ module::config::path::DataPath::~DataPath() {
 }
 
 std::string module::config::path::DataPath::GetDataPath() {
+
     std::string target = "";
-    ReadFile *readFile = new ReadFile();
-    readFile->SetPath("/etc/profile");
-    readFile->SetInfo();
-    std::vector<std::string> file_info_list = readFile->GetInfo();
-    file_info_list = SelectInfoFromList::SelectInfo(file_info_list, "#", false);
-    file_info_list = SelectInfoFromList::SelectInfo(file_info_list, "CASSELDB_DATA_PATH", true);
-    if (file_info_list.size() != 0) {
-        target = file_info_list[file_info_list.size() - 1];
-    }
-    if (target.find('=') != std::string::npos) {
-        target = target.substr(target.find('=') + 1);
+    std::string target_config_name = "data_path";
+    std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
+    if (cassel_config_ptr == nullptr) {
+        return target;
     } else {
-        target = "";
+        target = cassel_config_ptr->GetConfigByName(target_config_name);
     }
     return target;
 }
