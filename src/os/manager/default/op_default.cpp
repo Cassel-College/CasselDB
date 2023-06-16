@@ -125,6 +125,11 @@ bool OperationDefault::Create(std::shared_ptr<std::vector<std::string>> operatio
         std::string database_name = operations->at(1);
         std::cout << "create database_name:" << database_name << std::endl;
 
+        std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
+        std::shared_ptr<CreateDatabase> create_folder_ptr = std::make_shared<CreateDatabase>();
+        create_folder_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
+        create_folder_ptr->SetDatabasesName(database_name);
+        create_folder_ptr->Create();
 
         logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "create operation in default."));
         create_status = true;

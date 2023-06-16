@@ -16,7 +16,7 @@ using log4cpp::log_module::LogModule;
  * @date 2022-09-18
  * @copyright Copyright (c) 2022
  */
-config::version::Version::Version() {
+db_config::version::Version::Version() {
     Log* logMS = Log::GetLog();
     logMS->add(LogModule("Create version", Level("ERROR"), __FILE__, __LINE__, "log"));
     logMS->send_log();
@@ -30,7 +30,7 @@ config::version::Version::Version() {
  * @date 2022-09-18
  * @copyright Copyright (c) 2022
  */
-config::version::Version::~Version() {
+db_config::version::Version::~Version() {
 
 }
 
@@ -42,7 +42,7 @@ config::version::Version::~Version() {
  * @date 2022-09-18
  * @copyright Copyright (c) 2022
  */
-void config::version::Version::read_config_file() {
+void db_config::version::Version::read_config_file() {
     std::string config_file_path;
 }
 
@@ -55,6 +55,6 @@ void config::version::Version::read_config_file() {
  * @date 2022-09-18
  * @copyright Copyright (c) 2022
  */
-std::string config::version::Version::get_version() {
+std::string db_config::version::Version::get_version() {
     return "Cassel DB version 1.00";
 }

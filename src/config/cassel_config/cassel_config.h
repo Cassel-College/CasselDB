@@ -13,6 +13,7 @@
 #include <algorithm>
 
 #include <core/read/readFile/read_file.h>
+
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
 #include <log4cpp/log_cache/log_cache.h>
@@ -23,7 +24,7 @@
 #include <log4cpp/date_time/date_time.h>
 #include <log4cpp/log/log.h>
 
-namespace config {
+namespace db_config {
 namespace cassel_config {
 
 using namespace core::read;
@@ -58,6 +59,8 @@ public:
     void LaodConfig(const std::string &config_path);
 
     bool AddConfig(std::pair<std::string, std::string> &config_item);
+
+    std::string GetConfigByName(const std::string &config_name);
 
     std::string InterceptSpecialCharacters(const std::string &info);
 

@@ -1,19 +1,17 @@
 #include "cassel_config.h"
 
-namespace config {
-namespace cassel_config {
 
-CasselConfig::CasselConfig() {
+db_config::cassel_config::CasselConfig::CasselConfig() {
     this->config_file_path = "/config/configuration.conf";
     this->ReloadConfig();
 }
 
-bool CasselConfig::ReloadConfig() {
+bool db_config::cassel_config::CasselConfig::ReloadConfig() {
     this->LaodConfig(this->GetConfigPath());
     return true;
 }
 
-std::string CasselConfig::GetCasselDBExecPath() {
+std::string db_config::cassel_config::CasselConfig::GetCasselDBExecPath() {
     char szBuf[128];
     memset(szBuf, 0x00, sizeof(szBuf));
     getcwd(szBuf, sizeof(szBuf)-1);
@@ -21,7 +19,7 @@ std::string CasselConfig::GetCasselDBExecPath() {
     return path;
 }
 
-std::string CasselConfig::GetConfigPath() {
+std::string db_config::cassel_config::CasselConfig::GetConfigPath() {
 
     std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Begin get config path.", Level("DEBUG"), __FILE__, __LINE__, "config"));
@@ -35,7 +33,7 @@ std::string CasselConfig::GetConfigPath() {
     return path;
 }
 
-std::vector<std::string> CasselConfig::ReadConfig(const std::string &config_path) {
+std::vector<std::string> db_config::cassel_config::CasselConfig::ReadConfig(const std::string &config_path) {
 
     std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Begin read cassel DB config.", Level("DEBUG"), __FILE__, __LINE__, "config"));
@@ -50,7 +48,7 @@ std::vector<std::string> CasselConfig::ReadConfig(const std::string &config_path
     return configration_info;
 }
 
-std::string CasselConfig::InterceptSpecialCharacters(const std::string &info) {
+std::string db_config::cassel_config::CasselConfig::InterceptSpecialCharacters(const std::string &info) {
 
     std::string result;
     auto pos = info.find('#');
@@ -62,7 +60,7 @@ std::string CasselConfig::InterceptSpecialCharacters(const std::string &info) {
     return result;
 }
 
-std::vector<std::string> CasselConfig::FilterComments(const std::vector<std::string>& input) {
+std::vector<std::string> db_config::cassel_config::CasselConfig::FilterComments(const std::vector<std::string>& input) {
     std::vector<std::string> result;
     for (const auto& str : input) {
         std::string temp = this->InterceptSpecialCharacters(str);
@@ -74,7 +72,7 @@ std::vector<std::string> CasselConfig::FilterComments(const std::vector<std::str
 }
 
 // 去除字符串中的空格
-std::string CasselConfig::RemoveSpaces(const std::string& str) {
+std::string db_config::cassel_config::CasselConfig::RemoveSpaces(const std::string& str) {
     std::string result;
     result.reserve(str.length()); // 提前分配足够的空间
 
@@ -88,7 +86,7 @@ std::string CasselConfig::RemoveSpaces(const std::string& str) {
 }
 
 // 处理字符串
-bool CasselConfig::SplitConfig(const std::string& str, std::pair<std::string, std::string> &config_item) {
+bool db_config::cassel_config::CasselConfig::SplitConfig(const std::string& str, std::pair<std::string, std::string> &config_item) {
     // 去除空格
     std::string trimmedStr = this->RemoveSpaces(str);
     bool split_status = false;
@@ -110,7 +108,7 @@ bool CasselConfig::SplitConfig(const std::string& str, std::pair<std::string, st
 }
 
 
-void CasselConfig::LaodConfig(const std::string &config_path) {
+void db_config::cassel_config::CasselConfig::LaodConfig(const std::string &config_path) {
 
     std::vector<std::string> configration_info = this->FilterComments(this->ReadConfig(config_path));
     for (auto &item : configration_info) {
@@ -121,19 +119,33 @@ void CasselConfig::LaodConfig(const std::string &config_path) {
     }
 }
 
-bool CasselConfig::AddConfig(std::pair<std::string, std::string> &config_item) {
+bool db_config::cassel_config::CasselConfig::AddConfig(std::pair<std::string, std::string> &config_item) {
     this->config_maps.insert(config_item);
     return true;
 }
 
-std::shared_ptr<CasselConfig> CasselConfig::GetCasselConfigPtr() {
+std::string db_config::cassel_config::CasselConfig::GetConfigByName(const std::string &config_name) {
+
+    std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Begin get " + config_name + " config.", Level("DEBUG"), __FILE__, __LINE__, "config"));
+    std::string target_config = "";
+    std::map<std::string ,std::string>::iterator item; 
+    item = this->config_maps.find(config_name);
+    if(item == this->config_maps.end()) {
+        target_config = "";
+        logMS_ptr->add(LogModule("Get config ERROR.", Level("ERROR"), __FILE__, __LINE__, "config"));
+    } else {
+        target_config = item->second;
+    }
+    logMS_ptr->add(LogModule("Get config Over.", Level("ERROR"), __FILE__, __LINE__, "config"));
+    return target_config;
+}
+
+std::shared_ptr<db_config::cassel_config::CasselConfig> db_config::cassel_config::CasselConfig::GetCasselConfigPtr() {
     
     if (cassel_config_ptr == nullptr) {
-        std::shared_ptr<CasselConfig> temp_cassel_config_ptr(new CasselConfig());
+        std::shared_ptr<CasselConfig> temp_cassel_config_ptr(new db_config::cassel_config::CasselConfig());
         cassel_config_ptr.swap(temp_cassel_config_ptr);
     }
     return cassel_config_ptr;
 }
-
-}; // namespace cassel_config
-}; // namespace config
