@@ -35,6 +35,7 @@ using cassel::os::manager::config::OperationConfig;
 using cassel::os::manager::database::OperationDatabase;
 using cassel::os::manager::table::OperationTable;
 
+
 class CasselManager
 {
 

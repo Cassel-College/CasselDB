@@ -10,7 +10,9 @@
  */
 
 #include <iostream>
+#include <cstring>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <memory>
 
@@ -35,13 +37,13 @@ public:
 
     void Init();
 
-    void SetDataBase(const std::string &database);
+    void SetDatabaseName(const std::string &database);
 
-    std::string GetDataBase();
+    std::string GetDatabaseName();
 
-    void SetTable(const std::string &table);
+    void SetTableName(const std::string &table);
 
-    std::string GetTable();
+    std::string GetTableName();
 
     void SetStatus(CasselManagerStatus status);
 

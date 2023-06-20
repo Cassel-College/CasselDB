@@ -30,26 +30,18 @@ void OperationDefault::Init() {
     this->InitOperation();
 }
 
-void OperationDefault::InitOperation() {
-    this->operation_names.clear();
-    this->operation_names.insert("create");
-    this->operation_names.insert("select");
-    this->operation_names.insert("delete");
-    this->operation_names.insert("copy");
-    this->operation_names.insert("open");
-    this->operation_names.insert("quit");
-        
+void OperationDefault::InitOperation() { 
     operation_map.insert(std::pair<std::string, int>("create", 1));
     operation_map.insert(std::pair<std::string, int>("select", 2));
     operation_map.insert(std::pair<std::string, int>("delete", 3));
     operation_map.insert(std::pair<std::string, int>("config", 4));
     operation_map.insert(std::pair<std::string, int>("copy",   5));
     operation_map.insert(std::pair<std::string, int>("open",   6));
-    operation_map.insert(std::pair<std::string, int>("quit",   7));
+    operation_map.insert(std::pair<std::string, int>("status", 7));
+    operation_map.insert(std::pair<std::string, int>("quit",   8));
 }
 
-std::string OperationDefault::OperationToParameter(std::shared_ptr<std::vector<std::string>> operations,
-                                                   std::shared_ptr<CasselStatus> status) {
+std::string OperationDefault::OperationToParameter(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     if (operations->size() == 0) {
@@ -90,6 +82,9 @@ std::string OperationDefault::OperationToParameter(std::shared_ptr<std::vector<s
         case 7:
             this->Quit(operations, status);
             break;
+        case 8:
+            this->Quit(operations, status);
+            break;
         default:
             logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Unknown operation."));
             break;
@@ -97,13 +92,15 @@ std::string OperationDefault::OperationToParameter(std::shared_ptr<std::vector<s
     return "";
 }
 
-std::shared_ptr<CasselStatus> OperationDefault::Do(std::shared_ptr<std::vector<std::string>> operations,
-                                                   std::shared_ptr<CasselStatus> status) {
+std::shared_ptr<CasselStatus> OperationDefault::Do(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 
     std::string operation = "";
+    for (auto it = operations->begin(); it != operations->end(); ++it) {
+        std::cout << "size:" << int(operations->size()) << "operation:" << it->c_str() << std::endl;
+    }
     if (int(operations->size()) > 0) {
         std::string code = this->OperationToParameter(operations, status);
     } else {
@@ -114,8 +111,7 @@ std::shared_ptr<CasselStatus> OperationDefault::Do(std::shared_ptr<std::vector<s
     return status;
 };
 
-bool OperationDefault::Create(std::shared_ptr<std::vector<std::string>> operations,
-                              std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
 
     bool create_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
@@ -141,15 +137,21 @@ bool OperationDefault::Create(std::shared_ptr<std::vector<std::string>> operatio
     return create_status;
 };
 
-bool OperationDefault::Select(std::shared_ptr<std::vector<std::string>> operations,
-                              std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 
-    if (operations->size() == 2) {
-        std::string database_name = operations->at(1);
+    if (operations->size() == 1) {
         logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "select operation in default."));
+
+        std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
+        (void) select_database_ptr->DoSelect();
+        std::shared_ptr<std::vector<std::string>> names = select_database_ptr->GetDatabaseNames();
+
+        for (auto it = names->begin(); it != names->end(); ++it) {
+            std::cout << "DB name:" << it->c_str() << std::endl;
+        }
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
     }
@@ -158,8 +160,7 @@ bool OperationDefault::Select(std::shared_ptr<std::vector<std::string>> operatio
     return true;
 };
 
-bool OperationDefault::Delete(std::shared_ptr<std::vector<std::string>> operations,
-                              std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Delete(VecStrPtr operations, CasselStatusPtr status) {
                                 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
@@ -176,8 +177,7 @@ bool OperationDefault::Delete(std::shared_ptr<std::vector<std::string>> operatio
     return true;
 };
 
-bool OperationDefault::Config(std::shared_ptr<std::vector<std::string>> operations,
-                              std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Config(VecStrPtr operations, CasselStatusPtr status) {
                                 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
@@ -193,8 +193,7 @@ bool OperationDefault::Config(std::shared_ptr<std::vector<std::string>> operatio
     return true;
 };
 
-bool OperationDefault::Copy(std::shared_ptr<std::vector<std::string>> operations,
-                            std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Copy(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
@@ -212,15 +211,15 @@ bool OperationDefault::Copy(std::shared_ptr<std::vector<std::string>> operations
     return true;
 };
 
-bool OperationDefault::Open(std::shared_ptr<std::vector<std::string>> operations,
-                            std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Open(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     if (operations->size() == 2) {
         std::string database_name = operations->at(1);
-        // this->Open();
         logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "open operation in default."));
+        status->SetStatus(CasselManagerStatus::DATABASE);
+        status->SetDatabaseName(database_name);
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "open operation in default."));
     }
@@ -228,8 +227,7 @@ bool OperationDefault::Open(std::shared_ptr<std::vector<std::string>> operations
     return true;
 };
 
-bool OperationDefault::Other(std::shared_ptr<std::vector<std::string>> operations,
-                             std::shared_ptr<CasselStatus> status) {
+bool OperationDefault::Other(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
@@ -238,9 +236,16 @@ bool OperationDefault::Other(std::shared_ptr<std::vector<std::string>> operation
     return true;
 };
 
+bool OperationDefault::Status(VecStrPtr operations, CasselStatusPtr status) {
 
-bool OperationDefault::Quit(std::shared_ptr<std::vector<std::string>> operations,
-                            std::shared_ptr<CasselStatus> status) {
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "quit Cassel DB operation in default."));
+    std::cout << "Status .... " << std::endl;
+    return true;
+
+}
+
+bool OperationDefault::Quit(VecStrPtr operations, CasselStatusPtr status) {
 
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "quit Cassel DB operation in default."));

@@ -28,8 +28,7 @@ void OperationTable::Init() {
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
-std::shared_ptr<CasselStatus> OperationTable::Do(std::shared_ptr<std::vector<std::string>> operations,
-                                                 std::shared_ptr<CasselStatus> status) {
+std::shared_ptr<CasselStatus> OperationTable::Do(VecStrPtr operations, CasselStatusPtr status) {
     std::cout << "-----------------------------------" << std::endl;
     for (auto item : *operations) {
         std::cout << "table:" << item << std::endl;
@@ -38,37 +37,37 @@ std::shared_ptr<CasselStatus> OperationTable::Do(std::shared_ptr<std::vector<std
     return status;
 };
 
-bool OperationTable::Create() {
+bool OperationTable::Create(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
-bool OperationTable::Select() {
+bool OperationTable::Select(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
-bool OperationTable::Delete() {
+bool OperationTable::Delete(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
-bool OperationTable::Copy() {
+bool OperationTable::Copy(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
-bool OperationTable::Open() {
+bool OperationTable::Open(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;
 };
 
-bool OperationTable::Quit() {
+bool OperationTable::Quit(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     return true;

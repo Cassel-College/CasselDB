@@ -19,7 +19,7 @@
 #include "os/manager/status/cassel_status.h"
 #include "module/create/createDB/create_database.h"
 #include "config/cassel_config/cassel_config.h"
-
+#include "module/select/database/select_database.h"
 
 /**
  * @brief 
@@ -39,6 +39,10 @@ using cassel::os::manager::base_operation::BaseOperation;
 using namespace cassel::os::manager::status;
 using db_config::cassel_config::CasselConfig;
 using module::create::CreateDatabase;
+using module::select::select_databases::SelectDataBase;
+
+using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
+using CasselStatusPtr = std::shared_ptr<CasselStatus>;
 
 class OperationDefault : public BaseOperation {
 
@@ -48,26 +52,23 @@ class OperationDefault : public BaseOperation {
 
         void Init();
 
-        std::shared_ptr<CasselStatus> Do(std::shared_ptr<std::vector<std::string>> operations,
-                                         std::shared_ptr<CasselStatus> status);
-
         void InitOperation();
 
-        std::string OperationToParameter(std::shared_ptr<std::vector<std::string>> operations,
-                                         std::shared_ptr<CasselStatus> status);
+        std::shared_ptr<CasselStatus> Do(VecStrPtr operations, CasselStatusPtr status);
+
+        std::string OperationToParameter(VecStrPtr operations, CasselStatusPtr status);
 
     private:
 
-        bool Create(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Select(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Delete(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Config(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Copy(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Open(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Other(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-        bool Quit(std::shared_ptr<std::vector<std::string>> operations, std::shared_ptr<CasselStatus> status);
-
-        std::set<std::string> operation_names;
+        bool Create(VecStrPtr operations, CasselStatusPtr status);
+        bool Select(VecStrPtr operations, CasselStatusPtr status);
+        bool Delete(VecStrPtr operations, CasselStatusPtr status);
+        bool Config(VecStrPtr operations, CasselStatusPtr status);
+        bool Status(VecStrPtr operations, CasselStatusPtr status);
+        bool Copy(VecStrPtr operations,   CasselStatusPtr status);
+        bool Open(VecStrPtr operations,   CasselStatusPtr status);
+        bool Other(VecStrPtr operations,  CasselStatusPtr status);
+        bool Quit(VecStrPtr operations,   CasselStatusPtr status);
 
         std::map<std::string, int> operation_map;
 
