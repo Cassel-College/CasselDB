@@ -7,24 +7,26 @@
 #include <fstream>
 #include <memory>
 
-#include <core/select/select_dir/select_folder.h>
-
+#include "core/select/select_dir/select_folder.h"
+#include "config/cassel_config/cassel_config.h"
+#include "module/config/path/data_path/data_path.h"
 
 namespace module {
 namespace select {
 namespace select_databases {
-    
+
+using core::select::SelectFolder;
+using module::config::path::DataPath;
+
 class SelectDataBase {
-    
+
 public:
 
     SelectDataBase();
 
     ~SelectDataBase();
 
-    void SetBashPath(const std::string& bashPath);
-
-    std::string GetBashPath() const;
+    bool DoSelect();
 
     bool AddDatabase(const std::string& database);
 
@@ -33,9 +35,9 @@ public:
 private:
 
     std::shared_ptr<std::vector<std::string>> databases_infos_ptr;
-    std::string bashPath;
 
 };
+
 }; // namespace select_databases
 }; // namespace select
 }; // namespace module

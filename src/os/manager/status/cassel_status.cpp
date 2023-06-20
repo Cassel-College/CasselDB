@@ -15,19 +15,19 @@ CasselStatus::CasselStatus() {
     status_ = CasselManagerStatus::DEFAULT;
  }
 
-void CasselStatus::SetDataBase(const std::string &database) {
+void CasselStatus::SetDatabaseName(const std::string &database) {
     database_ = database;
 }
 
-std::string CasselStatus::GetDataBase() {
+std::string CasselStatus::GetDatabaseName() {
     return database_;
 }
 
-void CasselStatus::SetTable(const std::string &table) {
+void CasselStatus::SetTableName(const std::string &table) {
     table_ = table;
 }
 
-std::string CasselStatus::GetTable() {
+std::string CasselStatus::GetTableName() {
     return table_;
 }
 
@@ -40,10 +40,11 @@ CasselManagerStatus CasselStatus::GetStatus() {
 }
 
 const std::string CasselStatus::GetStatusStr() const {
+    std::stringstream ss;
     switch (this->status_) {
         case CasselManagerStatus::DEFAULT:  return "DEFAULT";
-        case CasselManagerStatus::DATABASE: return "DATABASE";
-        case CasselManagerStatus::TABLE:    return "TABLE";
+        case CasselManagerStatus::DATABASE: ss << "DATABASE: " << this->database_.c_str(); return ss.str();
+        case CasselManagerStatus::TABLE:    ss << "TABLE: " << this->table_.c_str(); return ss.str();
         case CasselManagerStatus::CONFIG:   return "CONFIG";
     }
     return "";

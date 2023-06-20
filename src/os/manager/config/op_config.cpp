@@ -24,54 +24,70 @@ OperationConfig::OperationConfig() {
 }
 
 void OperationConfig::Init() {
+    this->InitOperation();
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 }
 
-std::shared_ptr<CasselStatus> OperationConfig::Do(std::shared_ptr<std::vector<std::string>> operations,
-                                                  std::shared_ptr<CasselStatus> status) {
+void OperationConfig::InitOperation() {
+    operation_map.insert(std::pair<std::string, int>("quit", 1));
+}
 
-    std::cout << "-----------------------------------" << std::endl;
-    for (auto item : *operations) {
-        std::cout << "config:" << item << std::endl;
+std::string OperationConfig::OperationToParameter(VecStrPtr operations, CasselStatusPtr status) {
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    if (operations->size() == 0) {
+        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Empty operations."));
+        return "";
+    }
+    std::string operation = operations->at(0);
+    std::cout << "operation:" << operation << std::endl;
+    std::map<std::string, int>::iterator operation_iter; 
+    operation_iter = this->operation_map.find(operation);
+    int operation_code = -1;
+    if(operation_iter != this->operation_map.end()) {
+        operation_code = operation_iter->second;
+    } else {
+        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "Unknown operation."));
+        return "";
+    }
+
+    switch (operation_code) {
+        case 1:
+            this->Quit(operations, status);
+            break;
+        default:
+            logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Unknown operation."));
+            break;
+    }
+    return "";
+};
+
+std::shared_ptr<CasselStatus> OperationConfig::Do(VecStrPtr operations, CasselStatusPtr status) {
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+
+    std::string operation = "";
+    if (int(operations->size()) > 0) {
+        std::string code = this->OperationToParameter(operations, status);
+    } else {
+        std::cout << "operation is empty" << std::endl;
+        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "no operation."));
     }
     std::cout << "-----------------------------------" << std::endl;
     return status;
 };
 
-bool OperationConfig::Create() {
+bool OperationConfig::Quit(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
-};
-
-bool OperationConfig::Select() {
-    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
-};
-
-bool OperationConfig::Delete() {
-    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
-};
-
-bool OperationConfig::Copy() {
-    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
-};
-
-bool OperationConfig::Open() {
-    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
-};
-
-bool OperationConfig::Quit() {
-    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
+    if (operations->size() == 1) {
+        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Quit config."));
+        status->SetStatus(CasselManagerStatus::DEFAULT);
+        status->SetDatabaseName("");
+    } else {
+        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "Quit config."));
+    }
+    std::cout << "Quit .... " << std::endl;
     return true;
 };
 

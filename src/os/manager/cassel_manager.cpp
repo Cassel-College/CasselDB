@@ -20,30 +20,26 @@ const std::string CasselManager::GetCasselStatusStr() const {
 
 void CasselManager::ParseOperation(std::shared_ptr<std::vector<std::string>> operations) {
 
-    std::cout << "This is operations: ";
-    for (std::string operation : *operations) {
-        std::cout << operation << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << "This is operations: ";
+    // for (std::string operation : *operations) {
+    //     std::cout << operation << " ";
+    // }
+    // std::cout << std::endl;
 
     bool effect = false;
 
     switch (level_->GetStatus()) {
         case CasselManagerStatus::DEFAULT:              //  default operation
             this->SendCommandToDefault(operations);
-            effect = true;  
             break;   
         case CasselManagerStatus::DATABASE:             //  database operation
             this->SendCommandToDatabase(operations);
-            effect = true;
             break;
         case CasselManagerStatus::TABLE:                //  table operation
             this->SendCommandToTable(operations);
-            effect = true;
             break;   
         case CasselManagerStatus::CONFIG:               //  config operation
             this->SendCommandToConfig(operations);
-            effect = true;
             break;   
     }
     return;

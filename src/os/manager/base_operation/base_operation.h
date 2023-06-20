@@ -15,11 +15,13 @@ namespace base_operation {
 
 using namespace cassel::os::manager::status;
 
+using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
+using CasselStatusPtr = std::shared_ptr<CasselStatus>;
+
 class BaseOperation {
 
     public:
-        virtual std::shared_ptr<CasselStatus> Do(std::shared_ptr<std::vector<std::string>> operations,
-                                                 std::shared_ptr<CasselStatus> status)=0;
+        virtual std::shared_ptr<CasselStatus> Do(VecStrPtr operations, CasselStatusPtr status)=0;
 
         std::string OperationStrBuff(std::shared_ptr<std::vector<std::string>> operations);
 };

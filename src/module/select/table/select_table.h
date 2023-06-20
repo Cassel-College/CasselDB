@@ -22,11 +22,21 @@ public:
 
     SelectTable(const std::string& path);
 
+    SelectTable(const std::string& path, const std::string& database_info);
+
     ~SelectTable();
+
+    void SetDatabaseName(const std::string &database_name);
+
+    // std::string GetDatabases
+
+
 
 private:
 
     std::string path;
+
+    std::string database_info;
 
     std::shared_ptr<std::vector<std::string>> tables_info_ptr;
 

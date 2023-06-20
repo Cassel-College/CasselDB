@@ -24,6 +24,9 @@ namespace table {
 using cassel::os::manager::base_operation::BaseOperation;
 using namespace cassel::os::manager::status;
 
+using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
+using CasselStatusPtr = std::shared_ptr<CasselStatus>;
+
 class OperationTable : public BaseOperation {
 
     public:
@@ -32,17 +35,24 @@ class OperationTable : public BaseOperation {
 
         void Init();
 
-        std::shared_ptr<CasselStatus> Do(std::shared_ptr<std::vector<std::string>> operations,
-                                         std::shared_ptr<CasselStatus> status);
+        void InitOperation();
+
+        std::shared_ptr<CasselStatus> Do(VecStrPtr operations, CasselStatusPtr status);
+
+        std::string OperationToParameter(VecStrPtr operations, CasselStatusPtr status);
 
     private:
 
-        bool Create();
-        bool Select();
-        bool Delete();
-        bool Copy();
-        bool Open();
-        bool Quit();
+        bool Create(VecStrPtr operations, CasselStatusPtr status);
+        bool Select(VecStrPtr operations, CasselStatusPtr status);
+        bool Delete(VecStrPtr operations, CasselStatusPtr status);
+        bool Config(VecStrPtr operations, CasselStatusPtr status);
+        bool Copy(VecStrPtr operations,   CasselStatusPtr status);
+        bool Open(VecStrPtr operations,   CasselStatusPtr status);
+        bool Other(VecStrPtr operations,  CasselStatusPtr status);
+        bool Quit(VecStrPtr operations,   CasselStatusPtr status);
+
+        std::map<std::string, int> operation_map;
 
 };
 

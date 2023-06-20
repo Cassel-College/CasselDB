@@ -20,3 +20,7 @@ echo "# install path" >> ${file_name}
 echo "install_path=/opt/CasselDB" >> ${file_name}
 echo "# data path" >> ${file_name}
 echo "data_path=/opt/CasselDB/data" >> ${file_name}
+
+echo "soft_name=CasselDB" >> ${file_name}
+echo "soft_big_version=1" >> ${file_name}
+echo "soft_sim_version=00" >> ${file_name}
