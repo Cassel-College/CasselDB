@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(op_database SHARED ./op_database.cpp ./op_database.h)
 
-target_link_libraries(op_database base_operation)
+target_link_libraries(op_database base_operation simple_ui)

@@ -147,11 +147,11 @@ bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
 
         std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
         (void) select_database_ptr->DoSelect();
-        std::shared_ptr<std::vector<std::string>> names = select_database_ptr->GetDatabaseNames();
+        VecStrPtr names = select_database_ptr->GetDatabaseNames();
 
-        for (auto it = names->begin(); it != names->end(); ++it) {
-            std::cout << "DB name:" << it->c_str() << std::endl;
-        }
+        std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
+        VecStrPtr taregt_infos = simple_ui_ptr->GenDB(names);
+        simple_ui_ptr->Show(taregt_infos);
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
     }
