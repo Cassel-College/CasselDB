@@ -47,7 +47,7 @@ const std::string CasselStatus::GetStatusStr() const {
         case CasselManagerStatus::TABLE:    ss << "TABLE: " << this->table_.c_str(); return ss.str();
         case CasselManagerStatus::CONFIG:   return "CONFIG";
     }
-    return "";
+    return "Unknown Status";
 }
 
 }; // namespace status

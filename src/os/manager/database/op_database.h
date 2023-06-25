@@ -14,6 +14,7 @@
 #include "log4cpp/level/level.h"
 #include "log4cpp/log_module/log_module.h"
 #include "os/manager/base_operation/base_operation.h"
+#include "os/ui/simple_ui/simple_ui.h"
 
 using namespace cassel::os::manager::status;
 
@@ -23,6 +24,7 @@ namespace manager {
 namespace database {
 
 using cassel::os::manager::base_operation::BaseOperation;
+using cassel::os::ui::SimpleUI;
 using namespace cassel::os::manager::status;
 
 using VecStrPtr = std::shared_ptr<std::vector<std::string>>;

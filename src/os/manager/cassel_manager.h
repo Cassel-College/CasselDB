@@ -20,6 +20,7 @@
 #include "os/manager/default/op_default.h"
 #include "os/manager/database/op_database.h"
 #include "os/manager/table/op_table.h"
+#include "os/ui/simple_ui/simple_ui.h"
 
 namespace cassel {
 namespace os {
@@ -34,7 +35,7 @@ using cassel::os::manager::def::OperationDefault;
 using cassel::os::manager::config::OperationConfig;
 using cassel::os::manager::database::OperationDatabase;
 using cassel::os::manager::table::OperationTable;
-
+using cassel::os::ui::SimpleUI;
 
 class CasselManager
 {

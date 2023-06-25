@@ -80,7 +80,7 @@ std::string OperationDefault::OperationToParameter(VecStrPtr operations, CasselS
             this->Open(operations, status);
             break;
         case 7:
-            this->Quit(operations, status);
+            this->Status(operations, status);
             break;
         case 8:
             this->Quit(operations, status);
@@ -147,11 +147,11 @@ bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
 
         std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
         (void) select_database_ptr->DoSelect();
-        std::shared_ptr<std::vector<std::string>> names = select_database_ptr->GetDatabaseNames();
+        VecStrPtr names = select_database_ptr->GetDatabaseNames();
 
-        for (auto it = names->begin(); it != names->end(); ++it) {
-            std::cout << "DB name:" << it->c_str() << std::endl;
-        }
+        std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
+        VecStrPtr taregt_infos = simple_ui_ptr->GenDB(names);
+        simple_ui_ptr->Show(taregt_infos);
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
     }
@@ -238,11 +238,20 @@ bool OperationDefault::Other(VecStrPtr operations, CasselStatusPtr status) {
 
 bool OperationDefault::Status(VecStrPtr operations, CasselStatusPtr status) {
 
+    bool status_key = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "quit Cassel DB operation in default."));
-    std::cout << "Status .... " << std::endl;
-    return true;
-
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, ""));
+    
+    if (operations->size() == 1) {
+        std::string status_str = status->GetStatusStr();
+        VecStrPtr status_ptr = std::make_shared<std::vector<std::string>>();
+        status_ptr->push_back(status_str);
+        std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
+        VecStrPtr taregt_infos = simple_ui_ptr->GenStatus(status_ptr);
+        simple_ui_ptr->Show(taregt_infos);
+        status_key = true;
+    }
+    return status_key;
 }
 
 bool OperationDefault::Quit(VecStrPtr operations, CasselStatusPtr status) {
