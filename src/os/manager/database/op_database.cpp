@@ -102,9 +102,36 @@ std::shared_ptr<CasselStatus> OperationDatabase::Do(VecStrPtr operations, Cassel
 };
 
 bool OperationDatabase::Create(VecStrPtr operations, CasselStatusPtr status) {
+    
+    bool create_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run create operation in database."));
+
+    if (operations->size() == 2) {
+        std::string database_name = status->GetDatabaseName();
+        std::string table_name = operations->at(1);
+        std::cout << "create table name:" << table_name << std::endl;
+
+        std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
+        // std::shared_ptr<CreateDatabase> create_folder_ptr = std::make_shared<CreateDatabase>();
+
+        std::shared_ptr<CreateTable> create_table_ptr = std::make_shared<CreateTable>();
+        // create_table_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
+        create_table_ptr->SetDatabaseName(database_name);
+        create_table_ptr->SetTableName(table_name);
+        create_table_ptr->CreateTableCore();
+        // create_folder_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
+        // create_folder_ptr->SetDatabasesName(database_name);
+        // create_folder_ptr->Create();
+
+        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "create operation in database."));
+        create_status = true;
+    } else {
+        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "create operation in database."));
+    }
+
+    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run create operation in database over."));
+    return create_status;
 };
 
 bool OperationDatabase::Select(VecStrPtr operations, CasselStatusPtr status) {

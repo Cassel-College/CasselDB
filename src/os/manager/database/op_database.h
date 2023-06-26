@@ -15,17 +15,22 @@
 #include "log4cpp/log_module/log_module.h"
 #include "os/manager/base_operation/base_operation.h"
 #include "os/ui/simple_ui/simple_ui.h"
+#include "module/create/createTB/create_table.h"
+#include "config/cassel_config/cassel_config.h"
 
-using namespace cassel::os::manager::status;
+
 
 namespace cassel {
 namespace os {
 namespace manager {
 namespace database {
 
+using namespace cassel::os::manager::status;
+using db_config::cassel_config::CasselConfig;
 using cassel::os::manager::base_operation::BaseOperation;
 using cassel::os::ui::SimpleUI;
-using namespace cassel::os::manager::status;
+
+using module::create::CreateTable;
 
 using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
 using CasselStatusPtr = std::shared_ptr<CasselStatus>;
