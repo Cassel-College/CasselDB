@@ -1,16 +1,6 @@
 #include "create_table.h"
-#include <algorithm>
-#include <module/show/table/show_table.h>
-#include <module/show/database/show_database.h>
-#include <module/config/path/data_path/data_path.h>
-#include <core/create/createFile/create_file.h>
-
 
 using module::create::CreateTableStatus;
-using module::show::table::ShowTable;
-using module::show::database::ShowDatabase;
-using module::config::path::DataPath;
-using core::create::CreateFile;
 
 module::create::CreateTable::CreateTable() 
 {
@@ -81,6 +71,18 @@ bool module::create::CreateTable::HasSameTableInDatabase() const
     return hasTable;
 }
 
+/**
+ * @brief Destructor for the SimpleUI class from the cassel::os::ui namespace. 
+ * 
+ * @return true 
+ * @return false 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-25
+ * @copyright Copyright (c) 2023
+ * @return true 
+ * @return false 
+ */
 bool module::create::CreateTable::HasDatabase() const {
     bool hasDB = true;
     ShowDatabase *showDatabase = new ShowDatabase();
@@ -92,6 +94,14 @@ bool module::create::CreateTable::HasDatabase() const {
     return hasDB;
 }
 
+/**
+ * @brief Create Table.
+ * 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-25
+ * @copyright Copyright (c) 2023
+ */
 void module::create::CreateTable::CreateTableCore() 
 {
     if (this->CheckEnvironment()) {
@@ -104,9 +114,14 @@ void module::create::CreateTable::CreateTableCore()
         this->SetStatus(CreateTableStatus::HAS_SAME_TABLE);
     }
     CreateFile *createFile = new CreateFile();
+    // std::shared_ptr<CreateFile> create_file_ptr = std::make_shared<CreateFile>();
+
     DataPath *dataPath = new DataPath();
     std::string tablePath = dataPath->GetDataPath() + "/" + this->GetDatabaseName();
     createFile->SetPath(tablePath);
+
+    std::cout << " Table path: " << tablePath << std::endl;
+    std::cout << " Table name: " << this->tableName << std::endl;
     createFile->SetFileName(this->tableName);
     createFile->DoCreateFile();
     return;

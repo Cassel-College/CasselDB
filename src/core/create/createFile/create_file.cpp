@@ -165,9 +165,12 @@ CreateFileStatus core::create::CreateFile::DoCreateFile() {
 
     Log* logMS = Log::GetLog();
     if (CreateFile::CheckFileName(fileName)) {
+        std::cout << "Right file name." << std::endl;
         if (CreateFile::CheckFilePathExisted(path)) {
+            std::cout << "File was existed." << std::endl;
             status = CreateFileStatus::FILE_EXITS;
         } else {
+            std::cout << "File not existed!" << std::endl;
             status = CreateFileStatus::FILE_PATH_NOT_EXITS;
             std::string allFilePath = path + "/" + fileName;
             logMS->add(LogModule("Begin create file:" + allFilePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
@@ -178,6 +181,7 @@ CreateFileStatus core::create::CreateFile::DoCreateFile() {
             }
         }
     } else {
+        std::cout << "Error file name." << std::endl;
         status = CreateFileStatus::FILE_NAME_ERROR;
     }
     return status;
@@ -225,7 +229,7 @@ bool core::create::CreateFile::CheckFilePathExisted(const std::string& filePath)
     } else {
         logMS->add(LogModule("File has been existed!" + filePath, Level("INFO"), __FILENAME__, __LINE__, "core"));
     }
-    return returnKey == 0;
+    return returnKey != 0;
 }
 
 

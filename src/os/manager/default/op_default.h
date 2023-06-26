@@ -36,11 +36,12 @@ namespace os {
 namespace manager {
 namespace def {
 
-using cassel::os::manager::base_operation::BaseOperation;
 using namespace cassel::os::manager::status;
+
 using db_config::cassel_config::CasselConfig;
 using module::create::CreateDatabase;
 using module::select::select_databases::SelectDataBase;
+using cassel::os::manager::base_operation::BaseOperation;
 using cassel::os::ui::SimpleUI;
 
 using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
