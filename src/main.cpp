@@ -52,11 +52,13 @@ using log4cpp::config4log::Config4Log;
 using log4cpp::date_time::DateTime;
 using log4cpp::log::Log;
 using cassel::os::manager::CasselManager;
+using cassel::os::manager::status::CasselStatus;
+using cassel::os::manager::status::CasselManagerStatus;
 
 
 Log* log4cpp::log::Log::logMS = nullptr;
-std::shared_ptr<log4cpp::log::Log> log4cpp::log::Log::logMS_ptr = nullptr;
-std::shared_ptr<db_config::cassel_config::CasselConfig> db_config::cassel_config::CasselConfig::cassel_config_ptr = nullptr;
+std::shared_ptr<log4cpp::log::Log> Log::logMS_ptr = nullptr;
+std::shared_ptr<CasselConfig> CasselConfig::cassel_config_ptr = nullptr;
 
 /**
  * @brief test case by Dev to test log module.
@@ -223,10 +225,14 @@ int main()
     //     if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
     //         std::cout << "over ..." << std::endl;
     //         break;
+    //     } else {
+    //         std::cout << "input command: " << manager_.GetCasselStatusStr() << std::endl;
     //     }
     // }
     logMS_ptr->send_log();
     delete logMS;
     return 0;
 }
+
+
 
