@@ -111,24 +111,38 @@ std::shared_ptr<CasselStatus> OperationDefault::Do(VecStrPtr operations, CasselS
     return status;
 };
 
-bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
+bool OperationDefault::CheckStringInVector(const std::string& str, const VecStrPtr& vec) {
+    if (!vec) return false;
+    for (const auto& s : *vec) {
+        if (s == str) return true;
+    }
+    return false;
+}
 
+
+bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
     bool create_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run create operation in default."));
-
     if (operations->size() == 2) {
         std::string database_name = operations->at(1);
         std::cout << "create database_name:" << database_name << std::endl;
 
-        std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
-        std::shared_ptr<CreateDatabase> create_folder_ptr = std::make_shared<CreateDatabase>();
-        create_folder_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
-        create_folder_ptr->SetDatabasesName(database_name);
-        create_folder_ptr->Create();
-
-        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "create operation in default."));
-        create_status = true;
+        std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
+        (void) select_database_ptr->DoSelect();
+        VecStrPtr names = select_database_ptr->GetDatabaseNames();
+        if (!this->CheckStringInVector(database_name, names)) {
+            logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Database was created in dbs."));
+            create_status = false;
+        } else {
+            std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
+            std::shared_ptr<CreateDatabase> create_folder_ptr = std::make_shared<CreateDatabase>();
+            create_folder_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
+            create_folder_ptr->SetDatabasesName(database_name);
+            create_folder_ptr->Create();
+            logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "create operation in default."));
+            create_status = true;
+        }
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "create operation in default."));
     }
@@ -139,6 +153,7 @@ bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
 
 bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
 
+    bool select_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
 
@@ -152,12 +167,11 @@ bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
         std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
         VecStrPtr taregt_infos = simple_ui_ptr->GenDB(names);
         simple_ui_ptr->Show(taregt_infos);
+        select_status = true;
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
     }
-
-    std::cout << "Select .... " << std::endl;
-    return true;
+    return select_status;
 };
 
 bool OperationDefault::Delete(VecStrPtr operations, CasselStatusPtr status) {
@@ -213,18 +227,29 @@ bool OperationDefault::Copy(VecStrPtr operations, CasselStatusPtr status) {
 
 bool OperationDefault::Open(VecStrPtr operations, CasselStatusPtr status) {
 
+    bool open_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
     if (operations->size() == 2) {
         std::string database_name = operations->at(1);
-        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "open operation in default."));
-        status->SetStatus(CasselManagerStatus::DATABASE);
-        status->SetDatabaseName(database_name);
+        std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
+        (void) select_database_ptr->DoSelect();
+        VecStrPtr names = select_database_ptr->GetDatabaseNames();
+        
+        if (false == this->CheckStringInVector(database_name, names)) {
+            logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Database was not existed!"));
+            open_status = false;
+        } else {
+            logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "open operation in default."));
+            status->SetStatus(CasselManagerStatus::DATABASE);
+            status->SetDatabaseName(database_name);
+            open_status = true;
+        }
     } else {
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "open operation in default."));
     }
     std::cout << "Open .... " << std::endl;
-    return true;
+    return open_status;
 };
 
 bool OperationDefault::Other(VecStrPtr operations, CasselStatusPtr status) {

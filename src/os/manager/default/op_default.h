@@ -61,6 +61,8 @@ class OperationDefault : public BaseOperation {
 
         std::string OperationToParameter(VecStrPtr operations, CasselStatusPtr status);
 
+        bool CheckStringInVector(const std::string& str, const VecStrPtr& vec);
+        
     private:
 
         bool Create(VecStrPtr operations, CasselStatusPtr status);

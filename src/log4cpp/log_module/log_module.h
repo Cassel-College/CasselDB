@@ -39,6 +39,8 @@ class LogModule
         void set_log_info(const std::string &log_info);
 
         std::string get_log_info() const;
+
+        std::string get_log_info_with_style() const;
         
         void show_log() const;
 

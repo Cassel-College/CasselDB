@@ -1,7 +1,9 @@
 #ifndef LOG4CPP_CACHE_CACHE_H
 #define LOG4CPP_CACHE_CACHE_H
 
+#include <string>
 #include <vector>
+#include <memory>
 
 #include "log4cpp/log_module/log_module.h"
 #include "log4cpp/level/level.h"
@@ -30,11 +32,16 @@ class LogCache {
 
         void show();
 
+        std::shared_ptr<std::vector<std::string>> get_logs_info();
+    
+
     private:
 
         int max_length = 1024;
 
         std::vector<LogModule> logs;
+
+        std::shared_ptr<std::vector<std::string>> logs_info_ptr;
 
 }; // class LogCache
 }; // namespace log_cache

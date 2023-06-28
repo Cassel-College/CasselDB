@@ -20,6 +20,8 @@ echo "# install path" >> ${file_name}
 echo "install_path=/opt/CasselDB" >> ${file_name}
 echo "# data path" >> ${file_name}
 echo "data_path=/opt/CasselDB/data" >> ${file_name}
+echo "# logs path" >> ${file_name}
+echo "logs_path=/opt/CasselDB/logs" >> ${file_name}
 echo "# soft_name" >> ${file_name}
 echo "soft_name=CasselDB" >> ${file_name}
 echo "# version" >> ${file_name}
