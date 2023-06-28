@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 message("Create Casssel DB")
 
+set(CMAKE_CXX_FLAGS   "-g")                     # 调试信息
+
 message("Setting Include head file dir:${PROJECT_SOURCE_DIR}/src")
 include_directories(${PROJECT_SOURCE_DIR}/src)
 

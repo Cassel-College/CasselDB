@@ -126,15 +126,21 @@ bool db_config::cassel_config::CasselConfig::AddConfig(std::pair<std::string, st
 
 std::string db_config::cassel_config::CasselConfig::GetConfigByName(const std::string &config_name) {
 
+    std::cout << "Get by name0" << std::endl;
     std::shared_ptr<log4cpp::log::Log> logMS_ptr = Log::GetLogPtr();
+    std::cout << "Get by name1" << std::endl;
     logMS_ptr->add(LogModule("Begin get " + config_name + " config.", Level("DEBUG"), __FILE__, __LINE__, "config"));
     std::string target_config = "";
+    std::cout << "Get by name2" << std::endl;
     std::map<std::string ,std::string>::iterator item; 
     item = this->config_maps.find(config_name);
+    std::cout << "Get by name3" << std::endl;
     if(item == this->config_maps.end()) {
+        std::cout << "Get by name4" << std::endl;
         target_config = "";
         logMS_ptr->add(LogModule("Get config ERROR.", Level("ERROR"), __FILE__, __LINE__, "config"));
     } else {
+        std::cout << "Get by name5" << std::endl;
         target_config = item->second;
     }
     logMS_ptr->add(LogModule("Get config Over.", Level("ERROR"), __FILE__, __LINE__, "config"));

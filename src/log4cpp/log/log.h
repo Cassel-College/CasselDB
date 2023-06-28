@@ -49,6 +49,8 @@ class Log {
 
         void clear();
 
+        bool SetLogPath(const std::string &log_path);
+
     private:
 
         LogCache cache;

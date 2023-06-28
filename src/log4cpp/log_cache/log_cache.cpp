@@ -31,7 +31,9 @@ void log4cpp::log_cache::LogCache::append(const LogModule &log)
 {
     this->logs.push_back(log);
     if (this->logs.size() >= 20) {
+        std::cout << "After clear length was " << this->logs.size() << std::endl;
         this->run();
+        this->save();
         this->clear();
         std::cout << "After clear length was " << this->logs.size() << std::endl;
     }
@@ -47,11 +49,12 @@ void log4cpp::log_cache::LogCache::append(const LogModule &log)
  */
 void log4cpp::log_cache::LogCache::run()
 {
-    logs_info_ptr->clear();
+    logs_info.clear();
+    std::cout << "Clear log info" << std::endl;
     for (LogModule log : this->logs) {
-        // log.show_log();
-        logs_info_ptr->push_back(log.get_log_info_with_style());
+        logs_info.push_back(log.get_log_info_with_style());
     }
+    std::cout << "Add target style log info to log list over." << std::endl;
 }
 
 /**
@@ -64,8 +67,8 @@ void log4cpp::log_cache::LogCache::run()
  * @copyright Copyright (c) 2023
  * @return std::shared_ptr<std::vector<std::string>> 
  */
-std::shared_ptr<std::vector<std::string>> log4cpp::log_cache::LogCache::get_logs_info() {
-    return this->logs_info_ptr;
+std::vector<std::string> log4cpp::log_cache::LogCache::get_logs_info() {
+    return this->logs_info;
 }
 
 /**
@@ -110,5 +113,38 @@ void log4cpp::log_cache::LogCache::show()
 void log4cpp::log_cache::LogCache::clear()
 {
     this->logs.clear();
-    this->logs_info_ptr->clear();
+    this->logs_info.clear();
+}
+
+void log4cpp::log_cache::LogCache::save() {
+    std::cout << "save log to this->log_path:" << this->log_path << "." << std::endl;
+    std::shared_ptr<Log2File> log2file_ptr = std::make_shared<Log2File>(this->log_path);
+    log2file_ptr->WriteLogs(this->logs_info);
+}
+
+/**
+ * @brief set log path
+ * 
+ * @param log_path 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-28
+ * @copyright Copyright (c) 2023
+ */
+void log4cpp::log_cache::LogCache::SetLogPath(const std::string &log_path) {
+    this->log_path = log_path;
+}
+
+/**
+ * @brief Get the Log Path object
+ * 
+ * @return const std::string& 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-28
+ * @copyright Copyright (c) 2023
+ * @return const std::string& 
+ */
+const std::string &log4cpp::log_cache::LogCache::GetLogPath() {
+    return this->log_path;
 }

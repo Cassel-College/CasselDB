@@ -122,8 +122,10 @@ bool OperationDefault::CheckStringInVector(const std::string& str, const VecStrP
 
 bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
     bool create_status = false;
+    std::cout << "111111111111111111111111111111111111" << std::endl;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run create operation in default."));
+    std::cout << "222222222222222222222222222222222222" << std::endl;
     if (operations->size() == 2) {
         std::string database_name = operations->at(1);
         std::cout << "create database_name:" << database_name << std::endl;
@@ -156,19 +158,21 @@ bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
     bool select_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
     logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-
+    std::cout << "222222222222222222222222222222222222" << std::endl;
     if (operations->size() == 1) {
         logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "select operation in default."));
-
+        std::cout << "std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();" << std::endl;
         std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
+        std::cout << "(void) select_database_ptr->DoSelect();" << std::endl;
         (void) select_database_ptr->DoSelect();
         VecStrPtr names = select_database_ptr->GetDatabaseNames();
-
+        std::cout << "222222222222222222222222222222222222" << std::endl;
         std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
         VecStrPtr taregt_infos = simple_ui_ptr->GenDB(names);
         simple_ui_ptr->Show(taregt_infos);
         select_status = true;
     } else {
+        std::cout << "222222222222222222222222222222222223" << std::endl;
         logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
     }
     return select_status;

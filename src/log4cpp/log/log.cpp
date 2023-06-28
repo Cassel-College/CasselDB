@@ -83,6 +83,45 @@ std::shared_ptr<Log> Log::GetLogPtr() {
     return logMS_ptr;
 }
 
+/**
+ * @brief Set the Log Path object
+ * 
+ * @param log_path 
+ * @return true 
+ * @return false 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-28
+ * @copyright Copyright (c) 2023
+ * @return true 
+ * @return false 
+ */
+bool Log::SetLogPath(const std::string &log_path) {
+    bool set_log_path_status = true;
+    if (logMS_ptr != nullptr) {
+        logMS_ptr->cache.SetLogPath(log_path);
+    } else {
+        set_log_path_status = false;
+    }
+
+    if (logMS != nullptr) {
+        logMS->cache.SetLogPath(log_path);
+    } else {
+        set_log_path_status = false;
+    }
+    return set_log_path_status;
+}
+
+/**
+ * @brief Get Default log Config
+ * 
+ * @return std::vector<std::string> 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-28
+ * @copyright Copyright (c) 2023
+ * @return std::vector<std::string> 
+ */
 std::vector<std::string> Log::GetDefaultConfig()
 {
     std::vector<std::string> config_infos;
