@@ -174,6 +174,9 @@ int main()
     createFolder->SetFolderName("Palt");
     createFolder->DoCreateFolder();
 
+    logMS_ptr->SetLogPath(cassel_config_ptr->GetConfigByName("log_path"));
+    logMS->SetLogPath(cassel_config_ptr->GetConfigByName("log_path"));
+    
     std::cout << "Holle World!" << std::endl;
     ReadFile *readFile = new ReadFile();
     readFile->SetPath("/etc/profile");
@@ -233,6 +236,3 @@ int main()
     delete logMS;
     return 0;
 }
-
-
-

@@ -4,12 +4,30 @@
 
 using log4cpp::level::Level;
 
+/**
+ * @brief Construct a new log4cpp::log module::LogModule::LogModule object
+ * 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-26
+ * @copyright Copyright (c) 2023
+ */
 log4cpp::log_module::LogModule::LogModule()
 {
     this->level = Level();
     this->datetime = DateTime();
 }
 
+/**
+ * @brief Construct a new log4cpp::log module::LogModule::LogModule object
+ * 
+ * @param log_info 
+ * @param level 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-26
+ * @copyright Copyright (c) 2023
+ */
 log4cpp::log_module::LogModule::LogModule(const std::string &log_info, Level level)
 {
     this->log_info = log_info;
@@ -72,13 +90,7 @@ std::string log4cpp::log_module::LogModule::get_log_info() const
     return log_info;
 }
 
-Level log4cpp::log_module::LogModule::get_level()
-{
-    return this->level;
-}
-
-void log4cpp::log_module::LogModule::show_log() const 
-{
+std::string log4cpp::log_module::LogModule::get_log_info_with_style() const {
     std::string time_info = "[" + datetime.getDateTime() + "]";
     std::string level_info = this->level.get_level();
     std::string split = "|";
@@ -86,6 +98,18 @@ void log4cpp::log_module::LogModule::show_log() const
     if (moduleName != "") {
         module = this->moduleName + " module";
     }
-    std::string information = time_info + split + level_info + split + module + split + fileName + split + std::to_string(line) + split + log_info;
-    std::cout << information << std::endl;
+    std::string information = split + time_info + split + level_info + split + module \
+                            + split + fileName + split + std::to_string(line) + split \
+                            + log_info + split;
+    return information;
+}
+
+Level log4cpp::log_module::LogModule::get_level()
+{
+    return this->level;
+}
+
+void log4cpp::log_module::LogModule::show_log() const 
+{
+    std::cout << this->get_log_info_with_style() << std::endl;
 }
