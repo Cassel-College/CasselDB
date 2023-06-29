@@ -7,16 +7,21 @@
 #include <memory>
 #include <fstream>
 
-namespace log4cpp {
+#include "log4cpp/config4log/config4log.h"
 
+namespace log4cpp {
 namespace log2file {
     
+using log4cpp::config4log::Config4Log;
+
 class Log2File {
 
 public:
     Log2File();
 
     Log2File(const std::string &log_path);
+
+    Log2File(const Config4Log &config4log);
 
     ~Log2File();
 
@@ -30,7 +35,7 @@ public:
 
 private:
 
-    std::string log_path;
+    Config4Log config4log;
 
 }; // class Log2File
 }; // namespace log2file

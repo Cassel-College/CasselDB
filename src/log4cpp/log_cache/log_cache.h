@@ -8,12 +8,14 @@
 #include "log4cpp/log_module/log_module.h"
 #include "log4cpp/level/level.h"
 #include "log4cpp/log2file/log2file.h"
+#include "log4cpp/config4log/config4log.h"
 
 namespace log4cpp {
 
 using log4cpp::log_module::LogModule;
 using log4cpp::level::Level;
 using log4cpp::log2file::Log2File;
+using log4cpp::config4log::Config4Log;
 
 namespace log_cache {
 
@@ -23,7 +25,7 @@ class LogCache {
 
         LogCache();
 
-        void append(const LogModule &log);
+        void append(const LogModule &log, const Config4Log &config4log);
 
         void run();
 
@@ -35,7 +37,7 @@ class LogCache {
 
         std::vector<std::string> get_logs_info();
 
-        void save();
+        void save(const Config4Log &config4log);
 
         void SetLogPath(const std::string &log_path);
 

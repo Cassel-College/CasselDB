@@ -41,7 +41,7 @@ Log::~Log()
 
 void Log::add(const LogModule &log)
 {
-    cache.append(log);
+    cache.append(log, this->config);
 }
 
 void Log::clear()
@@ -99,13 +99,15 @@ std::shared_ptr<Log> Log::GetLogPtr() {
 bool Log::SetLogPath(const std::string &log_path) {
     bool set_log_path_status = true;
     if (logMS_ptr != nullptr) {
-        logMS_ptr->cache.SetLogPath(log_path);
+        std::cout << "Setting log path:" << log_path << std::endl;
+        logMS_ptr->config.setLogPath(log_path);
     } else {
         set_log_path_status = false;
     }
 
     if (logMS != nullptr) {
-        logMS->cache.SetLogPath(log_path);
+        std::cout << "Setting log path:" << log_path << std::endl;
+        logMS->config.setLogPath(log_path);
     } else {
         set_log_path_status = false;
     }

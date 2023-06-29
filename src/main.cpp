@@ -60,69 +60,6 @@ Log* log4cpp::log::Log::logMS = nullptr;
 std::shared_ptr<log4cpp::log::Log> Log::logMS_ptr = nullptr;
 std::shared_ptr<CasselConfig> CasselConfig::cassel_config_ptr = nullptr;
 
-/**
- * @brief test case by Dev to test log module.
- * 
- * @version 1.0
- * @author liupeng (liupeng.0@outlook.com)
- * @date 2022-09-18
- * @copyright Copyright (c) 2022
- */
-void dev_test_log()
-{
-    Log* logMS = Log::GetLog();
-    LogModule *log = new LogModule();
-    log->set_log_info("log information.");
-    log->show_log();
-
-
-    if (Level::compare(Level("DEBUG"), Level("INFO"))) {
-        log->set_log_info("print");
-    } else {
-        log->set_log_info("not print");
-    }
-    log->show_log();
-    delete log;
-
-    LogCache *log_cache = new LogCache();
-    log_cache->append(LogModule(std::string("111"), Level(1)));
-    log_cache->append(LogModule(std::string("222"), Level(2)));
-    log_cache->append(LogModule(std::string("113"), Level(0)));
-    log_cache->append(LogModule(std::string("224"), Level(2)));
-    log_cache->append(LogModule(std::string("115"), Level(2)));
-    log_cache->append(LogModule(std::string("226"), Level("DEBUG")));
-    log_cache->append(LogModule("Start docker", Level("INFO"), __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    log_cache->append(LogModule("Start docker", Level("ERROR"), __FILE__, __LINE__));
-    log_cache->append(LogModule("Enter docker", Level("DEBUG"), __FILE__, __LINE__, "log"));
-
-    std::cout << "------------------------" << std::endl;
-    log_cache->show();
-    log_cache->filtter(Level(1));
-    std::cout << "------------------------" << std::endl;
-    log_cache->show();
-    
-    delete log_cache;
-
-    LogModule log_a = LogModule();
-    Style4Log *style = new Style4Log(log_a);
-    std::cout << style->get_log_information() << std::endl;
-
-    IO4Log *io = new IO4Log("ccc");
-    io->wirte("opop");
-
-    Config4Log *config = new Config4Log();
-    std::cout << config->getFilterLevel() << std::endl;
-
-    DateTime dt = DateTime();
-    dt.show_now();
-
-    logMS->add(LogModule("Stop Cassel DB.", Level("DEBUG"), __FILE__, __LINE__, "log"));
-    logMS->send_log();
-
-    delete logMS;
-}
-
 void delSpace(std::string &buf) {
     std::istringstream iss(buf);
     std::ostringstream oss;
@@ -133,19 +70,6 @@ void delSpace(std::string &buf) {
     buf = oss.str();
     if (!buf.empty()) {
         buf.pop_back();
-    }
-}
-
-void pp() {
-    std::string s = "This#is#a#test";
-    std::istringstream iss(s);
-    std::vector<std::string> result;
-    std::string token;
-    while (std::getline(iss, token, '#')) {
-        result.push_back(token);
-    }
-    for (const auto &t : result) {
-        std::cout << t << std::endl;
     }
 }
 
@@ -174,9 +98,8 @@ int main()
     createFolder->SetFolderName("Palt");
     createFolder->DoCreateFolder();
 
-    logMS_ptr->SetLogPath(cassel_config_ptr->GetConfigByName("log_path"));
-    logMS->SetLogPath(cassel_config_ptr->GetConfigByName("log_path"));
-    
+    logMS_ptr->SetLogPath(cassel_config_ptr->GetConfigByName("logs_path"));
+    logMS->SetLogPath(cassel_config_ptr->GetConfigByName("logs_path"));
     std::cout << "Holle World!" << std::endl;
     ReadFile *readFile = new ReadFile();
     readFile->SetPath("/etc/profile");
@@ -212,26 +135,27 @@ int main()
     std::shared_ptr<std::vector<std::string>> operations = std::make_shared<std::vector<std::string>>();
     manager_.ParseOperation(operations);
     std::string command;
-    // while (1 == 1) {
-    //     operations->clear();
-    //     std::string target1 = "(";
-    //     std::string target2 = ")";
-    //     std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
-    //     command = "";
-    //     std::getline(std::cin, command);
+    std::string license = cassel_config_ptr->GetConfigByName("license");
+    while (license == "19890604-") {
+        operations->clear();
+        std::string target1 = "(";
+        std::string target2 = ")";
+        std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
+        command = "";
+        std::getline(std::cin, command);
 
-    //     delSpace(command);
-    //     SplitStr(command, operations);
+        delSpace(command);
+        SplitStr(command, operations);
 
-    //     manager_.ParseOperation(operations);
+        manager_.ParseOperation(operations);
 
-    //     if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
-    //         std::cout << "over ..." << std::endl;
-    //         break;
-    //     } else {
-    //         std::cout << "input command: " << manager_.GetCasselStatusStr() << std::endl;
-    //     }
-    // }
+        if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
+            std::cout << "over ..." << std::endl;
+            break;
+        } else {
+            std::cout << "input command: " << manager_.GetCasselStatusStr() << std::endl;
+        }
+    }
     logMS_ptr->send_log();
     delete logMS;
     return 0;
