@@ -27,3 +27,4 @@ echo "soft_name=CasselDB" >> ${file_name}
 echo "# version" >> ${file_name}
 echo "soft_big_version=1" >> ${file_name}
 echo "soft_sim_version=00" >> ${file_name}
+echo "license=19890604" >> ${file_name}

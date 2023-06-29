@@ -13,8 +13,6 @@
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
 
-
-
 namespace log4cpp {
 namespace log {
 
