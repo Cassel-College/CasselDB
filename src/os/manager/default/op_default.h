@@ -47,6 +47,7 @@ using cassel::os::ui::SimpleUI;
 using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
 using CasselStatusPtr = std::shared_ptr<CasselStatus>;
 
+
 class OperationDefault : public BaseOperation {
 
     public:

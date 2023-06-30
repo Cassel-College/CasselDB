@@ -1,16 +1,16 @@
 #include "log2file.h"
 
 log4cpp::log2file::Log2File::Log2File() {
-    std::cout << "Create log2file." << std::endl;
+    // std::cout << "Create log2file." << std::endl;
 };
 
 log4cpp::log2file::Log2File::Log2File(const std::string &log_path) {
-    std::cout << "Create log2file by log path." << std::endl;
+    // std::cout << "Create log2file by log path." << std::endl;
     this->config4log.setLogPath(log_path);
 };
 
 log4cpp::log2file::Log2File::Log2File(const Config4Log &config4log) {
-    std::cout << "Create log2file by config." << std::endl;
+    // std::cout << "Create log2file by config." << std::endl;
     this->config4log = config4log;
 }
 

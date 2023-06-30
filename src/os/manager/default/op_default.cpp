@@ -111,29 +111,67 @@ std::shared_ptr<CasselStatus> OperationDefault::Do(VecStrPtr operations, CasselS
     return status;
 };
 
+/**
+ * @brief 
+ * 
+ * @param str 
+ * @param vec 
+ * @return true 
+ * @return false 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-30
+ * @copyright Copyright (c) 2023
+ * @return true 
+ * @return false 
+ */
 bool OperationDefault::CheckStringInVector(const std::string& str, const VecStrPtr& vec) {
-    if (!vec) return false;
+
+    std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
+    logMS_ptr->add(LogModule("Check string wether in vector.", Level("INFO"), __FILENAME__, __LINE__, "Default"));
+    bool has_existed = false;
+    if (!vec) return has_existed;
     for (const auto& s : *vec) {
-        if (s == str) return true;
+        if (s == str) {
+            has_existed = true;
+            logMS_ptr->add(LogModule("String " + str + " in vector.", Level("INFO"), __FILENAME__, __LINE__, "Default"));
+            break;
+        } else {
+            continue;
+        }
     }
-    return false;
+    if (!has_existed) {
+        logMS_ptr->add(LogModule("String " + str + " not in vector.", Level("INFO"), __FILENAME__, __LINE__, "Default"));
+    }
+    return has_existed;
 }
 
-
+/**
+ * @brief Create database
+ * 
+ * @param operations 
+ * @param status 
+ * @return true 
+ * @return false 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-30
+ * @copyright Copyright (c) 2023
+ * @return true 
+ * @return false 
+ */
 bool OperationDefault::Create(VecStrPtr operations, CasselStatusPtr status) {
     bool create_status = false;
-    std::cout << "111111111111111111111111111111111111" << std::endl;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run create operation in default."));
-    std::cout << "222222222222222222222222222222222222" << std::endl;
+    logMS_ptr->add(LogModule("run create operation in default.", Level("INFO"), __FILENAME__, __LINE__, "Default"));
     if (operations->size() == 2) {
         std::string database_name = operations->at(1);
+        logMS_ptr->add(LogModule("create database_name:" + database_name, Level("INFO"), __FILENAME__, __LINE__, "Default"));
         std::cout << "create database_name:" << database_name << std::endl;
-
         std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
         (void) select_database_ptr->DoSelect();
         VecStrPtr names = select_database_ptr->GetDatabaseNames();
-        if (!this->CheckStringInVector(database_name, names)) {
+        if (this->CheckStringInVector(database_name, names)) {
             logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "Database was created in dbs."));
             create_status = false;
         } else {
@@ -157,23 +195,18 @@ bool OperationDefault::Select(VecStrPtr operations, CasselStatusPtr status) {
 
     bool select_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    std::cout << "222222222222222222222222222222222222" << std::endl;
+    logMS_ptr->add(LogModule("Select all database.", Level("INFO"), __FILENAME__, __LINE__, "os"));
     if (operations->size() == 1) {
-        logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "select operation in default."));
-        std::cout << "std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();" << std::endl;
+        logMS_ptr->add(LogModule("select operation in default.", Level("INFO"), __FILENAME__, __LINE__, "os"));
         std::shared_ptr<SelectDataBase> select_database_ptr = std::make_shared<SelectDataBase>();
-        std::cout << "(void) select_database_ptr->DoSelect();" << std::endl;
         (void) select_database_ptr->DoSelect();
         VecStrPtr names = select_database_ptr->GetDatabaseNames();
-        std::cout << "222222222222222222222222222222222222" << std::endl;
         std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
         VecStrPtr taregt_infos = simple_ui_ptr->GenDB(names);
         simple_ui_ptr->Show(taregt_infos);
         select_status = true;
     } else {
-        std::cout << "222222222222222222222222222222222223" << std::endl;
-        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "select operation in default."));
+        logMS_ptr->add(LogModule("select operation in default.", Level("ERROR"), __FILENAME__, __LINE__, "os"));
     }
     return select_status;
 };

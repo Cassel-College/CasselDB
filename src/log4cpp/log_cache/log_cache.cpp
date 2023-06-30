@@ -30,12 +30,10 @@ log4cpp::log_cache::LogCache::LogCache()
 void log4cpp::log_cache::LogCache::append(const LogModule &log, const Config4Log &config4log)
 {
     this->logs.push_back(log);
-    if (this->logs.size() >= 10) {
-        std::cout << "After clear length was " << this->logs.size() << std::endl;
+    if (this->logs.size() >= 100) {
         this->run();
         this->save(config4log);
         this->clear();
-        std::cout << "After clear length was " << this->logs.size() << std::endl;
     }
 }
 
@@ -50,11 +48,9 @@ void log4cpp::log_cache::LogCache::append(const LogModule &log, const Config4Log
 void log4cpp::log_cache::LogCache::run()
 {
     logs_info.clear();
-    std::cout << "Clear log info" << std::endl;
     for (LogModule log : this->logs) {
         logs_info.push_back(log.get_log_info_with_style());
     }
-    std::cout << "Add target style log info to log list over." << std::endl;
 }
 
 /**
@@ -117,7 +113,6 @@ void log4cpp::log_cache::LogCache::clear()
 }
 
 void log4cpp::log_cache::LogCache::save(const Config4Log &config4log) {
-    std::cout << "save log to this->log_path:" << config4log.getLogPath() << "." << std::endl;
     std::shared_ptr<Log2File> log2file_ptr = std::make_shared<Log2File>(config4log);
     log2file_ptr->WriteLogs(this->logs_info);
 }

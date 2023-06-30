@@ -7,4 +7,4 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(select_table SHARED ./select_table.cpp ./select_table.h)
 
-target_link_libraries(select_table select_folder cassel_config)
+target_link_libraries(select_table log_module level log_cache style4log io4log filter4log config4log date_time log select_folder cassel_config)

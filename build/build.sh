@@ -41,3 +41,6 @@ sh ${this_path}/./create_product_setting/create_start.sh
 sh ${this_path}/./create_product_setting/create_configuration.sh
 
 # sh ./clear_build.sh
+
+tar -zcvf ./../CasselDB.tar.gz ./../cassel
+
