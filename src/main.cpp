@@ -107,7 +107,7 @@ int main()
     
     manager_.ParseOperation(operations);
     
-    if (license == "19890604") {
+    if (license == "19890604.lic") {
         while (true) {
             operations->clear();
             std::string target1 = "(";
