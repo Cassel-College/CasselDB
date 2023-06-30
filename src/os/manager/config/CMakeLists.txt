@@ -7,5 +7,5 @@ message("Setting lib file outout path:${PROJECT_SOURCE_DIR}/cassel/lib")
 
 add_library(op_config SHARED ./op_config.cpp ./op_config.h)
 
-target_link_libraries(op_config base_operation)
+target_link_libraries(op_config log_module level log_cache style4log io4log filter4log config4log date_time log base_operation)
 

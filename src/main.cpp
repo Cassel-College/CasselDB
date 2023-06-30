@@ -14,14 +14,6 @@
 #include <memory>
 #include <sstream>
 
-#include <config/version/version.h>
-#include <config/cassel_config/cassel_config.h>
-#include <core/create/createFolder/create_folder.h>
-#include <core/read/readFile/read_file.h>
-#include <core/tools/select_info_from_list/select_info_from_list.h>
-#include <module/config/path/install_path/install_path.h>
-#include <module/create/createDB/create_database.h>
-#include <module/show/database/show_database.h>
 #include <log4cpp/log_module/log_module.h>
 #include <log4cpp/level/level.h>
 #include <log4cpp/log_cache/log_cache.h>
@@ -31,6 +23,15 @@
 #include <log4cpp/config4log/config4log.h>
 #include <log4cpp/date_time/date_time.h>
 #include <log4cpp/log/log.h>
+
+#include <config/version/version.h>
+#include <config/cassel_config/cassel_config.h>
+#include <core/create/createFolder/create_folder.h>
+#include <core/read/readFile/read_file.h>
+#include <core/tools/select_info_from_list/select_info_from_list.h>
+#include <module/config/path/install_path/install_path.h>
+#include <module/create/createDB/create_database.h>
+#include <module/show/database/show_database.h>
 #include <os/manager/cassel_manager.h>
 
 using core::create::CreateFolder;
@@ -55,6 +56,7 @@ using cassel::os::manager::CasselManager;
 using cassel::os::manager::status::CasselStatus;
 using cassel::os::manager::status::CasselManagerStatus;
 
+using VecStrPtr = std::shared_ptr<std::vector<std::string>>;
 
 Log* log4cpp::log::Log::logMS = nullptr;
 std::shared_ptr<log4cpp::log::Log> Log::logMS_ptr = nullptr;
@@ -93,70 +95,47 @@ int main()
 
     std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
 
-    CreateFolder *createFolder = new CreateFolder();
-    createFolder->SetPath(cassel_config_ptr->GetConfigByName("data_path"));
-    createFolder->SetFolderName("Palt");
-    createFolder->DoCreateFolder();
-
     logMS_ptr->SetLogPath(cassel_config_ptr->GetConfigByName("logs_path"));
     logMS->SetLogPath(cassel_config_ptr->GetConfigByName("logs_path"));
-    std::cout << "Holle World!" << std::endl;
-    ReadFile *readFile = new ReadFile();
-    readFile->SetPath("/etc/profile");
-    readFile->SetInfo();
-    std::cout << "Holle World!" << std::endl;
-    std::vector<std::string> paly = readFile->GetInfo();
-
-    paly = SelectInfoFromList::SelectInfo(paly, "CASSELDB_INSTALL_PATH", true);
-    std::cout << "Holle World!" << std::endl;
-    for (auto item : paly) {
-        std::cout << item << std::endl;
-    }
-
-    InstallPath *installPath = new InstallPath();
-    std::cout << "Holle World!-" << std::endl;
-    std::string install_path = installPath->GetInstallPath();
-    std::cout << "Holle World!-" << std::endl;
-    std::cout << install_path << std::endl;
-
-    Version *version = new Version();
-    std::cout << version->get_version() << std::endl;
-    logMS->send_log();
-
-    std::cout << "Test read file." << std::endl;
-    std::shared_ptr<core::read::ReadFile> readfile_ptr = std::make_shared<core::read::ReadFile>();
-    readfile_ptr->SetPath("/home/Code/github/CasselDB/README.md");
-    readfile_ptr->SetInfo();
-    auto infos = readfile_ptr->GetInfo();
-    core::read::ShowInfo(infos);
 
     cassel::os::manager::CasselManager manager_;
-    std::shared_ptr<CasselStatus> status = std::make_shared<CasselStatus>();
-    std::shared_ptr<std::vector<std::string>> operations = std::make_shared<std::vector<std::string>>();
-    manager_.ParseOperation(operations);
     std::string command;
     std::string license = cassel_config_ptr->GetConfigByName("license");
-    while (license == "19890604-") {
-        operations->clear();
-        std::string target1 = "(";
-        std::string target2 = ")";
-        std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
-        command = "";
-        std::getline(std::cin, command);
 
-        delSpace(command);
-        SplitStr(command, operations);
+    std::shared_ptr<CasselStatus> status = std::make_shared<CasselStatus>();
+    VecStrPtr operations = std::make_shared<std::vector<std::string>>();
+    
+    manager_.ParseOperation(operations);
+    
+    if (license == "19890604") {
+        while (true) {
+            operations->clear();
+            std::string target1 = "(";
+            std::string target2 = ")";
+            std::cout << "input command " << target1 << manager_.GetCasselStatusStr() << target2 << " >>>";
+            command = "";
+            std::getline(std::cin, command);
 
-        manager_.ParseOperation(operations);
+            delSpace(command);
+            SplitStr(command, operations);
 
-        if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
-            std::cout << "over ..." << std::endl;
-            break;
-        } else {
-            std::cout << "input command: " << manager_.GetCasselStatusStr() << std::endl;
+            manager_.ParseOperation(operations);
+
+            if (manager_.GetLevelStatus() == CasselManagerStatus::QUIT) {
+                std::cout << "over ..." << std::endl;
+                break;
+            } else {
+                std::cout << "input command: " << manager_.GetCasselStatusStr() << std::endl;
+            }
         }
+    } else {
+        std::cout << "license error." << std::endl;
     }
+    
     logMS_ptr->send_log();
     delete logMS;
     return 0;
 }
+
+// | datetime | level | module | file | line | log infos |
+// | --- | --- | --- | --- | --- | --- |

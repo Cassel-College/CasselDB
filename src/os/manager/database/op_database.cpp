@@ -111,18 +111,13 @@ bool OperationDatabase::Create(VecStrPtr operations, CasselStatusPtr status) {
         std::string database_name = status->GetDatabaseName();
         std::string table_name = operations->at(1);
         std::cout << "create table name:" << table_name << std::endl;
-
+        table_name = table_name + "_cassel.db";
         std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
-        // std::shared_ptr<CreateDatabase> create_folder_ptr = std::make_shared<CreateDatabase>();
 
         std::shared_ptr<CreateTable> create_table_ptr = std::make_shared<CreateTable>();
-        // create_table_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
         create_table_ptr->SetDatabaseName(database_name);
         create_table_ptr->SetTableName(table_name);
         create_table_ptr->CreateTableCore();
-        // create_folder_ptr->SetBashPath(cassel_config_ptr->GetConfigByName("data_path"));
-        // create_folder_ptr->SetDatabasesName(database_name);
-        // create_folder_ptr->Create();
 
         logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "create operation in database."));
         create_status = true;
@@ -135,9 +130,30 @@ bool OperationDatabase::Create(VecStrPtr operations, CasselStatusPtr status) {
 };
 
 bool OperationDatabase::Select(VecStrPtr operations, CasselStatusPtr status) {
+    bool select_status = false;
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-    return true;
+    std::string databases_name = status->GetDatabaseName();
+    logMS_ptr->add(LogModule("select tables in database " + databases_name, Level("INFO"), __FILENAME__, __LINE__, "os"));
+
+    if (operations->size() == 1) {
+        logMS_ptr->add(LogModule("select table info in default.", Level("INFO"), __FILENAME__, __LINE__, "os"));
+
+        std::shared_ptr<CasselConfig> cassel_config_ptr = CasselConfig::GetCasselConfigPtr();
+        std::string cassel_db_path = cassel_config_ptr->GetConfigByName("data_path");
+
+        SelectTablePrt select_table_ptr = std::make_shared<SelectTable>(cassel_db_path, databases_name);
+        select_table_ptr->DoSelectTable();
+        VecStrPtr table_infos = select_table_ptr->GetTableInfos();
+
+        std::shared_ptr<SimpleUI> simple_ui_ptr = std::make_shared<SimpleUI>();
+        VecStrPtr taregt_infos = simple_ui_ptr->GenDB(table_infos);
+        simple_ui_ptr->Show(taregt_infos);
+        select_status = true;
+    } else {
+        logMS_ptr->add(LogModule("operation error.", Level("ERROR"), __FILENAME__, __LINE__, "os"));
+    }
+    logMS_ptr->add(LogModule("Select table in database " + databases_name + " over.", Level("INFO"), __FILENAME__, __LINE__, "os"));
+    return select_status;
 };
 
 bool OperationDatabase::Delete(VecStrPtr operations, CasselStatusPtr status) {
@@ -182,4 +198,3 @@ bool OperationDatabase::Quit(VecStrPtr operations, CasselStatusPtr status) {
 }; //namespace cassel
 }; //namespace os
 }; //namespace manager
-

@@ -93,6 +93,17 @@ void cassel::os::ui::SimpleUI::Show(VecStrPtr ui_infos) {
     }
 };
 
+/**
+ * @brief Genaration status show infos.
+ * 
+ * @param status_infos 
+ * @return VecStrPtr 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-29
+ * @copyright Copyright (c) 2023
+ * @return VecStrPtr 
+ */
 VecStrPtr cassel::os::ui::SimpleUI::GenStatus(VecStrPtr status_infos) {
     VecStrPtr new_status_infos = std::make_shared<std::vector<std::string>>();
 
@@ -102,18 +113,27 @@ VecStrPtr cassel::os::ui::SimpleUI::GenStatus(VecStrPtr status_infos) {
     return new_status_infos;
 };
 
-
-
+/**
+ * @brief Print the table
+ * 
+ * @param data 
+ * @return VecStrPtr 
+ * @version 0.1
+ * @author liupeng (liupeng.0@outlook.com)
+ * @date 2023-06-29
+ * @copyright Copyright (c) 2023
+ * @return VecStrPtr 
+ */
 VecStrPtr cassel::os::ui::SimpleUI::PrintTable(const VecStrPtr data) {
     auto table = std::make_shared<std::vector<std::string>>();
 
-    // 计算最长字符串的长度
+    // Get the longest string
     size_t maxLength = 0;
     for (const auto& str : *data) {
         maxLength = std::max(maxLength, str.length());
     }
 
-    // 构造分隔符
+    // build the separator
     std::string separator = "+-";
     for (size_t i = 0; i < maxLength; ++i) {
         separator += "-";
@@ -128,10 +148,5 @@ VecStrPtr cassel::os::ui::SimpleUI::PrintTable(const VecStrPtr data) {
         table->push_back(row);
     }
     table->push_back(separator);
-
-    // for (const auto& row : *table) {
-    //     std::cout << row << std::endl;
-    // }
-
     return table;
 };

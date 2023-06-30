@@ -64,16 +64,13 @@ std::string OperationConfig::OperationToParameter(VecStrPtr operations, CasselSt
 
 std::shared_ptr<CasselStatus> OperationConfig::Do(VecStrPtr operations, CasselStatusPtr status) {
     std::shared_ptr<Log> logMS_ptr = Log::GetLogPtr();
-    logMS_ptr->add(LogModule("Default", Level("INFO"), __FILENAME__, __LINE__, "run"));
-
+    logMS_ptr->add(LogModule("Default do some operation.", Level("INFO"), __FILENAME__, __LINE__, "run"));
     std::string operation = "";
     if (int(operations->size()) > 0) {
         std::string code = this->OperationToParameter(operations, status);
     } else {
-        std::cout << "operation is empty" << std::endl;
-        logMS_ptr->add(LogModule("Default", Level("ERROR"), __FILENAME__, __LINE__, "no operation."));
+        logMS_ptr->add(LogModule("Default: no operation.", Level("ERROR"), __FILENAME__, __LINE__, "run"));
     }
-    std::cout << "-----------------------------------" << std::endl;
     return status;
 };
 
